@@ -794,9 +794,14 @@ MonoBehaviour:
   enemies:
   - {fileID: 11400000, guid: 6c79f1a41341a4cb78727a8cea498a15, type: 2}
   faces:
+  - {fileID: 11400000, guid: b5b8850c87fcd41b8b02ad12b2e5b3e1, type: 2}
+  - {fileID: 11400000, guid: 52240dda6f5e2a64381c8d2290ff993f, type: 2}
   - {fileID: 11400000, guid: 208308ca73d0e4c2bae23ab30c0b8dbe, type: 2}
   - {fileID: 11400000, guid: bbb33f3da6c2c4c329c1713cdbd0ca1a, type: 2}
-  - {fileID: 11400000, guid: b5b8850c87fcd41b8b02ad12b2e5b3e1, type: 2}
+  - {fileID: 11400000, guid: 63812816e2920344983f5647343525c4, type: 2}
+  - {fileID: 11400000, guid: 6a8db2eb964879b45881988fd8430115, type: 2}
+  - {fileID: 11400000, guid: 8252be1c89f77a04e8c39c567cde9322, type: 2}
+  - {fileID: 11400000, guid: a4c49dab19d1b5343b113d43f4155dcf, type: 2}
   playerName: {fileID: 513483296}
   playerSprite: {fileID: 973225144}
   playerHP: {fileID: 536840434}
