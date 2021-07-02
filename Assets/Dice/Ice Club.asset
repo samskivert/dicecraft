@@ -12,8 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 71bc2946b85dc49939f3cd5b403cfbd6, type: 3}
   m_Name: Ice Club
   m_EditorClassIdentifier: 
-  name: Club
-  image: {fileID: 21300000, guid: b2eb7aaea0cc04c61ba3d87ee6253ec8, type: 3}
+  name: Ice Club
+  image: {fileID: 21300000, guid: c92c9baede0389f408221c618613005c, type: 3}
   damageType: 2
-  effectType: 0
-  damage: 1
+  effectType: 2
+  damage: 2

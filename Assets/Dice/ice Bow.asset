@@ -10,10 +10,10 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 71bc2946b85dc49939f3cd5b403cfbd6, type: 3}
-  m_Name: ice Bow
+  m_Name: Ice Bow
   m_EditorClassIdentifier: 
-  name: Bow
-  image: {fileID: 21300000, guid: 2f949e059c2b34279a3a4f29ab0b8f11, type: 3}
+  name: Ice Bow
+  image: {fileID: 21300000, guid: fc3b85cf702880c48976feeba0afc08e, type: 3}
   damageType: 1
-  effectType: 0
-  damage: 1
+  effectType: 2
+  damage: 2

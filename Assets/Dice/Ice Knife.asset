@@ -12,8 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 71bc2946b85dc49939f3cd5b403cfbd6, type: 3}
   m_Name: Ice Knife
   m_EditorClassIdentifier: 
-  name: Knife
-  image: {fileID: 21300000, guid: fcfb225d9b41941ba80bdc2edf30cc40, type: 3}
+  name: Ice Knife
+  image: {fileID: 21300000, guid: ac48645d22fbb8a47b324eac3e1cc0f3, type: 3}
   damageType: 0
-  effectType: 0
-  damage: 2
+  effectType: 2
+  damage: 3
