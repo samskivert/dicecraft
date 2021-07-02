@@ -9,64 +9,50 @@ using TMPro;
 
 public class Game : MonoBehaviour {
   private Battle battle;
-  private DieFace[] currentRoll;
 
+  public Sprite playerSprite;
   public Enemy[] enemies;
   public DieFace[] faces;
 
-  public TMP_Text playerName;
-  public SpriteRenderer playerSprite;
-  public TMP_Text playerHP;
-  public Image playerHPImage;
+  public Combatant player;
+  public Combatant enemy;
+  public GameObject dice;
+  public GameObject diePrefab;
 
-  public TMP_Text enemyName;
-  public SpriteRenderer enemySprite;
-  public TMP_Text enemyHP;
-  public Image enemyHPImage;
-
-  public SpriteRenderer[] rolls;
+  public Slot[] slots;
 
   private void Awake () {
+    slots[0].Init(DamageType.Slash);
+    slots[1].Init(DamageType.Pierce);
+    slots[2].Init(DamageType.Blunt);
+
     SetBattle(new Battle("Woriar", 10, new List<DieFace[]> {
       new [] { faces[0] },
       new [] { faces[0], faces[1], faces[2] },
       new [] { faces[0], faces[1], faces[2], faces[3] },
-    }, enemies[0]));
+    }, enemies[1]));
   }
 
   public void SetBattle (Battle battle) {
     this.battle = battle;
-    playerName.text = battle.playerName;
-    SetPlayerHP(battle.playerHp);
-    enemyName.text = battle.enemy.name;
-    enemySprite.sprite = battle.enemy.image;
-    SetEnemyHP(battle.enemyHp);
+    player.Init(battle.playerName, playerSprite, battle.playerMaxHp);
+    player.SetHp(battle.playerHp);
+    enemy.Init(battle.enemy.name, battle.enemy.image, battle.enemy.maxHp);
+    enemy.SetHp(battle.enemyHp);
+    Roll();
+  }
+
+  public void Roll () {
+    foreach (var slot in slots) slot.Reset();
     battle.Roll();
     ShowDice(battle.roll);
-
-  }
-
-  private void SetPlayerHP (int hp) {
-    var maxHp = battle.playerMaxHp;
-    playerHP.text = $"HP: {hp}/{maxHp}";
-    playerHPImage.fillAmount = hp / (float)maxHp;
-  }
-
-  private void SetEnemyHP (int hp) {
-    var maxHp = battle.enemy.maxHp;
-    enemyHP.text = $"HP: {hp}/{maxHp}";
-    enemyHPImage.fillAmount = hp / (float)maxHp;
   }
 
   private void ShowDice (IEnumerable<DieFace> faces) {
-    var shown = 0;
+    dice.DestroyChildren();
     foreach (var face in faces) {
-      rolls[shown].sprite = face.image;
-      rolls[shown].transform.parent.gameObject.SetActive(true);
-      shown += 1;
-    }
-    for (var ii = shown; ii < rolls.Length; ii += 1) {
-      rolls[ii].transform.parent.gameObject.SetActive(false);
+      var die = Instantiate(diePrefab, dice.transform);
+      die.transform.Find("Image").GetComponent<Image>().sprite = face.image;
     }
   }
 }
