@@ -1,11 +1,13 @@
 namespace dicecraft {
 
+using System;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 
 public class Game : MonoBehaviour {
-  private Enemy enemy;
+  private Enemy currentEnemy;
+  private DieFace[] currentRoll;
 
   public Enemy[] enemies;
   public DieFace[] faces;
@@ -23,28 +25,33 @@ public class Game : MonoBehaviour {
   public SpriteRenderer[] rolls;
 
   private void Awake () {
-    if (enemies.Length > 0) SetEnemy(enemies[0]);
-
-    for (var ii = 0; ii < rolls.Length; ii += 1) {
-      var face = faces[ii % faces.Length];
-      ShowDie(ii, face);
-    }
+    if (enemies.Length > 0) SetEnemy(enemies[0]); // TEMP
+    ShowDice(faces); // TEMP
   }
 
   public void SetEnemy (Enemy enemy) {
-    this.enemy = enemy;
+    currentEnemy = enemy;
     enemyName.text = enemy.name;
     enemySprite.sprite = enemy.image;
     SetEnemyHP(enemy.maxHp);
   }
 
   public void SetEnemyHP (int hp) {
-    enemyHP.text = $"HP: {hp}/{enemy.maxHp}";
-    enemyHPImage.fillAmount = hp / (float)enemy.maxHp;
+    var maxHp = currentEnemy.maxHp;
+    enemyHP.text = $"HP: {hp}/{maxHp}";
+    enemyHPImage.fillAmount = hp / (float)maxHp;
   }
 
-  public void ShowDie (int slot, DieFace face) {
-    rolls[slot].sprite = face.image;
+  public void ShowDice (DieFace[] faces) {
+    currentRoll = faces;
+    var shown = Math.Min(faces.Length, rolls.Length);
+    for (var ii = 0; ii < shown; ii += 1) {
+      rolls[ii].sprite = faces[ii].image;
+      rolls[ii].transform.parent.gameObject.SetActive(true);
+    }
+    for (var ii = shown; ii < rolls.Length; ii += 1) {
+      rolls[ii].transform.parent.gameObject.SetActive(false);
+    }
   }
 }
 }
