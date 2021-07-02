@@ -52,7 +52,20 @@ public class Game : MonoBehaviour {
     dice.DestroyChildren();
     foreach (var face in faces) {
       var die = Instantiate(diePrefab, dice.transform);
-      die.transform.Find("Image").GetComponent<Image>().sprite = face.image;
+      var image = die.transform.Find("Image").GetComponent<Image>();
+      image.sprite = face.image;
+      die.GetComponent<Button>().onClick.AddListener(() => PlayDie(face, image));
+    }
+  }
+
+  private void PlayDie (DieFace face, Image image) {
+    foreach (var slot in slots) {
+      if (slot.CanPlay(face)) {
+        image.sprite = null;
+        slot.PlayDie(face, () => {
+          image.sprite = face.image;
+        });
+      }
     }
   }
 }

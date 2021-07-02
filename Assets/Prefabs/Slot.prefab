@@ -119,8 +119,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   typeLabel: {fileID: 6582502701499003780}
-  image: {fileID: 523837039952433749}
   damageLabel: {fileID: 1297549440040339043}
+  button: {fileID: 8333682571006822472}
+  image: {fileID: 523837039952433749}
 --- !u!1 &4211325910183272389
 GameObject:
   m_ObjectHideFlags: 0
@@ -491,6 +492,17 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 820258438476285333, guid: 86faed9ddeb1a4b5994c0061369897b7, type: 3}
   m_PrefabInstance: {fileID: 1140658643582107390}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &8333682571006822472 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 8967615578504787638, guid: 86faed9ddeb1a4b5994c0061369897b7, type: 3}
+  m_PrefabInstance: {fileID: 1140658643582107390}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &523837039952433749 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 617386761265228971, guid: 86faed9ddeb1a4b5994c0061369897b7, type: 3}

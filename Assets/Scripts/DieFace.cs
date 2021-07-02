@@ -10,5 +10,7 @@ public class DieFace : ScriptableObject {
   public DamageType damageType;
   public EffectType effectType;
   public int damage;
+
+  public override string ToString () => $"{name}/{damageType}/{effectType}/{damage}";
 }
 }
