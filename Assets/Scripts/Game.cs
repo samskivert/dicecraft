@@ -1,12 +1,14 @@
 namespace dicecraft {
 
 using System;
+using System.Collections.Generic;
+
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 
 public class Game : MonoBehaviour {
-  private Enemy currentEnemy;
+  private Battle battle;
   private DieFace[] currentRoll;
 
   public Enemy[] enemies;
@@ -25,29 +27,43 @@ public class Game : MonoBehaviour {
   public SpriteRenderer[] rolls;
 
   private void Awake () {
-    if (enemies.Length > 0) SetEnemy(enemies[0]); // TEMP
-    ShowDice(faces); // TEMP
+    SetBattle(new Battle("Woriar", 10, new List<DieFace[]> {
+      new [] { faces[0] },
+      new [] { faces[0], faces[1], faces[2] },
+      new [] { faces[0], faces[1], faces[2], faces[3] },
+    }, enemies[0]));
   }
 
-  public void SetEnemy (Enemy enemy) {
-    currentEnemy = enemy;
-    enemyName.text = enemy.name;
-    enemySprite.sprite = enemy.image;
-    SetEnemyHP(enemy.maxHp);
+  public void SetBattle (Battle battle) {
+    this.battle = battle;
+    playerName.text = battle.playerName;
+    SetPlayerHP(battle.playerHp);
+    enemyName.text = battle.enemy.name;
+    enemySprite.sprite = battle.enemy.image;
+    SetEnemyHP(battle.enemyHp);
+    battle.Roll();
+    ShowDice(battle.roll);
+
   }
 
-  public void SetEnemyHP (int hp) {
-    var maxHp = currentEnemy.maxHp;
+  private void SetPlayerHP (int hp) {
+    var maxHp = battle.playerMaxHp;
+    playerHP.text = $"HP: {hp}/{maxHp}";
+    playerHPImage.fillAmount = hp / (float)maxHp;
+  }
+
+  private void SetEnemyHP (int hp) {
+    var maxHp = battle.enemy.maxHp;
     enemyHP.text = $"HP: {hp}/{maxHp}";
     enemyHPImage.fillAmount = hp / (float)maxHp;
   }
 
-  public void ShowDice (DieFace[] faces) {
-    currentRoll = faces;
-    var shown = Math.Min(faces.Length, rolls.Length);
-    for (var ii = 0; ii < shown; ii += 1) {
-      rolls[ii].sprite = faces[ii].image;
-      rolls[ii].transform.parent.gameObject.SetActive(true);
+  private void ShowDice (IEnumerable<DieFace> faces) {
+    var shown = 0;
+    foreach (var face in faces) {
+      rolls[shown].sprite = face.image;
+      rolls[shown].transform.parent.gameObject.SetActive(true);
+      shown += 1;
     }
     for (var ii = shown; ii < rolls.Length; ii += 1) {
       rolls[ii].transform.parent.gameObject.SetActive(false);
