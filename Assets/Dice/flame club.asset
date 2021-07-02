@@ -16,4 +16,4 @@ MonoBehaviour:
   image: {fileID: 21300000, guid: 3fac6d99865694126b80348ac2d28d08, type: 3}
   damageType: 2
   effectType: 1
-  damage: 1
+  damage: 3
