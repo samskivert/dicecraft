@@ -47,7 +47,23 @@ public class Slot : MonoBehaviour {
 
     image.sprite = face.image;
     var eff = face.effectType == EffectType.None ? "" : $" {face.effectType}";
-    damageLabel.text = $"{face.amount} {eff}damage";
+    switch (face.dieType) {
+    case DieType.Slash:
+    case DieType.Pierce:
+    case DieType.Blunt:
+    case DieType.Magic:
+      damageLabel.text = $"{face.amount} {eff}damage";
+      break;
+    case DieType.Shield:
+      damageLabel.text = $"+{face.amount} shield";
+      break;
+    case DieType.Evade:
+      damageLabel.text = $"+{face.amount}% evade";
+      break;
+    case DieType.Heal:
+      damageLabel.text = $"+{face.amount} HP";
+      break;
+    }
 
     Debug.Log($"Playing {face} on {type}");
   }
