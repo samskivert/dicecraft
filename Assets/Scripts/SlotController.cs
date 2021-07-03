@@ -32,6 +32,7 @@ public class SlotController : MonoBehaviour {
   public void Init (DieType type) {
     this.type = type;
     typeLabel.text = type.ToString();
+    Reset();
   }
 
   public void Reset () {

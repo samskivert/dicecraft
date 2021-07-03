@@ -43,7 +43,9 @@ public class GameController : MonoBehaviour {
   }
 
   private void ShowSlots (Combatant.Data data) {
-    for (var ii = slots.Length-1; ii >= 0; ii -= 1) Destroy(transform.GetChild(ii).gameObject);
+    if (slots != null) for (var ii = slots.Length-1; ii >= 0; ii -= 1) {
+      Destroy(slotsPanel.transform.GetChild(ii).gameObject);
+    }
     var sidx = 0;
     slots = new SlotController[data.Slots.Length];
     foreach (var type in data.Slots) {
