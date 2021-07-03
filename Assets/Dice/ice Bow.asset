@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   name: Ice Bow
   image: {fileID: 21300000, guid: fc3b85cf702880c48976feeba0afc08e, type: 3}
+  dieType: 1
   damageType: 1
   effectType: 2
-  damage: 2
   amount: 2

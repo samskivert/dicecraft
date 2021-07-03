@@ -8,7 +8,7 @@ public class Player : ScriptableObject {
   public new string name;
   public Sprite image;
   public int maxHp;
-  public DamageType[] slots;
+  public DieType[] slots;
   public DieFace[] dice1;
   public DieFace[] dice2;
 }

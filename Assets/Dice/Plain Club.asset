@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   name: Club
   image: {fileID: 21300000, guid: 388f447bb2b734c2c95b270ddb087801, type: 3}
+  dieType: 2
   damageType: 2
   effectType: 0
-  damage: 1
   amount: 1

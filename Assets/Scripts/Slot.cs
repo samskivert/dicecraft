@@ -13,7 +13,7 @@ public class Slot : MonoBehaviour {
   public Button button;
   public Image image;
 
-  public DamageType type { get; private set; }
+  public DieType type { get; private set; }
   public DieFace face { get; private set; }
 
   private void Awake () {
@@ -26,10 +26,10 @@ public class Slot : MonoBehaviour {
   }
 
   public bool CanPlay (DieFace face) {
-    return unplay == null && type == face.damageType;
+    return unplay == null && type == face.dieType;
   }
 
-  public void Init (DamageType type) {
+  public void Init (DieType type) {
     this.type = type;
     typeLabel.text = type.ToString();
   }
@@ -47,7 +47,7 @@ public class Slot : MonoBehaviour {
 
     image.sprite = face.image;
     var eff = face.effectType == EffectType.None ? "" : $" {face.effectType}";
-    damageLabel.text = $"{face.damage} {eff}damage";
+    damageLabel.text = $"{face.amount} {eff}damage";
 
     Debug.Log($"Playing {face} on {type}");
   }

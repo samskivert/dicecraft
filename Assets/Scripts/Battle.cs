@@ -4,7 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 
-public enum DamageType { Slash, Pierce, Blunt, Shield, Evade, Magic, Heal }
+public enum DieType { Slash, Pierce, Blunt, Shield, Evade, Magic, Heal }
 
 public enum EffectType { None, Fire, Ice, Poison }
 
@@ -15,19 +15,25 @@ public class Battle {
   public readonly Enemy enemy;
 
   public readonly List<DieFace[]> playerDice = new List<DieFace[]>();
+  public readonly List<DieFace[]> enemyDice = new List<DieFace[]>();
   public readonly List<DieFace> roll = new List<DieFace>();
 
   public int playerHp;
   public int enemyHp;
 
   public Battle (Player player, Enemy enemy) {
-    this.player = player;
-    this.enemy = enemy;
-    void MaybeAdd (DieFace[] die) {
-      if (die != null && die.Length > 0) playerDice.Add(die);
+    void MaybeAdd (List<DieFace[]> dice, DieFace[] die) {
+      if (die != null && die.Length > 0) dice.Add(die);
     }
-    MaybeAdd(player.dice1);
-    MaybeAdd(player.dice2);
+
+    this.player = player;
+    MaybeAdd(playerDice, player.dice1);
+    MaybeAdd(playerDice, player.dice2);
+
+    this.enemy = enemy;
+    MaybeAdd(enemyDice, enemy.dice1);
+    MaybeAdd(enemyDice, enemy.dice2);
+    MaybeAdd(enemyDice, enemy.dice3);
 
     playerHp = player.maxHp;
     enemyHp = enemy.maxHp;
@@ -44,7 +50,7 @@ public class Battle {
 
   public void Attack (IEnumerable<DieFace> dice) {
     var damage = 0;
-    foreach (var face in dice) damage += face.damage; // TODO: effect types, letc.
+    foreach (var face in dice) damage += face.amount; // TODO: effect types, letc.
     enemyHp = Math.Max(0, enemyHp-damage);
   }
 }

@@ -15,7 +15,6 @@ public class Game : MonoBehaviour {
 
   public Player[] players;
   public Enemy[] enemies;
-  public DieFace[] faces;
 
   public Combatant player;
   public Combatant enemy;
