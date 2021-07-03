@@ -11,8 +11,9 @@ using TMPro;
 public class Game : MonoBehaviour {
   private readonly System.Random random = new System.Random();
   private Battle battle;
+  private Slot[] slots;
 
-  public Sprite playerSprite;
+  public Player[] players;
   public Enemy[] enemies;
   public DieFace[] faces;
 
@@ -21,27 +22,30 @@ public class Game : MonoBehaviour {
   public GameObject dice;
   public GameObject diePrefab;
 
-  public Slot[] slots;
+  public GameObject slotsPanel;
+  public GameObject slotPrefab;
   public Button attack;
 
   private void Start () {
-    slots[0].Init(DamageType.Slash);
-    slots[1].Init(DamageType.Pierce);
-    slots[2].Init(DamageType.Blunt);
-
     attack.onClick.AddListener(Attack);
-
-    SetBattle(new Battle("Woriar", 10, new List<DieFace[]> {
-      new [] { faces[0] },
-      new [] { faces[0], faces[1], faces[2] },
-      new [] { faces[0], faces[1], faces[2], faces[3] },
-    }, enemies[random.Next(enemies.Length)]));
+    SetBattle(new Battle(players[random.Next(players.Length)],
+                         enemies[random.Next(enemies.Length)]));
   }
 
   public void SetBattle (Battle battle) {
     this.battle = battle;
-    player.Init(battle.playerName, playerSprite, battle.playerMaxHp);
+    player.Init(battle.player.name, battle.player.image, battle.player.maxHp);
     player.SetHp(battle.playerHp);
+
+    var sidx = 0;
+    slots = new Slot[battle.player.slots.Length];
+    foreach (var type in battle.player.slots) {
+      var slot = Instantiate(slotPrefab, slotsPanel.transform).GetComponent<Slot>();
+      slot.Init(type);
+      slots[sidx++] = slot;
+    }
+    attack.transform.parent.SetAsLastSibling();
+
     enemy.Init(battle.enemy.name, battle.enemy.image, battle.enemy.maxHp);
     enemy.SetHp(battle.enemyHp);
     Roll();
