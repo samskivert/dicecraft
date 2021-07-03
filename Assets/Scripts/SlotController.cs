@@ -42,9 +42,10 @@ public class SlotController : MonoBehaviour {
     damageLabel.text = " ";
   }
 
-  public void PlayDie (DieFace face, UnityAction unplay) {
+  public void PlayDie (DieFace face, bool clickable, UnityAction unplay) {
     this.face = face;
     this.unplay = unplay;
+    button.interactable = clickable;
 
     image.sprite = face.image;
     var eff = face.effectType == EffectType.None ? "" : $" {face.effectType}";
