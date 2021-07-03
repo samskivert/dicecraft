@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: poison leaf
   m_EditorClassIdentifier: 
   name: basic sheald
-  image: {fileID: 21300000, guid: b91060a2934e99443b58cc32b70b7d7a, type: 3}
+  image: {fileID: 21300000, guid: 4291eebc7799ba640b79c3c61a710de9, type: 3}
   dieType: 0
   effectType: 3
   amount: 2
