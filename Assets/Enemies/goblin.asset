@@ -15,7 +15,7 @@ MonoBehaviour:
   name: goblin
   image: {fileID: 21300000, guid: 854172837001144eb995332827bf87ce, type: 3}
   maxHp: 5
-  slots: 
+  slots: 02000000
   dice1:
   - {fileID: 11400000, guid: 52240dda6f5e2a64381c8d2290ff993f, type: 2}
   - {fileID: 11400000, guid: 52240dda6f5e2a64381c8d2290ff993f, type: 2}
