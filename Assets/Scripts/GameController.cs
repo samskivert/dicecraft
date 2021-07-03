@@ -110,7 +110,7 @@ public class GameController : MonoBehaviour {
     enemyDice.DestroyChildren();
     player.Update();
     enemy.Update();
-    if (battle.player.hp == 0 || battle.enemy.hp == 0) this.RunAfter(!, EndGame);
+    if (battle.player.hp == 0 || battle.enemy.hp == 0) this.RunAfter(1, EndGame);
     else Roll(!playerTurn);
   }
 
