@@ -15,3 +15,13 @@ MonoBehaviour:
   name: Staggr
   image: {fileID: 21300000, guid: 887392c71bf99e240aa5a96ab54e7205, type: 3}
   maxHp: 10
+  slots: 
+  dice1:
+  - {fileID: 11400000, guid: fcd03225dbd0773489192147b037c0d1, type: 2}
+  - {fileID: 11400000, guid: fcd03225dbd0773489192147b037c0d1, type: 2}
+  - {fileID: 11400000, guid: fcd03225dbd0773489192147b037c0d1, type: 2}
+  - {fileID: 11400000, guid: fcd03225dbd0773489192147b037c0d1, type: 2}
+  - {fileID: 11400000, guid: fcd03225dbd0773489192147b037c0d1, type: 2}
+  - {fileID: 11400000, guid: fcd03225dbd0773489192147b037c0d1, type: 2}
+  dice2: []
+  dice3: []
