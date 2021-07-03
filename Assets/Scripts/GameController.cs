@@ -28,16 +28,28 @@ public class GameController : MonoBehaviour {
   public GameObject playerDice;
   public GameObject enemyDice;
 
+  public GameObject wonPanel;
+  public GameObject lostPanel;
+
   public SlotController[] slots { get; private set; }
 
   private void Start () {
     attack.onClick.AddListener(Attack);
+    wonPanel.GetComponentInChildren<Button>().onClick.AddListener(NewBattle);
+    lostPanel.GetComponentInChildren<Button>().onClick.AddListener(NewBattle);
+    NewBattle();
+  }
+
+  private void NewBattle () {
     SetBattle(new Battle(players[random.Next(players.Length)],
                          enemies[random.Next(enemies.Length)]));
   }
 
   public void SetBattle (Battle battle) {
     this.battle = battle;
+    wonPanel.SetActive(false);
+    lostPanel.SetActive(false);
+    slotsPanel.SetActive(true);
     player.Init(battle.player);
     enemy.Init(battle.enemy);
     Roll(true);
@@ -54,20 +66,22 @@ public class GameController : MonoBehaviour {
     if (playerTurn) {
       battle.player.Roll(battle.random);
       ShowDice(playerDice, battle.player.roll, true);
-      enemyDice.DestroyChildren();
     } else {
       battle.enemy.Roll(battle.random);
       ShowDice(enemyDice, battle.enemy.roll, false);
-      playerDice.DestroyChildren();
     }
     UpdateAttack();
     attack.gameObject.SetActive(playerTurn);
+    if (!playerTurn) this.RunAfter(1, EnemyPlay);
   }
 
-  private void ShowSlots (Combatant.Data data) {
+  private void ClearSlots () {
     if (slots != null) for (var ii = slots.Length-1; ii >= 0; ii -= 1) {
       Destroy(slotsPanel.transform.GetChild(ii).gameObject);
     }
+  }
+
+  private void ShowSlots (Combatant.Data data) {
     var sidx = 0;
     slots = new SlotController[data.Slots.Length];
     foreach (var type in data.Slots) {
@@ -91,10 +105,13 @@ public class GameController : MonoBehaviour {
     var attacker = playerTurn ? battle.player : battle.enemy;
     var defender = playerTurn ? battle.enemy : battle.player;
     battle.Attack(slots, attacker, defender);
+    ClearSlots();
+    playerDice.DestroyChildren();
+    enemyDice.DestroyChildren();
     player.Update();
     enemy.Update();
-    Roll(!playerTurn);
-    if (!playerTurn) this.RunAfter(1, EnemyPlay);
+    if (battle.player.hp == 0 || battle.enemy.hp == 0) this.RunAfter(!, EndGame);
+    else Roll(!playerTurn);
   }
 
   private void EnemyPlay () {
@@ -104,6 +121,12 @@ public class GameController : MonoBehaviour {
     }
     battle.enemy.Play(dice, slots);
     this.RunAfter(1, Attack);
+  }
+
+  private void EndGame () {
+    slotsPanel.SetActive(false);
+    if (battle.player.hp > 0) wonPanel.SetActive(true);
+    else lostPanel.SetActive(true);
   }
 }
 }
