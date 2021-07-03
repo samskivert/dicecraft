@@ -46,6 +46,9 @@ public class Combatant {
       roll.Add(die[random.Next(die.Length)]);
     }
   }
+
+  public void Play (SlotController[] slots) {
+  }
 }
 
 }

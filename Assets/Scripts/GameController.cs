@@ -11,7 +11,6 @@ using TMPro;
 public class GameController : MonoBehaviour {
   private readonly System.Random random = new System.Random();
   private Battle battle;
-  private SlotController[] slots;
   private bool playerTurn;
 
   public Player[] players;
@@ -29,6 +28,8 @@ public class GameController : MonoBehaviour {
   public GameObject playerDice;
   public GameObject enemyDice;
 
+  public SlotController[] slots { get; private set; }
+
   private void Start () {
     attack.onClick.AddListener(Attack);
     SetBattle(new Battle(players[random.Next(players.Length)],
@@ -42,18 +43,9 @@ public class GameController : MonoBehaviour {
     Roll(true);
   }
 
-  private void ShowSlots (Combatant.Data data) {
-    if (slots != null) for (var ii = slots.Length-1; ii >= 0; ii -= 1) {
-      Destroy(slotsPanel.transform.GetChild(ii).gameObject);
-    }
-    var sidx = 0;
-    slots = new SlotController[data.Slots.Length];
-    foreach (var type in data.Slots) {
-      var slot = Instantiate(slotPrefab, slotsPanel.transform).GetComponent<SlotController>();
-      slot.Init(type);
-      slots[sidx++] = slot;
-    }
-    attack.transform.parent.SetAsLastSibling();
+  public void UpdateAttack () {
+    var canAttack = slots.Any(slot => slot.face != null);
+    attack.interactable = canAttack;
   }
 
   public void Roll (bool playerTurn) {
@@ -70,32 +62,26 @@ public class GameController : MonoBehaviour {
     attack.gameObject.SetActive(playerTurn);
   }
 
+  private void ShowSlots (Combatant.Data data) {
+    if (slots != null) for (var ii = slots.Length-1; ii >= 0; ii -= 1) {
+      Destroy(slotsPanel.transform.GetChild(ii).gameObject);
+    }
+    var sidx = 0;
+    slots = new SlotController[data.Slots.Length];
+    foreach (var type in data.Slots) {
+      var slot = Instantiate(slotPrefab, slotsPanel.transform).GetComponent<SlotController>();
+      slot.Init(type);
+      slots[sidx++] = slot;
+    }
+    attack.transform.parent.SetAsLastSibling();
+  }
+
   private void ShowDice (GameObject dice, IEnumerable<DieFace> faces, bool clickable) {
     dice.DestroyChildren();
     foreach (var face in faces) {
-      var die = Instantiate(diePrefab, dice.transform);
-      var image = die.transform.Find("Image").GetComponent<Image>();
-      image.sprite = face.image;
-      if (clickable) die.GetComponent<Button>().onClick.AddListener(() => PlayDie(face, image));
+      var die = Instantiate(diePrefab, dice.transform).GetComponent<DieController>();
+      die.Init(this, face, clickable);
     }
-  }
-
-  private void PlayDie (DieFace face, Image image) {
-    foreach (var slot in slots) {
-      if (slot.CanPlay(face)) {
-        image.sprite = null;
-        slot.PlayDie(face, () => {
-          image.sprite = face.image;
-          UpdateAttack();
-        });
-        UpdateAttack();
-      }
-    }
-  }
-
-  private void UpdateAttack () {
-    var canAttack = slots.Any(slot => slot.face != null);
-    attack.interactable = canAttack;
   }
 
   private void Attack () {
