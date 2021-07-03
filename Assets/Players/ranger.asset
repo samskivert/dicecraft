@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 4207e6e1962804db8a19fca580ae0dcc, type: 3}
-  m_Name: Woriar
+  m_Name: ranger
   m_EditorClassIdentifier: 
   name: Woriar
   image: {fileID: 21300000, guid: 678c6f5f1611e4bb6a168cb8b267b471, type: 3}
