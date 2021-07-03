@@ -17,3 +17,4 @@ MonoBehaviour:
   damageType: 0
   effectType: 0
   damage: 2
+  amount: 2

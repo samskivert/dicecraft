@@ -9,8 +9,8 @@ public class DieFace : ScriptableObject {
   public Sprite image;
   public DamageType damageType;
   public EffectType effectType;
-  public int damage;
+  public int amount;
 
-  public override string ToString () => $"{name}/{damageType}/{effectType}/{damage}";
+  public override string ToString () => $"{name}/{damageType}/{effectType}/{amount}";
 }
 }
