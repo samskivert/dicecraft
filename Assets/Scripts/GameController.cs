@@ -108,8 +108,8 @@ public class GameController : MonoBehaviour {
     ClearSlots();
     playerDice.DestroyChildren();
     enemyDice.DestroyChildren();
-    player.Update();
-    enemy.Update();
+    player.Refresh();
+    enemy.Refresh();
     if (battle.player.hp == 0 || battle.enemy.hp == 0) this.RunAfter(1, EndGame);
     else Roll(!playerTurn);
   }

@@ -17,10 +17,10 @@ public class CombatantController : MonoBehaviour {
     this.comb = comb;
     nameLabel.text = comb.data.Name;
     image.sprite = comb.data.Image;
-    Update();
+    Refresh();
   }
 
-  public void Update () {
+  public void Refresh () {
     hpLabel.text = $"HP: {comb.hp}/{comb.data.MaxHp}";
     hpMeter.fillAmount = comb.hp / (float)comb.data.MaxHp;
     shieldLabel.text = $"Shield: {comb.shield}";
