@@ -12,8 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4207e6e1962804db8a19fca580ae0dcc, type: 3}
   m_Name: ranger
   m_EditorClassIdentifier: 
-  name: Woriar
-  image: {fileID: 21300000, guid: 678c6f5f1611e4bb6a168cb8b267b471, type: 3}
+  name: ranger
+  image: {fileID: 21300000, guid: 13c89c5748fde894e8bd1851b5510df2, type: 3}
   maxHp: 10
   slots: 0000000003000000
   dice1:
