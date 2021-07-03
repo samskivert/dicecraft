@@ -44,7 +44,11 @@ public class Battle {
       }
     }
     // TODO: potentially evade this attack
-    // TODO: apply shield
+    if (defender.shield > 0) {
+      var used = Math.Min(damage, defender.shield);
+      damage -= used;
+      defender.shield -= used;
+    }
     defender.hp = Math.Max(0, defender.hp-damage);
     attacker.hp = Math.Min(attacker.hp+heal, attacker.data.MaxHp);
     attacker.shield += shield;

@@ -11,6 +11,7 @@ public class CombatantController : MonoBehaviour {
   public Image image;
   public TMP_Text hpLabel;
   public Image hpMeter;
+  public TMP_Text shieldLabel;
 
   public void Init (Combatant comb) {
     this.comb = comb;
@@ -22,6 +23,7 @@ public class CombatantController : MonoBehaviour {
   public void Update () {
     hpLabel.text = $"HP: {comb.hp}/{comb.data.MaxHp}";
     hpMeter.fillAmount = comb.hp / (float)comb.data.MaxHp;
+    shieldLabel.text = $"Shield: {comb.shield}";
   }
 }
 }
