@@ -23,6 +23,8 @@ public class Combatant {
 
   public readonly Data data;
   public int hp;
+  public int shield;
+  public int evade;
 
   public Combatant (Data data) {
     void MaybeAdd (DieFace[] die) {
@@ -44,12 +46,6 @@ public class Combatant {
       roll.Add(die[random.Next(die.Length)]);
     }
   }
-
-  // public void Attack (IEnumerable<DieFace> dice) {
-  //   var damage = 0;
-  //   foreach (var face in dice) damage += face.amount; // TODO: effect types, letc.
-  //   enemyHp = Math.Max(0, enemyHp-damage);
-  // }
 }
 
 }

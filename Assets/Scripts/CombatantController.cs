@@ -5,22 +5,23 @@ using UnityEngine.UI;
 using TMPro;
 
 public class CombatantController : MonoBehaviour {
-  private Combatant.Data data;
+  private Combatant comb;
 
   public TMP_Text nameLabel;
   public Image image;
   public TMP_Text hpLabel;
   public Image hpMeter;
 
-  public void Init (Combatant.Data data) {
-    this.data = data;
-    nameLabel.text = data.Name;
-    image.sprite = data.Image;
+  public void Init (Combatant comb) {
+    this.comb = comb;
+    nameLabel.text = comb.data.Name;
+    image.sprite = comb.data.Image;
+    Update();
   }
 
-  public void SetHp (int hp) {
-    hpLabel.text = $"HP: {hp}/{data.MaxHp}";
-    hpMeter.fillAmount = hp / (float)data.MaxHp;
+  public void Update () {
+    hpLabel.text = $"HP: {comb.hp}/{comb.data.MaxHp}";
+    hpMeter.fillAmount = comb.hp / (float)comb.data.MaxHp;
   }
 }
 }
