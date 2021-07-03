@@ -20,6 +20,22 @@ public static class Extensions {
     for (var ii = fromIndex; ii < transform.childCount; ii++) GameObject.Destroy(
       transform.GetChild(ii).gameObject);
   }
+
+  public static Coroutine RunIn (this MonoBehaviour comp, int frames, Action action) =>
+    comp.StartCoroutine(WaitFrames(frames, action));
+
+  public static IEnumerator<object> WaitFrames (int frames, Action action) {
+    for (int ii = 0; ii < frames; ii++) yield return null;
+    action();
+  }
+
+  public static Coroutine RunAfter (this MonoBehaviour comp, float seconds, Action action) =>
+    comp.StartCoroutine(WaitSeconds(seconds, action));
+
+  public static IEnumerator<object> WaitSeconds (float seconds, Action action) {
+    yield return new WaitForSeconds(seconds);
+    action();
+  }
 }
 
 }

@@ -47,7 +47,8 @@ public class Combatant {
     }
   }
 
-  public void Play (SlotController[] slots) {
+  public void Play (DieController[] dice, SlotController[] slots) {
+    foreach (var die in dice) die.Play();
   }
 }
 

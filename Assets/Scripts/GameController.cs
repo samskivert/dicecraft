@@ -54,9 +54,11 @@ public class GameController : MonoBehaviour {
     if (playerTurn) {
       battle.player.Roll(battle.random);
       ShowDice(playerDice, battle.player.roll, true);
+      enemyDice.DestroyChildren();
     } else {
       battle.enemy.Roll(battle.random);
       ShowDice(enemyDice, battle.enemy.roll, false);
+      playerDice.DestroyChildren();
     }
     UpdateAttack();
     attack.gameObject.SetActive(playerTurn);
@@ -92,6 +94,16 @@ public class GameController : MonoBehaviour {
     player.Update();
     enemy.Update();
     Roll(!playerTurn);
+    if (!playerTurn) this.RunAfter(1, EnemyPlay);
+  }
+
+  private void EnemyPlay () {
+    var dice = new DieController[enemyDice.transform.childCount];
+    for (var ii = 0; ii < dice.Length; ii += 1) {
+      dice[ii] = enemyDice.transform.GetChild(ii).GetComponent<DieController>();
+    }
+    battle.enemy.Play(dice, slots);
+    this.RunAfter(1, Attack);
   }
 }
 }
