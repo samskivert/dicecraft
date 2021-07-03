@@ -14,13 +14,13 @@ public class Slot : MonoBehaviour {
   public Image image;
 
   public DamageType type { get; private set; }
+  public DieFace face { get; private set; }
 
   private void Awake () {
     button.onClick.AddListener(() => {
       if (unplay != null) {
-        Reset();
         unplay();
-        unplay = null;
+        Reset();
       }
     });
   }
@@ -35,15 +35,19 @@ public class Slot : MonoBehaviour {
   }
 
   public void Reset () {
+    face = null;
+    unplay = null;
     image.sprite = null;
     damageLabel.text = " ";
   }
 
   public void PlayDie (DieFace face, UnityAction unplay) {
+    this.face = face;
+    this.unplay = unplay;
+
     image.sprite = face.image;
     var eff = face.effectType == EffectType.None ? "" : $" {face.effectType}";
     damageLabel.text = $"{face.damage} {eff}damage";
-    this.unplay = unplay;
 
     Debug.Log($"Playing {face} on {type}");
   }

@@ -12,6 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6992a282416fa495a8f4e61a0e6e6544, type: 3}
   m_Name: Staggr
   m_EditorClassIdentifier: 
-  name: Skelly
+  name: Staggr
   image: {fileID: 21300000, guid: 887392c71bf99e240aa5a96ab54e7205, type: 3}
   maxHp: 10
