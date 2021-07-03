@@ -5,7 +5,7 @@ using UnityEngine.UI;
 using UnityEngine.Events;
 using TMPro;
 
-public class Slot : MonoBehaviour {
+public class SlotController : MonoBehaviour {
   private UnityAction unplay;
 
   public TMP_Text typeLabel;
