@@ -13,10 +13,11 @@ public class NodeController : MonoBehaviour {
   public Sprite shopSprite;
   public Sprite anvilSprite;
   public Sprite chestSprite;
+  public Sprite exitSprite;
 
   public Image image;
 
-  public void Init (Encounter encounter) {
+  public void Init (WorldController world, Encounter encounter) {
     switch (encounter) {
 
     case Encounter.Fight fight:
@@ -32,7 +33,10 @@ public class NodeController : MonoBehaviour {
       image.sprite = anvilSprite;
       break;
     case Encounter.Start start:
-      // TODO
+      image.sprite = world.player.image;
+      break;
+    case Encounter.Exit exit:
+      image.sprite = exitSprite;
       break;
     }
   }

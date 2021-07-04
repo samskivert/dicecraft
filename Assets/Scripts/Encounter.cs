@@ -15,11 +15,11 @@ public abstract class Encounter {
   }
 
   public class Start : Encounter {}
-
   public class Shop : Encounter {}
-
   public class Chest : Encounter {}
-
   public class Anvil : Encounter {}
+  public class Exit : Encounter {}
+
+  public (int, int)[] exits;
 }
 }

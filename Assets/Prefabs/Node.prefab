@@ -92,6 +92,7 @@ MonoBehaviour:
   shopSprite: {fileID: 21300000, guid: 551795e2979f440cba27e9a7c085c7b6, type: 3}
   anvilSprite: {fileID: 21300000, guid: 0331380d2abec42858c0d8e4137883d9, type: 3}
   chestSprite: {fileID: 21300000, guid: e5686c62199c544ccb033910545e3851, type: 3}
+  exitSprite: {fileID: 21300000, guid: 1234bf0a48480400e89d26dcf359c836, type: 3}
   image: {fileID: 9065835022809856081}
 --- !u!1 &7426318176210690176
 GameObject:
