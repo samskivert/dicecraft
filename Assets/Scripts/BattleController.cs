@@ -8,7 +8,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 
-public class GameController : MonoBehaviour {
+public class BattleController : MonoBehaviour {
   private readonly System.Random random = new System.Random();
   private Battle battle;
   private bool playerTurn;

@@ -5,13 +5,13 @@ using UnityEngine.UI;
 using TMPro;
 
 public class DieController : MonoBehaviour {
-  private GameController game;
+  private BattleController battle;
 
   public Image image;
   public DieFace face { get; private set; }
 
-  public void Init (GameController game, DieFace face, bool clickable) {
-    this.game = game;
+  public void Init (BattleController battle, DieFace face, bool clickable) {
+    this.battle = battle;
     this.face = face;
     image.sprite = face.image;
     if (clickable) {
@@ -21,14 +21,14 @@ public class DieController : MonoBehaviour {
   }
 
   public void Play (bool clickable) {
-    foreach (var slot in game.slots) {
+    foreach (var slot in battle.slots) {
       if (slot.CanPlay(face)) {
         image.sprite = null;
         slot.PlayDie(face, clickable, () => {
           image.sprite = face.image;
-          game.UpdateAttack();
+          battle.UpdateAttack();
         });
-        game.UpdateAttack();
+        battle.UpdateAttack();
       }
     }
   }
