@@ -89,6 +89,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e3abb6737852b422793a673c6753f76d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  doneSprite: {fileID: 21300000, guid: ad4e49c423edb4c29a43ee718aef07f6, type: 3}
+  platform: {fileID: 1381882830228845954}
   shopSprite: {fileID: 21300000, guid: 551795e2979f440cba27e9a7c085c7b6, type: 3}
   anvilSprite: {fileID: 21300000, guid: 0331380d2abec42858c0d8e4137883d9, type: 3}
   chestSprite: {fileID: 21300000, guid: e5686c62199c544ccb033910545e3851, type: 3}

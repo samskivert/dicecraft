@@ -329,6 +329,7 @@ MonoBehaviour:
   nodes: {fileID: 314486290}
   nodePrefab: {fileID: 7088653867719417941, guid: d5f9f41bdc0fc471cbb6835898dc0adc, type: 3}
   blankPrefab: {fileID: 7064854951459946667, guid: 73b911b8263c44a99a509f17d8bb3643, type: 3}
+  pathPrefab: {fileID: 7088653867719417941, guid: a2d0826f5f34e4f18b9ec6a4b1771a9f, type: 3}
 --- !u!4 &814209779
 Transform:
   m_ObjectHideFlags: 0

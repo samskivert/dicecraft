@@ -10,16 +10,17 @@ using TMPro;
 
 public class NodeController : MonoBehaviour {
 
+  public Sprite doneSprite;
+  public Image platform;
+
   public Sprite shopSprite;
   public Sprite anvilSprite;
   public Sprite chestSprite;
   public Sprite exitSprite;
-
   public Image image;
 
   public void Init (WorldController world, Encounter encounter) {
     switch (encounter) {
-
     case Encounter.Fight fight:
       image.sprite = fight.enemy.image;
       break;
@@ -33,6 +34,7 @@ public class NodeController : MonoBehaviour {
       image.sprite = anvilSprite;
       break;
     case Encounter.Start start:
+      platform.sprite = doneSprite;
       image.sprite = world.player.image;
       break;
     case Encounter.Exit exit:

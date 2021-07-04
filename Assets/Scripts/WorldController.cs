@@ -26,7 +26,7 @@ public class WorldController : MonoBehaviour {
       { (0, 0), new Encounter.Start { exits = Exits((1, 1)) }},
       { (2, 0), new Encounter.Fight { enemy = enemies[1], exits = Exits((3, 0)) }},
       { (3, 0), new Encounter.Shop {} },
-      { (1, 1), new Encounter.Fight { enemy = enemies[0], exits = Exits((0, 2), (2, 2), (3, 1)) } },
+      { (1, 1), new Encounter.Fight { enemy = enemies[0], exits = Exits((0, 2), (2, 0), (2, 2), (3, 1)) } },
       { (3, 1), new Encounter.Fight { enemy = enemies[3], exits = Exits((4, 1)) }},
       { (4, 1), new Encounter.Exit {} },
       { (0, 2), new Encounter.Anvil {} },
@@ -49,6 +49,26 @@ public class WorldController : MonoBehaviour {
         }
       }
     }
+
+    this.RunIn(1, () => {
+      foreach (var entry in world) {
+        var coord = entry.Key;
+        var encounter = entry.Value;
+        var start = nobjs[coord].transform.localPosition;
+        if (encounter.exits != null) foreach (var exit in encounter.exits) {
+          var end = nobjs[exit].transform.localPosition;
+          var center = start + (end - start)/2;
+          var path = Instantiate(pathPrefab, nodes.transform);
+          path.transform.SetAsFirstSibling();
+          path.transform.localPosition = center;
+          var length = Vector3.Distance(start, end);
+          var pathrt = path.GetComponent<RectTransform>();
+          pathrt.sizeDelta = new Vector3(length, 16); // TODO: get image width?
+          var angle = Mathf.Atan2(end.y - start.y, end.x - start.x) * Mathf.Rad2Deg;
+          pathrt.transform.Rotate(Vector3.forward, angle);
+        }
+      }
+    });
   }
 
   private (int, int)[] Exits (params (int, int)[] exits) => exits;
