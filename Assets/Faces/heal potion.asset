@@ -10,10 +10,10 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 71bc2946b85dc49939f3cd5b403cfbd6, type: 3}
-  m_Name: fire
+  m_Name: heal potion
   m_EditorClassIdentifier: 
-  name: fire
-  image: {fileID: 21300000, guid: 7bd538549d7094b4c871d37d7bf23663, type: 3}
-  dieType: 5
-  effectType: 1
-  amount: 2
+  name: basic sheald
+  image: {fileID: 21300000, guid: b91060a2934e99443b58cc32b70b7d7a, type: 3}
+  dieType: 3
+  effectType: 0
+  amount: 1
