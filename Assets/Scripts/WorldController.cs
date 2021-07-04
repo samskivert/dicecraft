@@ -25,11 +25,13 @@ public class WorldController : MonoBehaviour {
 
   private void Start () {
     ShowWorld(new Dictionary<(int, int), Encounter>{
-      { (2, 0), new Encounter.Fight { enemy = enemies[0] } },
+      { (0, 0), new Encounter.Start {} },
+      { (2, 0), new Encounter.Fight { enemy = enemies[1] } },
       { (3, 0), new Encounter.Shop {} },
-      { (3, 1), new Encounter.Fight { enemy = enemies[2] } },
+      { (1, 1), new Encounter.Fight { enemy = enemies[0] } },
+      { (3, 1), new Encounter.Fight { enemy = enemies[3] } },
       { (0, 2), new Encounter.Anvil {} },
-      { (2, 2), new Encounter.Fight { enemy = enemies[1] } },
+      { (2, 2), new Encounter.Fight { enemy = enemies[2] } },
       { (3, 2), new Encounter.Chest {} },
     });
   }
@@ -37,7 +39,11 @@ public class WorldController : MonoBehaviour {
   public void ShowWorld (Dictionary<(int, int), Encounter> world) {
     for (var yy = 0; yy < Height; yy += 1) {
       for (var xx = 0; xx < Width; xx += 1) {
-        var node = Instantiate(nodePrefab, nodes.transform);
+        if (world.TryGetValue((xx, yy), out var encounter)) {
+          var node = Instantiate(nodePrefab, nodes.transform);
+        } else {
+          Instantiate(blankPrefab, nodes.transform);
+        }
       }
     }
   }

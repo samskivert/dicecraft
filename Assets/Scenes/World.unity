@@ -319,6 +319,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cfcf6283c064742349b945625dbdc947, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  enemies:
+  - {fileID: 11400000, guid: 6c79f1a41341a4cb78727a8cea498a15, type: 2}
+  - {fileID: 11400000, guid: e90a7d668f5dc054b90ba65c2bd0ad15, type: 2}
+  - {fileID: 11400000, guid: 60b50a84ad4f43f479eb2b7ff13d9ada, type: 2}
+  - {fileID: 11400000, guid: 87e737dbf2e1fc0448d563c330d50e09, type: 2}
+  - {fileID: 11400000, guid: 7e9bde7ac9e1f9e45bc92e07557332f1, type: 2}
+  shopSprite: {fileID: 0}
+  anvilSprite: {fileID: 0}
+  chestSprite: {fileID: 0}
   nodes: {fileID: 314486290}
   nodePrefab: {fileID: 7088653867719417941, guid: d5f9f41bdc0fc471cbb6835898dc0adc, type: 3}
   blankPrefab: {fileID: 7064854951459946667, guid: 73b911b8263c44a99a509f17d8bb3643, type: 3}
