@@ -15,10 +15,6 @@ public class WorldController : MonoBehaviour {
 
   public Enemy[] enemies;
 
-  public Sprite shopSprite;
-  public Sprite anvilSprite;
-  public Sprite chestSprite;
-
   public GameObject nodes;
   public GameObject nodePrefab;
   public GameObject blankPrefab;
@@ -41,6 +37,7 @@ public class WorldController : MonoBehaviour {
       for (var xx = 0; xx < Width; xx += 1) {
         if (world.TryGetValue((xx, yy), out var encounter)) {
           var node = Instantiate(nodePrefab, nodes.transform);
+          node.GetComponent<NodeController>().Init(encounter);
         } else {
           Instantiate(blankPrefab, nodes.transform);
         }
