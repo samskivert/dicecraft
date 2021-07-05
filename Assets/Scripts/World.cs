@@ -1,0 +1,58 @@
+namespace dicecraft {
+
+using System;
+using System.Collections.Generic;
+using System.Linq;
+
+using UnityEngine;
+using UnityEngine.UI;
+using TMPro;
+
+public class World {
+
+  public const int Width = 5;
+  public const int Height = 3;
+
+  public Player player;
+  public Enemy[] enemies;
+
+  public (int, int) entryPos = (0, 0);
+  public (int, int) playerPos;
+
+  public Dictionary<(int, int), Encounter> encounters;
+
+  public World (Player player, Enemy[] enemies) {
+    this.player = player;
+    this.enemies = enemies;
+    playerPos = entryPos;
+    encounters = new Dictionary<(int, int), Encounter>{
+      { (0, 0), new Encounter.Blank { exits = Exits((1, 1)) }},
+      { (2, 0), new Encounter.Fight { enemy = enemies[1], exits = Exits((3, 0)) }},
+      { (3, 0), new Encounter.Shop {} },
+      { (1, 1), new Encounter.Fight { enemy = enemies[0], exits = Exits((0, 2), (2, 0), (2, 2), (3, 1)) } },
+      { (3, 1), new Encounter.Fight { enemy = enemies[3], exits = Exits((4, 1)) }},
+      { (4, 1), new Encounter.Exit {} },
+      { (0, 2), new Encounter.Anvil {} },
+      { (2, 2), new Encounter.Fight { enemy = enemies[2], exits = Exits((3, 2)) }},
+      { (3, 2), new Encounter.Chest {} },
+    };
+  }
+
+  public bool CanReach ((int, int) coord) {
+    bool Search ((int, int) pos) {
+      if (pos == coord) return true;
+      if (!encounters.TryGetValue(pos, out var encounter)) {
+        Debug.Log("Missing encounter? " + pos);
+        return false;
+      }
+      if (encounter is Encounter.Blank && encounter.exits != null) {
+        return encounter.exits.Any(Search);
+      }
+      return false;
+    }
+    return Search(entryPos);
+  }
+
+  private static (int, int)[] Exits (params (int, int)[] exits) => exits;
+}
+}

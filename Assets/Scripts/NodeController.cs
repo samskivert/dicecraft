@@ -10,7 +10,7 @@ using TMPro;
 
 public class NodeController : MonoBehaviour {
 
-  public Sprite doneSprite;
+  public Sprite currentSprite;
   public Image platform;
 
   public Sprite shopSprite;
@@ -19,10 +19,17 @@ public class NodeController : MonoBehaviour {
   public Sprite exitSprite;
   public Image image;
 
-  public void Init (WorldController world, Encounter encounter) {
+  public Button button;
+
+  public void Init (World world, (int, int) coord, Encounter encounter) {
+    void StartBattle () {
+      if (world.CanReach(coord)) Debug.Log("TODO: start battle " + coord);
+      else Debug.Log("Can't reach " + coord);
+    }
     switch (encounter) {
     case Encounter.Fight fight:
       image.sprite = fight.enemy.image;
+      button.onClick.AddListener(StartBattle);
       break;
     case Encounter.Shop shop:
       image.sprite = shopSprite;
@@ -33,14 +40,15 @@ public class NodeController : MonoBehaviour {
     case Encounter.Anvil anvil:
       image.sprite = anvilSprite;
       break;
-    case Encounter.Start start:
-      platform.sprite = doneSprite;
-      image.sprite = world.player.image;
-      break;
     case Encounter.Exit exit:
       image.sprite = exitSprite;
       break;
     }
+  }
+
+  public void ShowPlayer (Player player) {
+    platform.sprite = currentSprite;
+    image.sprite = player.image;
   }
 }
 }

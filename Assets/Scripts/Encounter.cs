@@ -14,7 +14,7 @@ public abstract class Encounter {
     public Enemy enemy;
   }
 
-  public class Start : Encounter {}
+  public class Blank : Encounter {}
   public class Shop : Encounter {}
   public class Chest : Encounter {}
   public class Anvil : Encounter {}
