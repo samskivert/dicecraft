@@ -26,7 +26,7 @@ public class GameController : MonoBehaviour {
       var battleScreen = SetScreen(battlePrefab);
       var battle = battleScreen.GetComponent<BattleController>();
       battle.SetBattle(new Battle(world.player, fight.enemy), () => {
-        world.encounters.Remove(coord);
+        world.encounters[coord] = new Encounter.Blank { exits = encounter.exits };
         world.playerPos = coord;
         ShowWorld();
       }, () => {
