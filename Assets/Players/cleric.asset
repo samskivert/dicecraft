@@ -12,15 +12,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4207e6e1962804db8a19fca580ae0dcc, type: 3}
   m_Name: cleric
   m_EditorClassIdentifier: 
-  name: Woriar
-  image: {fileID: 21300000, guid: 678c6f5f1611e4bb6a168cb8b267b471, type: 3}
+  name: cleric
+  image: {fileID: 21300000, guid: bee39f30b78688c42be07039c60e6834, type: 3}
   maxHp: 10
-  slots: 0000000003000000
+  slots: 0200000006000000
   dice1:
   - {fileID: 11400000, guid: 52240dda6f5e2a64381c8d2290ff993f, type: 2}
-  - {fileID: 11400000, guid: 4a1ebd41171ce934d98c1477b27b16c6, type: 2}
-  - {fileID: 11400000, guid: bbb33f3da6c2c4c329c1713cdbd0ca1a, type: 2}
-  - {fileID: 11400000, guid: bbb33f3da6c2c4c329c1713cdbd0ca1a, type: 2}
-  - {fileID: 11400000, guid: bbb33f3da6c2c4c329c1713cdbd0ca1a, type: 2}
-  - {fileID: 11400000, guid: 208308ca73d0e4c2bae23ab30c0b8dbe, type: 2}
+  - {fileID: 11400000, guid: ff9069f1dd5015846a84531602cdce0b, type: 2}
+  - {fileID: 11400000, guid: 52240dda6f5e2a64381c8d2290ff993f, type: 2}
+  - {fileID: 11400000, guid: ff9069f1dd5015846a84531602cdce0b, type: 2}
+  - {fileID: 11400000, guid: 52240dda6f5e2a64381c8d2290ff993f, type: 2}
+  - {fileID: 11400000, guid: ff9069f1dd5015846a84531602cdce0b, type: 2}
   dice2: []
