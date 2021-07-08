@@ -22,7 +22,7 @@ public class World {
   public int playerXp;
 
   public int playerHp => levelHps[playerLevel];
-  public int nextLevelXp => levelXps[playerLevel];
+  public int nextLevelXp => playerLevel < levelXps.Length ? levelXps[playerLevel] : 0;
 
   public (int, int) entryPos = (0, 0);
   public (int, int) playerPos;
@@ -62,6 +62,17 @@ public class World {
       return false;
     }
     return Search(entryPos);
+  }
+
+  public void AwardXP (int xpAward) {
+    var next = nextLevelXp;
+    if (next == 0) return; // max!
+    var newXp = playerXp + xpAward;
+    if (newXp >= next) {
+      playerLevel += 1;
+      newXp -= next;
+    }
+    playerXp = newXp;
   }
 
   private static (int, int)[] Exits (params (int, int)[] exits) => exits;
