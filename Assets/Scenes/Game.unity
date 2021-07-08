@@ -542,6 +542,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 829caa89924b941eaa54ec76a0a1e121, type: 2}
   - {fileID: 11400000, guid: 1ed3c41eea7059340ab709301c6bb71b, type: 2}
   - {fileID: 11400000, guid: 40b579768278e6e42b80352f48bb740d, type: 2}
+  - {fileID: 11400000, guid: 4305570f460b8ed4aa75fff4a03b7806, type: 2}
   enemies:
   - {fileID: 11400000, guid: 6c79f1a41341a4cb78727a8cea498a15, type: 2}
   - {fileID: 11400000, guid: e90a7d668f5dc054b90ba65c2bd0ad15, type: 2}
