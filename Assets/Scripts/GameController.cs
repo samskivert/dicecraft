@@ -27,7 +27,7 @@ public class GameController : MonoBehaviour {
   private void Start () {
     var world = new World(players[0], enemies);
     var worldScreen = SetScreen(worldPrefab);
-    worldScreen.GetComponent<WorldController>().Init(world);
+    worldScreen.GetComponent<WorldController>().Init(this, world);
   }
 
   private GameObject SetScreen (GameObject prefab) {
