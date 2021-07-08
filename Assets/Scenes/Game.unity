@@ -549,6 +549,8 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 60b50a84ad4f43f479eb2b7ff13d9ada, type: 2}
   - {fileID: 11400000, guid: 87e737dbf2e1fc0448d563c330d50e09, type: 2}
   - {fileID: 11400000, guid: 7e9bde7ac9e1f9e45bc92e07557332f1, type: 2}
+  levelXps: 03000000060000000a0000000e00000014000000
+  levelHps: 0a0000000c0000000f000000110000001400000019000000
 --- !u!4 &2005711928
 Transform:
   m_ObjectHideFlags: 0
