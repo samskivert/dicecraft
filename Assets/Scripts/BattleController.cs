@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Linq;
 
 using UnityEngine;
+using UnityEngine.Events;
 using UnityEngine.UI;
 using TMPro;
 
@@ -35,14 +36,17 @@ public class BattleController : MonoBehaviour {
 
   private void Start () {
     attack.onClick.AddListener(Attack);
-    // wonPanel.GetComponentInChildren<Button>().onClick.AddListener(NewBattle);
-    // lostPanel.GetComponentInChildren<Button>().onClick.AddListener(NewBattle);
   }
 
-  public void SetBattle (Battle battle) {
+  public void SetBattle (Battle battle, UnityAction onWin, UnityAction onLose) {
     this.battle = battle;
+
     wonPanel.SetActive(false);
+    wonPanel.GetComponentInChildren<Button>().onClick.AddListener(onWin);
+
     lostPanel.SetActive(false);
+    lostPanel.GetComponentInChildren<Button>().onClick.AddListener(onLose);
+
     slotsPanel.SetActive(true);
     player.Init(battle.player);
     enemy.Init(battle.enemy);

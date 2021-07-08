@@ -25,7 +25,13 @@ public class GameController : MonoBehaviour {
     case Encounter.Fight fight:
       var battleScreen = SetScreen(battlePrefab);
       var battle = battleScreen.GetComponent<BattleController>();
-      battle.SetBattle(new Battle(world.player, fight.enemy));
+      battle.SetBattle(new Battle(world.player, fight.enemy), () => {
+        world.encounters.Remove(coord);
+        world.playerPos = coord;
+        ShowWorld();
+      }, () => {
+        ShowWorld();
+      });
       break;
     case Encounter.Shop shop:
       break;
@@ -40,6 +46,10 @@ public class GameController : MonoBehaviour {
 
   private void Start () {
     world = new World(players[0], enemies);
+    ShowWorld();
+  }
+
+  private void ShowWorld () {
     var worldScreen = SetScreen(worldPrefab);
     worldScreen.GetComponent<WorldController>().Init(this);
   }
