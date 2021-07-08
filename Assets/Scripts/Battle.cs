@@ -6,7 +6,7 @@ using System.Linq;
 
 public enum DieType { Slash, Pierce, Blunt, Shield, Evade, Magic, Heal }
 
-public enum EffectType { None, Fire, Ice, Poison }
+public enum EffectType { None, Fire, Ice, Poison, Curse }
 
 public class Battle {
   public readonly Random random = new Random();
