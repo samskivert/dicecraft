@@ -20,14 +20,28 @@ public class GameController : MonoBehaviour {
 
   public World world { get; private set; }
 
-  public void StartBattle ((int, int) coord) {
-    // TODO
+  public void EncounterClicked ((int, int) coord, Encounter encounter) {
+    switch (encounter) {
+    case Encounter.Fight fight:
+      var battleScreen = SetScreen(battlePrefab);
+      var battle = battleScreen.GetComponent<BattleController>();
+      battle.SetBattle(new Battle(world.player, fight.enemy));
+      break;
+    case Encounter.Shop shop:
+      break;
+    case Encounter.Chest chest:
+      break;
+    case Encounter.Anvil anvil:
+      break;
+    case Encounter.Exit exit:
+      break;
+    }
   }
 
   private void Start () {
-    var world = new World(players[0], enemies);
+    world = new World(players[0], enemies);
     var worldScreen = SetScreen(worldPrefab);
-    worldScreen.GetComponent<WorldController>().Init(this, world);
+    worldScreen.GetComponent<WorldController>().Init(this);
   }
 
   private GameObject SetScreen (GameObject prefab) {

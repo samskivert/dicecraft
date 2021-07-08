@@ -15,9 +15,13 @@ public class WorldController : MonoBehaviour {
   public GameObject blankPrefab;
   public GameObject pathPrefab;
 
-  public void Init (GameController game, World world) {
+  public GameController game { get; private set; }
+
+  public void Init (GameController game) {
+    this.game = game;
     var nobjs = new Dictionary<(int, int), GameObject>();
 
+    var world = game.world;
     for (var yy = 0; yy < World.Height; yy += 1) {
       for (var xx = 0; xx < World.Width; xx += 1) {
         var coord = (xx, yy);
@@ -25,7 +29,8 @@ public class WorldController : MonoBehaviour {
           var nobj = Instantiate(nodePrefab, nodes.transform);
           nobjs.Add(coord, nobj);
           var node = nobj.GetComponent<NodeController>();
-          node.Init(world, coord, encounter);
+          node.ShowEncounter(encounter);
+          node.button.onClick.AddListener(() => game.EncounterClicked(coord, encounter));
           if (coord == world.playerPos) node.ShowPlayer(world.player);
         } else {
           Instantiate(blankPrefab, nodes.transform);

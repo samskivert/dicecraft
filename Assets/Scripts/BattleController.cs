@@ -35,14 +35,8 @@ public class BattleController : MonoBehaviour {
 
   private void Start () {
     attack.onClick.AddListener(Attack);
-    wonPanel.GetComponentInChildren<Button>().onClick.AddListener(NewBattle);
-    lostPanel.GetComponentInChildren<Button>().onClick.AddListener(NewBattle);
-    NewBattle();
-  }
-
-  private void NewBattle () {
-    SetBattle(new Battle(players[random.Next(players.Length)],
-                         enemies[random.Next(enemies.Length)]));
+    // wonPanel.GetComponentInChildren<Button>().onClick.AddListener(NewBattle);
+    // lostPanel.GetComponentInChildren<Button>().onClick.AddListener(NewBattle);
   }
 
   public void SetBattle (Battle battle) {
