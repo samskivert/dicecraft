@@ -16,14 +16,25 @@ public class World {
   public Player player;
   public Enemy[] enemies;
 
+  public int[] levelXps;
+  public int[] levelHps;
+  public int playerLevel;
+  public int playerXp;
+
+  public int playerHp => levelHps[playerLevel];
+  public int nextLevelXp => levelXps[playerLevel];
+
   public (int, int) entryPos = (0, 0);
   public (int, int) playerPos;
 
   public Dictionary<(int, int), Encounter> encounters;
 
-  public World (Player player, Enemy[] enemies) {
+  public World (Player player, Enemy[] enemies, int[] levelXps, int[] levelHps) {
     this.player = player;
     this.enemies = enemies;
+    this.levelXps = levelXps;
+    this.levelHps = levelHps;
+
     playerPos = entryPos;
     encounters = new Dictionary<(int, int), Encounter>{
       { (0, 0), new Encounter.Blank { exits = Exits((1, 1)) }},
