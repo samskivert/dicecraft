@@ -35,6 +35,7 @@ public class NodeController : MonoBehaviour {
   public void ShowPlayer (Player player) {
     platform.sprite = currentSprite;
     image.sprite = player.image;
+    image.gameObject.SetActive(true);
   }
 }
 }
