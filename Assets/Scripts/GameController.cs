@@ -17,6 +17,8 @@ public class GameController : MonoBehaviour {
 
   public Player[] players;
   public Enemy[] enemies;
+  public int[] levelXps;
+  public int[] levelHps;
 
   public World world { get; private set; }
 
