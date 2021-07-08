@@ -14,8 +14,9 @@ public class Battle {
   public readonly Combatant player;
   public readonly Combatant enemy;
 
-  public Battle (Player player, Enemy enemy) {
-    this.player = new Combatant(player);
+  public Battle (World world, Enemy enemy) {
+    this.player = new Combatant(world.player);
+    this.player.hp = world.playerHp;
     this.enemy = new Combatant(enemy);
   }
 
