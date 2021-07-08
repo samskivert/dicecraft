@@ -8,6 +8,8 @@ public class Enemy : ScriptableObject, Combatant.Data {
   public new string name;
   public Sprite image;
   public int maxHp;
+  public int xpAward;
+  public int coinAward;
   public DieType[] slots;
   public DieFace[] dice1;
   public DieFace[] dice2;
