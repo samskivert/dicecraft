@@ -28,6 +28,7 @@ public class NodeController : MonoBehaviour {
     case Encounter.Chest chest: image.sprite = chestSprite; break;
     case Encounter.Anvil anvil: image.sprite = anvilSprite; break;
     case Encounter.Exit exit:   image.sprite = exitSprite; break;
+    case Encounter.Blank blank: image.gameObject.SetActive(false); break;
     }
   }
 
