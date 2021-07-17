@@ -14,6 +14,7 @@ public class WorldController : MonoBehaviour {
   public GameObject nodePrefab;
   public GameObject blankPrefab;
   public GameObject pathPrefab;
+  public TMP_Text coinsLabel;
 
   public GameController game { get; private set; }
 

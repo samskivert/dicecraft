@@ -20,6 +20,7 @@ public class World {
   public int[] levelHps;
   public int playerLevel;
   public int playerXp;
+  public int playerCoins;
 
   public int playerHpUp => levelHps[playerLevel];
   public int nextLevelXp => playerLevel < levelXps.Length ? levelXps[playerLevel] : 0;
