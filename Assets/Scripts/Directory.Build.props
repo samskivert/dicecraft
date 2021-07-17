@@ -1,0 +1,6 @@
+<Project>
+  <PropertyGroup>
+    <BaseIntermediateOutputPath>../../obj/Empowered</BaseIntermediateOutputPath>
+    <BaseOutputPath>../../bin/Empowered</BaseOutputPath>
+  </PropertyGroup>
+</Project>
