@@ -17,7 +17,7 @@ public class Enemy : ScriptableObject, Combatant.Data {
 
   public string Name => name;
   public Sprite Image => image;
-  public int MaxHp => maxHp;
+  public int MaxHp (World world) => maxHp;
   public DieType[] Slots => slots;
   public DieFace[] Dice1 => dice1;
   public DieFace[] Dice2 => dice2;

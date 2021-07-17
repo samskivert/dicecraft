@@ -50,8 +50,8 @@ public class BattleController : MonoBehaviour {
     lostPanel.GetComponentInChildren<Button>().onClick.AddListener(onLose);
 
     slotsPanel.SetActive(true);
-    player.Init(battle.player);
-    enemy.Init(battle.enemy);
+    player.Init(game.world, battle.player);
+    enemy.Init(game.world, battle.enemy);
     Roll(true);
   }
 

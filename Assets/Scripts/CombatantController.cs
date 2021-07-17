@@ -5,6 +5,7 @@ using UnityEngine.UI;
 using TMPro;
 
 public class CombatantController : MonoBehaviour {
+  private World world;
   private Combatant comb;
 
   public TMP_Text nameLabel;
@@ -13,7 +14,8 @@ public class CombatantController : MonoBehaviour {
   public Image hpMeter;
   public TMP_Text shieldLabel;
 
-  public void Init (Combatant comb) {
+  public void Init (World world, Combatant comb) {
+    this.world = world;
     this.comb = comb;
     nameLabel.text = comb.data.Name;
     image.sprite = comb.data.Image;
@@ -21,8 +23,9 @@ public class CombatantController : MonoBehaviour {
   }
 
   public void Refresh () {
-    hpLabel.text = $"HP: {comb.hp}/{comb.data.MaxHp}";
-    hpMeter.fillAmount = comb.hp / (float)comb.data.MaxHp;
+    var maxHp = comb.data.MaxHp(world);
+    hpLabel.text = $"HP: {comb.hp}/{maxHp}";
+    hpMeter.fillAmount = comb.hp / (float)maxHp;
     shieldLabel.text = $"Shield: {comb.shield}";
   }
 }

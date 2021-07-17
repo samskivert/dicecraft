@@ -21,7 +21,7 @@ public class World {
   public int playerLevel;
   public int playerXp;
 
-  public int playerHp => levelHps[playerLevel];
+  public int playerHpUp => levelHps[playerLevel];
   public int nextLevelXp => playerLevel < levelXps.Length ? levelXps[playerLevel] : 0;
 
   public (int, int) entryPos = (0, 0);

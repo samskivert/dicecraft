@@ -9,15 +9,17 @@ public enum DieType { Slash, Pierce, Blunt, Shield, Evade, Magic, Heal }
 public enum EffectType { None, Fire, Ice, Poison, Curse }
 
 public class Battle {
+  private World world;
+
   public readonly Random random = new Random();
 
   public readonly Combatant player;
   public readonly Combatant enemy;
 
   public Battle (World world, Enemy enemy) {
-    this.player = new Combatant(world.player);
-    this.player.hp = world.playerHp;
-    this.enemy = new Combatant(enemy);
+    this.world = world;
+    this.player = new Combatant(world, world.player);
+    this.enemy = new Combatant(world, enemy);
   }
 
   public void Attack (IEnumerable<DieFace> dice, Combatant attacker, Combatant defender) {
@@ -51,7 +53,7 @@ public class Battle {
       defender.shield -= used;
     }
     defender.hp = Math.Max(0, defender.hp-damage);
-    attacker.hp = Math.Min(attacker.hp+heal, attacker.data.MaxHp);
+    attacker.hp = Math.Min(attacker.hp+heal, attacker.data.MaxHp(world));
     attacker.shield += shield;
     attacker.evade += evade;
   }
