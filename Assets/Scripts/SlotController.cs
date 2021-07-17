@@ -13,8 +13,9 @@ public class SlotController : MonoBehaviour {
   public Button button;
   public Image image;
 
-  public DieType type { get; private set; }
+  public Die.Type type { get; private set; }
   public DieFace face { get; private set; }
+  public int upgrades { get; private set; }
 
   private void Awake () {
     button.onClick.AddListener(() => {
@@ -29,8 +30,9 @@ public class SlotController : MonoBehaviour {
     return unplay == null && type == face.dieType;
   }
 
-  public void Init (DieType type) {
+  public void Init (Die.Type type, int upgrades) {
     this.type = type;
+    this.upgrades = upgrades;
     typeLabel.text = type.ToString();
     Reset();
   }
@@ -48,22 +50,23 @@ public class SlotController : MonoBehaviour {
     button.interactable = clickable;
 
     image.sprite = face.image;
+    var amount = type.Boost(upgrades, face.amount);
     var eff = face.effectType == EffectType.None ? "" : $" {face.effectType}";
     switch (face.dieType) {
-    case DieType.Slash:
-    case DieType.Pierce:
-    case DieType.Blunt:
-    case DieType.Magic:
-      damageLabel.text = $"{face.amount} {eff}damage";
+    case Die.Type.Slash:
+    case Die.Type.Pierce:
+    case Die.Type.Blunt:
+    case Die.Type.Magic:
+      damageLabel.text = $"{amount} {eff}damage";
       break;
-    case DieType.Shield:
-      damageLabel.text = $"+{face.amount} shield";
+    case Die.Type.Shield:
+      damageLabel.text = $"+{amount} shield";
       break;
-    case DieType.Evade:
-      damageLabel.text = $"+{face.amount}% evade";
+    case Die.Type.Evade:
+      damageLabel.text = $"+{amount}% evade";
       break;
-    case DieType.Heal:
-      damageLabel.text = $"+{face.amount} HP";
+    case Die.Type.Heal:
+      damageLabel.text = $"+{amount} HP";
       break;
     }
 

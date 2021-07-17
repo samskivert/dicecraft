@@ -7,7 +7,7 @@ public class DieFace : ScriptableObject {
 
   public new string name;
   public Sprite image;
-  public DieType dieType;
+  public Die.Type dieType;
   public EffectType effectType;
   public int amount;
 

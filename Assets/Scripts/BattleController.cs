@@ -86,7 +86,7 @@ public class BattleController : MonoBehaviour {
     slots = new SlotController[data.Slots.Length];
     foreach (var type in data.Slots) {
       var slot = Instantiate(slotPrefab, slotsPanel.transform).GetComponent<SlotController>();
-      slot.Init(type);
+      slot.Init(type, game.world.playerSlotLevels[sidx]);
       slots[sidx++] = slot;
     }
     attack.transform.parent.SetAsLastSibling();
@@ -101,7 +101,8 @@ public class BattleController : MonoBehaviour {
   }
 
   private void Attack () {
-    var slots = this.slots.Where(slot => slot.face != null).Select(slot => slot.face);
+    var slots = this.slots.Where(
+      slot => slot.face != null).Select(slot => (slot.face, slot.upgrades));
     var attacker = playerTurn ? battle.player : battle.enemy;
     var defender = playerTurn ? battle.enemy : battle.player;
     battle.Attack(slots, attacker, defender);

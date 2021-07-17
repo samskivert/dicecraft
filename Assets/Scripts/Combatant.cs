@@ -12,7 +12,7 @@ public class Combatant {
     public string Name { get; }
     public Sprite Image { get; }
     public int MaxHp (World world);
-    public DieType[] Slots { get; }
+    public Die.Type[] Slots { get; }
     public DieFace[] Dice1 { get; }
     public DieFace[] Dice2 { get; }
     public DieFace[] Dice3 { get; }

@@ -23,6 +23,7 @@ public class World {
   public int playerLevel;
   public int playerXp;
   public readonly IMutable<int> playerCoins = Values.Mutable(0);
+  public int[] playerSlotLevels;
 
   public int playerHpUp => levelHps[playerLevel];
   public int nextLevelXp => playerLevel < levelXps.Length ? levelXps[playerLevel] : 0;
@@ -39,6 +40,8 @@ public class World {
     this.levelHps = levelHps;
 
     playerPos = entryPos;
+    playerSlotLevels = new int[player.slots.Length];
+
     encounters = new Dictionary<(int, int), Encounter>{
       { (0, 0), new Encounter.Blank { exits = Exits((1, 1)) }},
       { (2, 0), new Encounter.Fight { enemy = enemies[1], exits = Exits((3, 0)) }},

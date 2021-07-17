@@ -4,8 +4,6 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 
-public enum DieType { Slash, Pierce, Blunt, Shield, Evade, Magic, Heal }
-
 public enum EffectType { None, Fire, Ice, Poison, Curse }
 
 public class Battle {
@@ -22,26 +20,29 @@ public class Battle {
     this.enemy = new Combatant(world, enemy);
   }
 
-  public void Attack (IEnumerable<DieFace> dice, Combatant attacker, Combatant defender) {
+  public void Attack (IEnumerable<(DieFace, int)> dice, Combatant attacker, Combatant defender) {
     var damage = 0;
     var shield = 0;
     var evade = 0;
     var heal = 0;
-    foreach (var face in dice) {
+    foreach (var pair in dice) {
+      var face = pair.Item1;
+      var upgrades = pair.Item2;
+
       switch (face.dieType) {
-      case DieType.Slash:
-      case DieType.Pierce:
-      case DieType.Blunt:
-      case DieType.Magic:
+      case Die.Type.Slash:
+      case Die.Type.Pierce:
+      case Die.Type.Blunt:
+      case Die.Type.Magic:
         damage += face.amount;
         break;
-      case DieType.Shield:
+      case Die.Type.Shield:
         shield += face.amount;
         break;
-      case DieType.Evade:
+      case Die.Type.Evade:
         evade += face.amount;
         break;
-      case DieType.Heal:
+      case Die.Type.Heal:
         heal += face.amount;
         break;
       }

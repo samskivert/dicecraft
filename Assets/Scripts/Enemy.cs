@@ -10,7 +10,7 @@ public class Enemy : ScriptableObject, Combatant.Data {
   public int maxHp;
   public int xpAward;
   public int coinAward;
-  public DieType[] slots;
+  public Die.Type[] slots;
   public DieFace[] dice1;
   public DieFace[] dice2;
   public DieFace[] dice3;
@@ -18,7 +18,7 @@ public class Enemy : ScriptableObject, Combatant.Data {
   public string Name => name;
   public Sprite Image => image;
   public int MaxHp (World world) => maxHp;
-  public DieType[] Slots => slots;
+  public Die.Type[] Slots => slots;
   public DieFace[] Dice1 => dice1;
   public DieFace[] Dice2 => dice2;
   public DieFace[] Dice3 => dice3;
