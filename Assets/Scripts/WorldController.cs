@@ -9,6 +9,7 @@ using UnityEngine.UI;
 using TMPro;
 
 public class WorldController : MonoBehaviour {
+  private event Action onDestroy;
 
   public GameObject nodes;
   public GameObject nodePrefab;
@@ -39,6 +40,10 @@ public class WorldController : MonoBehaviour {
       }
     }
 
+    onDestroy += game.world.playerCoins.OnValue(coins => {
+      coinsLabel.text = coins.ToString();
+    });
+
     this.RunIn(1, () => {
       foreach (var entry in world.encounters) {
         var coord = entry.Key;
@@ -59,5 +64,7 @@ public class WorldController : MonoBehaviour {
       }
     });
   }
+
+  private void OnDestroy () => onDestroy();
 }
 }

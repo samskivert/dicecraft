@@ -133,7 +133,7 @@ public class BattleController : MonoBehaviour {
       var maxXp = game.world.nextLevelXp;
       wonPanel.GetComponent<WonController>().AnimateXP(
         game.world.playerLevel, startXp, endXp, maxXp);
-      game.world.AwardXP(enemy.xpAward);
+      game.world.Award(enemy.xpAward, enemy.coinAward);
     } else lostPanel.SetActive(true);
   }
 }

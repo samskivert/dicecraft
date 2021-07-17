@@ -8,6 +8,8 @@ using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 
+using React;
+
 public class World {
 
   public const int Width = 5;
@@ -20,7 +22,7 @@ public class World {
   public int[] levelHps;
   public int playerLevel;
   public int playerXp;
-  public int playerCoins;
+  public readonly IMutable<int> playerCoins = Values.Mutable(0);
 
   public int playerHpUp => levelHps[playerLevel];
   public int nextLevelXp => playerLevel < levelXps.Length ? levelXps[playerLevel] : 0;
@@ -65,7 +67,7 @@ public class World {
     return Search(entryPos);
   }
 
-  public void AwardXP (int xpAward) {
+  public void Award (int xpAward, int coinAward) {
     var next = nextLevelXp;
     if (next == 0) return; // max!
     var newXp = playerXp + xpAward;
@@ -74,6 +76,8 @@ public class World {
       newXp -= next;
     }
     playerXp = newXp;
+
+    playerCoins.UpdateVia(coins => coins + coinAward);
   }
 
   private static (int, int)[] Exits (params (int, int)[] exits) => exits;

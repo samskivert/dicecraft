@@ -65,8 +65,8 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 0479e236562664efc9b6c2deab62a418, type: 3}
-  m_Type: 1
+  m_Sprite: {fileID: 21300000, guid: 36eae4f110825d6478bead743c3804a8, type: 3}
+  m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
   m_FillMethod: 4
@@ -272,6 +272,7 @@ MonoBehaviour:
   nodePrefab: {fileID: 7088653867719417941, guid: d5f9f41bdc0fc471cbb6835898dc0adc, type: 3}
   blankPrefab: {fileID: 7064854951459946667, guid: 73b911b8263c44a99a509f17d8bb3643, type: 3}
   pathPrefab: {fileID: 7088653867719417941, guid: a2d0826f5f34e4f18b9ec6a4b1771a9f, type: 3}
+  coinsLabel: {fileID: 4765147007675971948}
 --- !u!1 &8075285087999834158
 GameObject:
   m_ObjectHideFlags: 0
