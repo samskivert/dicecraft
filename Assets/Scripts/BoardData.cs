@@ -10,6 +10,7 @@ using UnityEngine;
 public class BoardData : ScriptableObject {
 
   public Sprite image;
+  public PlayerData player;
   public SpaceData[] spaces;
   public DieData[] loot;
   public EnemyData[] enemies;
