@@ -14,11 +14,14 @@ public class GameController : MonoBehaviour, Board.Data {
   public Transform canvas;
   public GameObject worldPrefab;
   public GameObject battlePrefab;
+  public GameObject boardPrefab;
 
   public PlayerData[] players;
   public EnemyData[] enemies;
   public int[] levelXps;
   public int[] levelHps;
+
+  public BoardData board; // TEMP
 
   // from Board.Data
   public EnemyData[] Enemies => enemies;
@@ -53,14 +56,17 @@ public class GameController : MonoBehaviour, Board.Data {
 
   private void Start () {
     world = new World(players[0], enemies, levelXps, levelHps);
-    ShowWorld();
-
-    Debug.Log(String.Join(", ", Enumerable.Range(0, Board.Spots).Select(Board.Coord)));
+    ShowBoard(board);
   }
 
   private void ShowWorld () {
     var worldScreen = SetScreen(worldPrefab);
     worldScreen.GetComponent<WorldController>().Init(this);
+  }
+
+  private void ShowBoard (BoardData board) {
+    var boardScreen = SetScreen(boardPrefab);
+    boardScreen.GetComponent<BoardController>().Init(this, board);
   }
 
   private GameObject SetScreen (GameObject prefab) {

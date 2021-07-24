@@ -12,6 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e89684c3a39354dc8a2620e2d7cdadce, type: 3}
   m_Name: Heal1
   m_EditorClassIdentifier: 
-  image: {fileID: 0}
+  image: {fileID: 21300000, guid: 02683280ab188de4082a5b95863f3804, type: 3}
   spaceType: 1
   level: 1
