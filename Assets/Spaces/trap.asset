@@ -10,8 +10,8 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: e89684c3a39354dc8a2620e2d7cdadce, type: 3}
-  m_Name: Heal2
+  m_Name: trap
   m_EditorClassIdentifier: 
-  image: {fileID: 0}
-  spaceType: 1
+  image: {fileID: 21300000, guid: 4b5d38eefb34d644db42e205b1b2f833, type: 3}
+  spaceType: 3
   level: 2
