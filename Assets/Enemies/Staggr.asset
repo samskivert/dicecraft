@@ -12,18 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6992a282416fa495a8f4e61a0e6e6544, type: 3}
   m_Name: Staggr
   m_EditorClassIdentifier: 
-  name: Staggr
   image: {fileID: 21300000, guid: 887392c71bf99e240aa5a96ab54e7205, type: 3}
   maxHp: 10
   xpAward: 3
   coinAward: 2
   slots: 01000000
-  dice1:
-  - {fileID: 11400000, guid: fcd03225dbd0773489192147b037c0d1, type: 2}
-  - {fileID: 11400000, guid: fcd03225dbd0773489192147b037c0d1, type: 2}
-  - {fileID: 11400000, guid: fcd03225dbd0773489192147b037c0d1, type: 2}
-  - {fileID: 11400000, guid: fcd03225dbd0773489192147b037c0d1, type: 2}
-  - {fileID: 11400000, guid: fcd03225dbd0773489192147b037c0d1, type: 2}
-  - {fileID: 11400000, guid: fcd03225dbd0773489192147b037c0d1, type: 2}
-  dice2: []
-  dice3: []
+  dice:
+  - {fileID: 11400000, guid: 0fefd4c03f213472ebfb808b68ec3e1b, type: 2}
