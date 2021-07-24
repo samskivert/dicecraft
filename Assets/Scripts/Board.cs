@@ -3,6 +3,7 @@ namespace dicecraft {
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using UnityEngine;
 
 using React;
 
@@ -30,22 +31,48 @@ public class Board {
 
   public readonly Data data;
   public readonly PlayerData player;
+  public readonly System.Random random = new System.Random();
 
   public readonly IMutable<int> playerLevel = Values.Mutable(0);
   public readonly IMutable<int> playerXp = Values.Mutable(0);
   public readonly IMutable<int> playerCoins = Values.Mutable(0);
   public readonly IMutable<int[]> playerSlotLevels = Values.Mutable<int[]>(null);
 
+  public int dieCount = 2;
+
   public int playerHpUp => data.LevelHps[playerLevel.current];
   public int nextLevelXp =>
     playerLevel.current < data.LevelXps.Length ? data.LevelXps[playerLevel.current] : 0;
 
   public IMutable<int> playerPos = Values.Mutable(0);
+  public IMutable<int[]> roll = Values.Mutable(new int[0]);
 
   public Board (Data data, PlayerData player) {
     this.data = data;
     this.player = player;
     playerSlotLevels.Update(new int[player.slots.Length]);
+  }
+
+  public void Roll () {
+    var dice = new int[dieCount];
+    for (var ii = 0; ii < dieCount; ii += 1) dice[ii] = random.Next(6)+1;
+    roll.Update(dice);
+  }
+
+  public void UseDie (int index) {
+    var dice = roll.current;
+    if (index >= dice.Length) {
+      Debug.Log($"Invalid die index {index} (have {dice.Length}).");
+      return;
+    }
+    if (dice[index] < 1) {
+      Debug.Log($"Using invalid die ({index}, value {dice[index]}.");
+      return;
+    }
+
+    playerPos.UpdateVia(pos => (pos + dice[index]) % Spots);
+    dice[index] = -1;
+    roll.ForceUpdate(dice);
   }
 
   public void Award (int xpAward, int coinAward) {

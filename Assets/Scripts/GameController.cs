@@ -69,6 +69,7 @@ public class GameController : MonoBehaviour, Board.Data {
   private void ShowBoard (BoardData board) {
     var boardScreen = SetScreen(boardPrefab);
     boardScreen.GetComponent<BoardController>().Init(this, board);
+    this.board.Roll();
   }
 
   private GameObject SetScreen (GameObject prefab) {
