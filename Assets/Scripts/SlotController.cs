@@ -13,7 +13,7 @@ public class SlotController : MonoBehaviour {
   public Button button;
   public Image image;
 
-  public Die.Type type { get; private set; }
+  // public Die.Type type { get; private set; }
   public FaceData face { get; private set; }
   public int upgrades { get; private set; }
 
@@ -27,13 +27,13 @@ public class SlotController : MonoBehaviour {
   }
 
   public bool CanPlay (FaceData face) {
-    return unplay == null && type == face.dieType;
+    return unplay == null /* && type == face.dieType */;
   }
 
   public void Init (Die.Type type, int upgrades) {
-    this.type = type;
+    // this.type = type;
     this.upgrades = upgrades;
-    typeLabel.text = type.ToString();
+    typeLabel.text = "..."; // type.ToString();
     Reset();
   }
 
@@ -50,7 +50,7 @@ public class SlotController : MonoBehaviour {
     button.interactable = clickable;
 
     image.sprite = face.image;
-    var amount = type.Boost(upgrades, face.amount);
+    var amount = face.amount; // type.Boost(upgrades, face.amount);
     var eff = face.effectType == Effect.Type.None ? "" : $" {face.effectType}";
     switch (face.dieType) {
     case Die.Type.Slash:
@@ -70,7 +70,7 @@ public class SlotController : MonoBehaviour {
       break;
     }
 
-    Debug.Log($"Playing {face} on {type}");
+    // Debug.Log($"Playing {face} on {type}");
   }
 }
 }
