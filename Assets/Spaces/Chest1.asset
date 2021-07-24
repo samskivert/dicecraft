@@ -13,5 +13,7 @@ MonoBehaviour:
   m_Name: Chest1
   m_EditorClassIdentifier: 
   image: {fileID: 21300000, guid: 5fbe8eb2ada0a734bbacb119c7fcde27, type: 3}
-  spaceType: 2
+  spaceType: 1
+  dieType: 0
+  effectType: 0
   level: 2

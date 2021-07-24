@@ -6,6 +6,6 @@ using System.Linq;
 
 public static class Space {
 
-  public enum Type { Battle, Heal, Chest, Effect }
+  public enum Type { Battle, Chest, Die, Trap }
 }
 }
