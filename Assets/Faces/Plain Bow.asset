@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   name: Bow
   image: {fileID: 21300000, guid: 2f949e059c2b34279a3a4f29ab0b8f11, type: 3}
-  dieType: 1
+  dieType: 2
   damageType: 1
   effectType: 0
   amount: 1

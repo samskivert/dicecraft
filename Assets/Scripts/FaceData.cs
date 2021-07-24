@@ -7,7 +7,7 @@ public class FaceData : ScriptableObject {
 
   public Sprite image;
   public Die.Type dieType;
-  public EffectType effectType;
+  public Effect.Type effectType;
   public int amount;
 
   public override string ToString () => $"{name}/{dieType}/{effectType}/{amount}";

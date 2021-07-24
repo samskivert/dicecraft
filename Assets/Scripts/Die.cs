@@ -6,7 +6,7 @@ using System.Linq;
 
 public static class Die {
 
-  public enum Type { Slash, Pierce, Blunt, Shield, Evade, Magic, Heal }
+  public enum Type { None, Slash, Pierce, Blunt, Shield, Evade, Magic, Heal }
 
   public static int Boost (this Type type, int upgrades, int amount) {
     switch (type) {

@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   name: Ice Club
   image: {fileID: 21300000, guid: c92c9baede0389f408221c618613005c, type: 3}
-  dieType: 2
+  dieType: 3
   damageType: 2
   effectType: 2
   amount: 2

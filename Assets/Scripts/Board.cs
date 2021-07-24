@@ -57,7 +57,7 @@ public class Board {
 
     var newPos = (playerPos.current + dice[index]) % Spots;
     playerPos.Update(newPos);
-    
+    // TODO: actions based on the space they landed on
   }
 }
 }

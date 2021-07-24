@@ -14,6 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   name: Ice Knife
   image: {fileID: 21300000, guid: ac48645d22fbb8a47b324eac3e1cc0f3, type: 3}
+  dieType: 1
   damageType: 0
   effectType: 2
   damage: 3

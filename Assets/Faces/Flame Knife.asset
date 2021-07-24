@@ -13,6 +13,6 @@ MonoBehaviour:
   m_Name: flame Knife
   m_EditorClassIdentifier: 
   image: {fileID: 21300000, guid: 8feb70e2c106542b79b43ffaab39949d, type: 3}
-  dieType: 0
+  dieType: 1
   effectType: 1
   amount: 4

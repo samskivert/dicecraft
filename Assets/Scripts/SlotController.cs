@@ -51,7 +51,7 @@ public class SlotController : MonoBehaviour {
 
     image.sprite = face.image;
     var amount = type.Boost(upgrades, face.amount);
-    var eff = face.effectType == EffectType.None ? "" : $" {face.effectType}";
+    var eff = face.effectType == Effect.Type.None ? "" : $" {face.effectType}";
     switch (face.dieType) {
     case Die.Type.Slash:
     case Die.Type.Pierce:

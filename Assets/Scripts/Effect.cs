@@ -4,8 +4,8 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 
-public static class Space {
+public static class Effect {
 
-  public enum Type { Battle, Heal, Chest, Effect }
+  public enum Type { None, Fire, Ice, Poison, Curse }
 }
 }

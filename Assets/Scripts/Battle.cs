@@ -4,8 +4,6 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 
-public enum EffectType { None, Fire, Ice, Poison, Curse }
-
 public class Battle {
   private World world;
 

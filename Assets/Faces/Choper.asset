@@ -13,6 +13,6 @@ MonoBehaviour:
   m_Name: choper
   m_EditorClassIdentifier: 
   image: {fileID: 21300000, guid: 3f4f03ef8fcc5cc46b6e0d5d65943079, type: 3}
-  dieType: 0
+  dieType: 1
   effectType: 0
   amount: 1

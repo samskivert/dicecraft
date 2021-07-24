@@ -13,6 +13,6 @@ MonoBehaviour:
   m_Name: dager
   m_EditorClassIdentifier: 
   image: {fileID: 21300000, guid: f7ece31f62e653746bce9a89b82e2cce, type: 3}
-  dieType: 1
+  dieType: 2
   effectType: 0
   amount: 1
