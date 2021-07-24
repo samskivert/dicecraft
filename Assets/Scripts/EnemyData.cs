@@ -14,7 +14,7 @@ public class EnemyData : ScriptableObject, Combatant.Data {
 
   public string Name => name;
   public Sprite Image => image;
-  public int MaxHp (World world) => maxHp;
+  public int MaxHp (Player player) => maxHp;
   public Die.Type[] Slots => slots;
   public FaceData[] Dice1 => dice[0].faces;
   public FaceData[] Dice2 => dice.Length > 0 ? dice[1].faces : null;

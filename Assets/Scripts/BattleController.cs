@@ -47,8 +47,8 @@ public class BattleController : MonoBehaviour {
     lostPanel.GetComponentInChildren<Button>().onClick.AddListener(onLose);
 
     slotsPanel.SetActive(true);
-    player.Init(game.world, battle.player);
-    enemy.Init(game.world, battle.enemy);
+    player.Init(game.player, battle.player);
+    enemy.Init(game.player, battle.enemy);
     Roll(true);
   }
 
@@ -83,7 +83,7 @@ public class BattleController : MonoBehaviour {
     slots = new SlotController[data.Slots.Length];
     foreach (var type in data.Slots) {
       var slot = Instantiate(slotPrefab, slotsPanel.transform).GetComponent<SlotController>();
-      slot.Init(type, game.world.playerSlotLevels[sidx]);
+      slot.Init(type, game.player.slotLevels.current[sidx]);
       slots[sidx++] = slot;
     }
     attack.transform.parent.SetAsLastSibling();
@@ -126,12 +126,12 @@ public class BattleController : MonoBehaviour {
     if (battle.player.hp > 0) {
       wonPanel.SetActive(true);
       var enemy = (EnemyData)battle.enemy.data;
-      var startXp = game.world.playerXp;
+      var startXp = game.player.xp.current;
       var endXp = startXp + enemy.xpAward;
-      var maxXp = game.world.nextLevelXp;
+      var maxXp = game.player.nextLevelXp;
       wonPanel.GetComponent<WonController>().AnimateXP(
-        game.world.playerLevel, startXp, endXp, maxXp);
-      game.world.Award(enemy.xpAward, enemy.coinAward);
+        game.player.level.current, startXp, endXp, maxXp);
+      game.player.Award(enemy.xpAward, enemy.coinAward);
     } else lostPanel.SetActive(true);
   }
 }

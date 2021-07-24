@@ -5,17 +5,15 @@ using System.Collections.Generic;
 using System.Linq;
 
 public class Battle {
-  private World world;
 
   public readonly Random random = new Random();
 
   public readonly Combatant player;
   public readonly Combatant enemy;
 
-  public Battle (World world, EnemyData enemy) {
-    this.world = world;
-    this.player = new Combatant(world, world.player);
-    this.enemy = new Combatant(world, enemy);
+  public Battle (Player player, EnemyData enemyData) {
+    this.player = new Combatant(player, player.data);
+    this.enemy = new Combatant(player, enemyData);
   }
 
   public void Attack (IEnumerable<(FaceData, int)> dice, Combatant attacker, Combatant defender) {
@@ -52,7 +50,7 @@ public class Battle {
       defender.shield -= used;
     }
     defender.hp = Math.Max(0, defender.hp-damage);
-    attacker.hp = Math.Min(attacker.hp+heal, attacker.data.MaxHp(world));
+    attacker.hp = Math.Min(attacker.hp+heal, attacker.maxHp);
     attacker.shield += shield;
     attacker.evade += evade;
   }

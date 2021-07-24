@@ -11,7 +11,7 @@ public class Combatant {
   public interface Data {
     public string Name { get; }
     public Sprite Image { get; }
-    public int MaxHp (World world);
+    public int MaxHp (Player player);
     public Die.Type[] Slots { get; }
     public FaceData[] Dice1 { get; }
     public FaceData[] Dice2 { get; }
@@ -22,11 +22,12 @@ public class Combatant {
   public readonly List<FaceData> roll = new List<FaceData>();
 
   public readonly Data data;
+  public readonly int maxHp;
   public int hp;
   public int shield;
   public int evade;
 
-  public Combatant (World world, Data data) {
+  public Combatant (Player player, Data data) {
     void MaybeAdd (FaceData[] die) {
       if (die != null && die.Length > 0) dice.Add(die);
     }
@@ -35,7 +36,7 @@ public class Combatant {
     MaybeAdd(data.Dice1);
     MaybeAdd(data.Dice2);
 
-    hp = data.MaxHp(world);
+    hp = maxHp = data.MaxHp(player);
   }
 
   public void Roll (System.Random random) {

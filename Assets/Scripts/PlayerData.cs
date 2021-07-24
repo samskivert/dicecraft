@@ -14,7 +14,7 @@ public class PlayerData : ScriptableObject, Combatant.Data {
 
   public string Name => name;
   public Sprite Image => image;
-  public int MaxHp (World world) => maxHp + world.playerHpUp;
+  public int MaxHp (Player player) => maxHp + player.hpUp;
   public Die.Type[] Slots => slots;
   public FaceData[] Dice1 => dice1;
   public FaceData[] Dice2 => dice2;
