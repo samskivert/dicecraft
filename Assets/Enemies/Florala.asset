@@ -16,6 +16,6 @@ MonoBehaviour:
   maxHp: 6
   xpAward: 2
   coinAward: 1
-  slots: 00000000
+  slots: 1
   dice:
   - {fileID: 11400000, guid: 71833e1fdb77a4862b27e453325f7dfe, type: 2}

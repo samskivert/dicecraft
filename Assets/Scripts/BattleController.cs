@@ -59,7 +59,7 @@ public class BattleController : MonoBehaviour {
 
   public void Roll (bool playerTurn) {
     this.playerTurn = playerTurn;
-    ShowSlots(playerTurn ? battle.player.data : battle.enemy.data);
+    ShowSlots(playerTurn ? battle.player : battle.enemy);
     if (playerTurn) {
       battle.player.Roll(battle.random);
       ShowDice(playerDice, battle.player.roll, true);
@@ -78,13 +78,12 @@ public class BattleController : MonoBehaviour {
     }
   }
 
-  private void ShowSlots (Combatant.Data data) {
-    var sidx = 0;
-    slots = new SlotController[data.Slots.Length];
-    foreach (var type in data.Slots) {
+  private void ShowSlots (Combatant comb) {
+    slots = new SlotController[comb.slots];
+    for (var ii = 0; ii < comb.slots; ii += 1) {
       var slot = Instantiate(slotPrefab, slotsPanel.transform).GetComponent<SlotController>();
-      slot.Init(type, game.player.slotLevels.current[sidx]);
-      slots[sidx++] = slot;
+      slot.Init();
+      slots[ii] = slot;
     }
     attack.transform.parent.SetAsLastSibling();
   }

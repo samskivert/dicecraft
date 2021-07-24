@@ -10,13 +10,13 @@ public class EnemyData : ScriptableObject, Combatant.Data {
   public int maxHp;
   public int xpAward;
   public int coinAward;
-  public Die.Type[] slots;
+  public int slots;
   public DieData[] dice;
 
   public string Name => name;
   public Sprite Image => image;
   public int MaxHp (Player player) => maxHp;
-  public Die.Type[] Slots => slots;
+  public int Slots (Player player) => slots;
   public IEnumerable<DieData> Dice (Player player) => dice;
 }
 }

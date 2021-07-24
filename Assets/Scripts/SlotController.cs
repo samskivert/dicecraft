@@ -30,9 +30,9 @@ public class SlotController : MonoBehaviour {
     return unplay == null /* && type == face.dieType */;
   }
 
-  public void Init (Die.Type type, int upgrades) {
+  public void Init (/* Die.Type type, int upgrades*/) {
     // this.type = type;
-    this.upgrades = upgrades;
+    // this.upgrades = upgrades;
     typeLabel.text = "..."; // type.ToString();
     Reset();
   }

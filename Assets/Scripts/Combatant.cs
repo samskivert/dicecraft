@@ -12,7 +12,7 @@ public class Combatant {
     public string Name { get; }
     public Sprite Image { get; }
     public int MaxHp (Player player);
-    public Die.Type[] Slots { get; }
+    public int Slots (Player player);
     public IEnumerable<DieData> Dice (Player player);
   }
 
@@ -21,6 +21,7 @@ public class Combatant {
   public readonly Data data;
   public readonly int maxHp;
   public readonly IEnumerable<DieData> dice;
+  public readonly int slots;
   public int hp;
   public int shield;
   public int evade;
@@ -29,6 +30,7 @@ public class Combatant {
     this.data = data;
     hp = maxHp = data.MaxHp(player);
     dice = data.Dice(player);
+    slots = data.Slots(player);
   }
 
   public void Roll (System.Random random) {

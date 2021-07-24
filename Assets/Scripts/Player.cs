@@ -20,7 +20,6 @@ public class Player {
   public readonly IMutable<int> level = Values.Mutable(0);
   public readonly IMutable<int> xp = Values.Mutable(0);
   public readonly IMutable<int> coins = Values.Mutable(0);
-  public readonly IMutable<int[]> slotLevels = Values.Mutable<int[]>(null);
   public readonly List<DieData> dice = new List<DieData>();
 
   public int hpUp => levelData.LevelHps[level.current];
@@ -30,7 +29,6 @@ public class Player {
   public Player (LevelData levelData, PlayerData data) {
     this.levelData = levelData;
     this.data = data;
-    slotLevels.Update(new int[data.slots.Length]);
   }
 
   public void Award (int xpAward, int coinAward) {
