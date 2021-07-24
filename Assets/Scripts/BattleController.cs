@@ -15,8 +15,8 @@ public class BattleController : MonoBehaviour {
   private Battle battle;
   private bool playerTurn;
 
-  public Player[] players;
-  public Enemy[] enemies;
+  public PlayerData[] players;
+  public EnemyData[] enemies;
 
   public CombatantController player;
   public CombatantController enemy;
@@ -92,7 +92,7 @@ public class BattleController : MonoBehaviour {
     attack.transform.parent.SetAsLastSibling();
   }
 
-  private void ShowDice (GameObject dice, IEnumerable<DieFace> faces, bool clickable) {
+  private void ShowDice (GameObject dice, IEnumerable<FaceData> faces, bool clickable) {
     dice.DestroyChildren();
     foreach (var face in faces) {
       var die = Instantiate(diePrefab, dice.transform).GetComponent<DieController>();
@@ -128,7 +128,7 @@ public class BattleController : MonoBehaviour {
     slotsPanel.SetActive(false);
     if (battle.player.hp > 0) {
       wonPanel.SetActive(true);
-      var enemy = (Enemy)battle.enemy.data;
+      var enemy = (EnemyData)battle.enemy.data;
       var startXp = game.world.playerXp;
       var endXp = startXp + enemy.xpAward;
       var maxXp = game.world.nextLevelXp;

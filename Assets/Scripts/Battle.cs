@@ -14,13 +14,13 @@ public class Battle {
   public readonly Combatant player;
   public readonly Combatant enemy;
 
-  public Battle (World world, Enemy enemy) {
+  public Battle (World world, EnemyData enemy) {
     this.world = world;
     this.player = new Combatant(world, world.player);
     this.enemy = new Combatant(world, enemy);
   }
 
-  public void Attack (IEnumerable<(DieFace, int)> dice, Combatant attacker, Combatant defender) {
+  public void Attack (IEnumerable<(FaceData, int)> dice, Combatant attacker, Combatant defender) {
     var damage = 0;
     var shield = 0;
     var evade = 0;

@@ -14,7 +14,7 @@ public class SlotController : MonoBehaviour {
   public Image image;
 
   public Die.Type type { get; private set; }
-  public DieFace face { get; private set; }
+  public FaceData face { get; private set; }
   public int upgrades { get; private set; }
 
   private void Awake () {
@@ -26,7 +26,7 @@ public class SlotController : MonoBehaviour {
     });
   }
 
-  public bool CanPlay (DieFace face) {
+  public bool CanPlay (FaceData face) {
     return unplay == null && type == face.dieType;
   }
 
@@ -44,7 +44,7 @@ public class SlotController : MonoBehaviour {
     damageLabel.text = " ";
   }
 
-  public void PlayDie (DieFace face, bool clickable, UnityAction unplay) {
+  public void PlayDie (FaceData face, bool clickable, UnityAction unplay) {
     this.face = face;
     this.unplay = unplay;
     button.interactable = clickable;

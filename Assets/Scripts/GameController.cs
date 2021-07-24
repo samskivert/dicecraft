@@ -15,13 +15,13 @@ public class GameController : MonoBehaviour, Board.Data {
   public GameObject worldPrefab;
   public GameObject battlePrefab;
 
-  public Player[] players;
-  public Enemy[] enemies;
+  public PlayerData[] players;
+  public EnemyData[] enemies;
   public int[] levelXps;
   public int[] levelHps;
 
   // from Board.Data
-  public Enemy[] Enemies => enemies;
+  public EnemyData[] Enemies => enemies;
   public int[] LevelXps => levelXps;
   public int[] LevelHps => levelHps;
 

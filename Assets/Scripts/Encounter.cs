@@ -11,7 +11,7 @@ using TMPro;
 public abstract class Encounter {
 
   public class Fight : Encounter {
-    public Enemy enemy;
+    public EnemyData enemy;
   }
 
   public class Blank : Encounter {}

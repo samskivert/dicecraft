@@ -8,9 +8,9 @@ public class DieController : MonoBehaviour {
   private BattleController battle;
 
   public Image image;
-  public DieFace face { get; private set; }
+  public FaceData face { get; private set; }
 
-  public void Init (BattleController battle, DieFace face, bool clickable) {
+  public void Init (BattleController battle, FaceData face, bool clickable) {
     this.battle = battle;
     this.face = face;
     image.sprite = face.image;

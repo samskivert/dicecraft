@@ -13,13 +13,13 @@ public class Combatant {
     public Sprite Image { get; }
     public int MaxHp (World world);
     public Die.Type[] Slots { get; }
-    public DieFace[] Dice1 { get; }
-    public DieFace[] Dice2 { get; }
-    public DieFace[] Dice3 { get; }
+    public FaceData[] Dice1 { get; }
+    public FaceData[] Dice2 { get; }
+    public FaceData[] Dice3 { get; }
   }
 
-  public readonly List<DieFace[]> dice = new List<DieFace[]>();
-  public readonly List<DieFace> roll = new List<DieFace>();
+  public readonly List<FaceData[]> dice = new List<FaceData[]>();
+  public readonly List<FaceData> roll = new List<FaceData>();
 
   public readonly Data data;
   public int hp;
@@ -27,7 +27,7 @@ public class Combatant {
   public int evade;
 
   public Combatant (World world, Data data) {
-    void MaybeAdd (DieFace[] die) {
+    void MaybeAdd (FaceData[] die) {
       if (die != null && die.Length > 0) dice.Add(die);
     }
 

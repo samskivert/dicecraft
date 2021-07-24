@@ -32,7 +32,7 @@ public class NodeController : MonoBehaviour {
     }
   }
 
-  public void ShowPlayer (Player player) {
+  public void ShowPlayer (PlayerData player) {
     platform.sprite = currentSprite;
     image.sprite = player.image;
     image.gameObject.SetActive(true);

@@ -2,8 +2,8 @@ namespace dicecraft {
 
 using UnityEngine;
 
-[CreateAssetMenu(menuName = "Dicecraft/DieFace", fileName = "DieFace")]
-public class DieFace : ScriptableObject {
+[CreateAssetMenu(menuName = "Dicecraft/Face", fileName = "Face")]
+public class FaceData : ScriptableObject {
 
   public Sprite image;
   public Die.Type dieType;

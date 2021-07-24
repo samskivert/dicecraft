@@ -15,8 +15,8 @@ public class World {
   public const int Width = 5;
   public const int Height = 3;
 
-  public Player player;
-  public Enemy[] enemies;
+  public PlayerData player;
+  public EnemyData[] enemies;
 
   public int[] levelXps;
   public int[] levelHps;
@@ -33,7 +33,7 @@ public class World {
 
   public Dictionary<(int, int), Encounter> encounters;
 
-  public World (Player player, Enemy[] enemies, int[] levelXps, int[] levelHps) {
+  public World (PlayerData player, EnemyData[] enemies, int[] levelXps, int[] levelHps) {
     this.player = player;
     this.enemies = enemies;
     this.levelXps = levelXps;

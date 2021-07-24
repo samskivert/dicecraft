@@ -23,13 +23,13 @@ public class Board {
   }
 
   public interface Data {
-    public Enemy[] Enemies { get; }
+    public EnemyData[] Enemies { get; }
     public int[] LevelXps { get; }
     public int[] LevelHps { get; }
   }
 
   public readonly Data data;
-  public readonly Player player;
+  public readonly PlayerData player;
 
   public readonly IMutable<int> playerLevel = Values.Mutable(0);
   public readonly IMutable<int> playerXp = Values.Mutable(0);
@@ -42,7 +42,7 @@ public class Board {
 
   public IMutable<int> playerPos = Values.Mutable(0);
 
-  public Board (Data data, Player player) {
+  public Board (Data data, PlayerData player) {
     this.data = data;
     this.player = player;
     playerSlotLevels.Update(new int[player.slots.Length]);
