@@ -11,6 +11,8 @@ public class BoardData : ScriptableObject {
 
   public Sprite image;
   public SpaceData[] spaces;
+  public DieData[] loot;
+  public EnemyData[] enemies;
 
   public override string ToString () => name;
 }
