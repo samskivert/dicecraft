@@ -45,6 +45,7 @@ public class SlotController : MonoBehaviour {
   }
 
   public void PlayDie (FaceData face, bool clickable, UnityAction unplay) {
+    typeLabel.text = face.name;
     this.face = face;
     this.unplay = unplay;
     button.interactable = clickable;
