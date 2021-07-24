@@ -13,6 +13,7 @@ MonoBehaviour:
   m_Name: Flames of fury
   m_EditorClassIdentifier: 
   image: {fileID: 21300000, guid: 7aefe67fc80e23a439846d4210031764, type: 3}
+  player: {fileID: 0}
   spaces:
   - {fileID: 11400000, guid: dca52ef26d6974f2ea97aaa7ed5abe7f, type: 2}
   - {fileID: 0}
@@ -35,20 +36,20 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 8853681f99f564092a216e27e3f62d7d, type: 2}
   - {fileID: 0}
   loot:
-  - {fileID: 0}
+  - {fileID: 11400000, guid: f713d642b2bd15f43ba73adaef7fa980, type: 2}
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
   enemies:
+  - {fileID: 11400000, guid: fff5bc5d29d21d64f9475cfbb85a95fb, type: 2}
+  - {fileID: 11400000, guid: fff5bc5d29d21d64f9475cfbb85a95fb, type: 2}
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
+  - {fileID: 11400000, guid: fff5bc5d29d21d64f9475cfbb85a95fb, type: 2}
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
+  - {fileID: 11400000, guid: fff5bc5d29d21d64f9475cfbb85a95fb, type: 2}
   - {fileID: 0}
   - {fileID: 11400000, guid: 7e9bde7ac9e1f9e45bc92e07557332f1, type: 2}
