@@ -27,10 +27,12 @@ public class Player {
   public int nextLevelXp =>
     level.current < levelData.LevelXps.Length ? levelData.LevelXps[level.current] : 0;
 
+  public int MaxHp => data.MaxHp(this);
+
   public Player (LevelData levelData, PlayerData data) {
     this.levelData = levelData;
     this.data = data;
-    hp.Update(data.MaxHp(this));
+    hp.Update(MaxHp);
   }
 
   public void Award (int xpAward, int coinAward) {

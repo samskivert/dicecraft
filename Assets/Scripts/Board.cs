@@ -78,15 +78,29 @@ public class Board {
     if (sdata != null) switch (sdata.spaceType) {
     case Space.Type.Battle:
       battle.Emit(new Battle(player, data.enemies[nextBattle++]));
-      break;
+      return;
     case Space.Type.Chest:
+      // TODO: animate
+      if (data.loot.Length > nextLoot) player.dice.Add(data.loot[nextLoot++]);
+      else Debug.Log("Out of loot! " + nextLoot);
+      // TODO: clear loot spaces as we run out of loot
+      break;
     case Space.Type.Die:
+      switch (sdata.dieType) {
+      case Die.Type.Heal:
+        player.hp.UpdateVia(hp => hp = Math.Min(hp + sdata.level, player.MaxHp));
+        break;
+      default:
+        Debug.Log("TODO: handle die space " + sdata.dieType);
+        break;
+      }
+      break;
     case Space.Type.Trap:
       // TODO
-      MaybeReRoll();
       break;
     }
-    else MaybeReRoll();
+
+    MaybeReRoll();
   }
 }
 }
