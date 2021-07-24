@@ -9,6 +9,8 @@ using UnityEngine.Events;
 using UnityEngine.UI;
 using TMPro;
 
+using React;
+
 public class SpaceController : MonoBehaviour {
   private event Action onDestroy;
   private int index;
@@ -19,10 +21,13 @@ public class SpaceController : MonoBehaviour {
 
   public BoardController board { get; private set; }
 
-  public void Init (BoardController board, int index, SpaceData space) {
+  public void Init (BoardController board, int index) {
     this.board = board;
     this.index = index;
-    image.sprite = space == null ? blankImage : space.image;
+
+    onDestroy += board.game.board.spaces.GetValue(index).OnValue(space => {
+      image.sprite = space == null ? blankImage : space.image;
+    });
 
     onDestroy += board.game.board.playerPos.OnValue(idx => {
       if (idx == index) playerImage.sprite = board.game.player.data.image;

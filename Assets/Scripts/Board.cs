@@ -30,9 +30,11 @@ public class Board {
 
   public IMutable<int> playerPos = Values.Mutable(0);
   public IMutable<int[]> roll = Values.Mutable(new int[0]);
+  public MutableMap<int, SpaceData> spaces = RMaps.LocalMutable<int, SpaceData>();
 
   public Board (BoardData data) {
     this.data = data;
+    for (var ii = 0; ii < data.spaces.Length; ii += 1) spaces.Add(ii, data.spaces[ii]);
   }
 
   public void Roll () {
@@ -47,15 +49,16 @@ public class Board {
       Debug.Log($"Invalid die index {index} (have {dice.Length}).");
       return;
     }
-    if (dice[index] < 1) {
-      Debug.Log($"Using invalid die ({index}, value {dice[index]}.");
+    var pips = dice[index];
+    if (pips < 1) {
+      Debug.Log($"Using invalid die ({index}, value {pips}.");
       return;
     }
 
     dice[index] = -1;
     roll.ForceUpdate(dice);
 
-    var newPos = (playerPos.current + dice[index]) % Spots;
+    var newPos = (playerPos.current + pips) % Spots;
     playerPos.Update(newPos);
     // TODO: actions based on the space they landed on
   }
