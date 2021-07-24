@@ -21,7 +21,7 @@ public class GameController : MonoBehaviour, Board.Data {
   public int[] levelXps;
   public int[] levelHps;
 
-  public BoardData board; // TEMP
+  public BoardData startBoard; // TEMP
 
   // from Board.Data
   public EnemyData[] Enemies => enemies;
@@ -29,6 +29,7 @@ public class GameController : MonoBehaviour, Board.Data {
   public int[] LevelHps => levelHps;
 
   public World world { get; private set; }
+  public Board board { get; private set; }
 
   public void EncounterClicked ((int, int) coord, Encounter encounter) {
     switch (encounter) {
@@ -55,8 +56,9 @@ public class GameController : MonoBehaviour, Board.Data {
   }
 
   private void Start () {
-    world = new World(players[0], enemies, levelXps, levelHps);
-    ShowBoard(board);
+    // world = new World(players[0], enemies, levelXps, levelHps);
+    board = new Board(this, players[0]);
+    ShowBoard(startBoard);
   }
 
   private void ShowWorld () {
