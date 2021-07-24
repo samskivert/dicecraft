@@ -25,7 +25,7 @@ public class SpaceController : MonoBehaviour {
     image.sprite = space == null ? blankImage : space.image;
 
     onDestroy += board.game.board.playerPos.OnValue(idx => {
-      if (idx == index) playerImage.sprite = board.game.board.player.image;
+      if (idx == index) playerImage.sprite = board.game.player.data.image;
       playerImage.gameObject.SetActive(idx == index);
     });
   }

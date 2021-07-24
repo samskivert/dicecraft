@@ -15,9 +15,6 @@ public class BattleController : MonoBehaviour {
   private Battle battle;
   private bool playerTurn;
 
-  public PlayerData[] players;
-  public EnemyData[] enemies;
-
   public CombatantController player;
   public CombatantController enemy;
 

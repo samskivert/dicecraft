@@ -8,7 +8,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 
-public class GameController : MonoBehaviour, Board.Data {
+public class GameController : MonoBehaviour, Player.LevelData {
   private GameObject screen;
 
   public Transform canvas;
@@ -23,12 +23,12 @@ public class GameController : MonoBehaviour, Board.Data {
 
   public BoardData startBoard; // TEMP
 
-  // from Board.Data
-  public EnemyData[] Enemies => enemies;
+  // from Player.LevelData
   public int[] LevelXps => levelXps;
   public int[] LevelHps => levelHps;
 
   public World world { get; private set; }
+  public Player player { get; private set; }
   public Board board { get; private set; }
 
   public void EncounterClicked ((int, int) coord, Encounter encounter) {
@@ -57,8 +57,9 @@ public class GameController : MonoBehaviour, Board.Data {
 
   private void Start () {
     // world = new World(players[0], enemies, levelXps, levelHps);
-    board = new Board(this, players[0]);
-    ShowBoard(startBoard);
+    player = new Player(this, players[0]);
+    board = new Board(startBoard);
+    ShowBoard();
   }
 
   private void ShowWorld () {
@@ -66,9 +67,9 @@ public class GameController : MonoBehaviour, Board.Data {
     worldScreen.GetComponent<WorldController>().Init(this);
   }
 
-  private void ShowBoard (BoardData board) {
+  private void ShowBoard () {
     var boardScreen = SetScreen(boardPrefab);
-    boardScreen.GetComponent<BoardController>().Init(this, board);
+    boardScreen.GetComponent<BoardController>().Init(this);
     this.board.Roll();
   }
 
