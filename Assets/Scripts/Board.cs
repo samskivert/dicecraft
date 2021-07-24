@@ -23,6 +23,10 @@ public class Board {
     return (0, Height-1-pos);
   }
 
+  private int nextBattle;
+  private int nextLoot;
+
+  public readonly Player player;
   public readonly BoardData data;
   public readonly System.Random random = new System.Random();
 
@@ -32,9 +36,14 @@ public class Board {
   public IMutable<int[]> roll = Values.Mutable(new int[0]);
   public MutableMap<int, SpaceData> spaces = RMaps.LocalMutable<int, SpaceData>();
 
-  public Board (BoardData data) {
+  public Emitter<Battle> battle = new Emitter<Battle>();
+
+  public Board (Player player, BoardData data) {
+    this.player = player;
     this.data = data;
     for (var ii = 0; ii < data.spaces.Length; ii += 1) spaces.Add(ii, data.spaces[ii]);
+    // TODO: emit loot award
+    player.dice.Add(data.loot[nextLoot++]);
   }
 
   public void Roll () {
@@ -60,7 +69,18 @@ public class Board {
 
     var newPos = (playerPos.current + pips) % Spots;
     playerPos.Update(newPos);
-    // TODO: actions based on the space they landed on
+
+    spaces.TryGetValue(newPos, out var sdata);
+    if (sdata != null) switch (sdata.spaceType) {
+    case Space.Type.Battle:
+      battle.Emit(new Battle(player, data.enemies[nextBattle++]));
+      break;
+    case Space.Type.Chest:
+    case Space.Type.Die:
+    case Space.Type.Trap:
+      // TODO
+      break;
+    }
   }
 }
 }

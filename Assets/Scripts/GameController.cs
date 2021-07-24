@@ -29,35 +29,23 @@ public class GameController : MonoBehaviour, Player.LevelData {
   public Player player { get; private set; }
   public Board board { get; private set; }
 
-  // public void EncounterClicked ((int, int) coord, Encounter encounter) {
-  //   switch (encounter) {
-  //   case Encounter.Fight fight:
-  //     var battleScreen = SetScreen(battlePrefab);
-  //     var battle = battleScreen.GetComponent<BattleController>();
-  //     battle.Init(this, new Battle(player, fight.enemy), () => {
-  //       world.encounters[coord] = new Encounter.Blank { exits = encounter.exits };
-  //       world.playerPos = coord;
-  //       ShowBoard();
-  //     }, () => {
-  //       ShowBoard();
-  //     });
-  //     break;
-  //   case Encounter.Shop shop:
-  //     break;
-  //   case Encounter.Chest chest:
-  //     break;
-  //   case Encounter.Anvil anvil:
-  //     break;
-  //   case Encounter.Exit exit:
-  //     break;
-  //   }
-  // }
-
   private void Start () {
     // world = new World(players[0], enemies, levelXps, levelHps);
     player = new Player(this, players[0]);
-    board = new Board(startBoard);
+    board = new Board(player, startBoard);
+    board.battle.OnEmit(StartBattle);
     ShowBoard();
+  }
+
+  private void StartBattle (Battle battle) {
+    var battleScreen = SetScreen(battlePrefab);
+    var battleCtrl = battleScreen.GetComponent<BattleController>();
+    battleCtrl.Init(this, battle, () => {
+      ShowBoard();
+    }, () => {
+      // TODO: you lose...
+      ShowBoard();
+    });
   }
 
   private void ShowBoard () {
