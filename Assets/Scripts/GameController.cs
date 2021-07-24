@@ -41,6 +41,7 @@ public class GameController : MonoBehaviour, Player.LevelData {
     var battleScreen = SetScreen(battlePrefab);
     var battleCtrl = battleScreen.GetComponent<BattleController>();
     battleCtrl.Init(this, battle, () => {
+      player.hp.Update(battle.player.hp);
       ShowBoard();
     }, () => {
       // TODO: you lose...

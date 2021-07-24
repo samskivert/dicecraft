@@ -15,6 +15,7 @@ public class EnemyData : ScriptableObject, Combatant.Data {
 
   public string Name => name;
   public Sprite Image => image;
+  public int StartHp (Player player) => maxHp;
   public int MaxHp (Player player) => maxHp;
   public int Slots (Player player) => slots;
   public IEnumerable<DieData> Dice (Player player) => dice;

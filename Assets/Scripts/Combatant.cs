@@ -11,6 +11,7 @@ public class Combatant {
   public interface Data {
     public string Name { get; }
     public Sprite Image { get; }
+    public int StartHp (Player player);
     public int MaxHp (Player player);
     public int Slots (Player player);
     public IEnumerable<DieData> Dice (Player player);
@@ -28,7 +29,8 @@ public class Combatant {
 
   public Combatant (Player player, Data data) {
     this.data = data;
-    hp = maxHp = data.MaxHp(player);
+    hp = data.StartHp(player);
+    maxHp = data.MaxHp(player);
     dice = data.Dice(player);
     slots = data.Slots(player);
   }

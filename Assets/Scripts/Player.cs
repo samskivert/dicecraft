@@ -17,6 +17,7 @@ public class Player {
   public readonly LevelData levelData;
   public readonly PlayerData data;
 
+  public readonly IMutable<int> hp = Values.Mutable(0);
   public readonly IMutable<int> level = Values.Mutable(0);
   public readonly IMutable<int> xp = Values.Mutable(0);
   public readonly IMutable<int> coins = Values.Mutable(0);
@@ -29,6 +30,7 @@ public class Player {
   public Player (LevelData levelData, PlayerData data) {
     this.levelData = levelData;
     this.data = data;
+    hp.Update(data.MaxHp(this));
   }
 
   public void Award (int xpAward, int coinAward) {
