@@ -8,7 +8,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 
-public class GameController : MonoBehaviour {
+public class GameController : MonoBehaviour, Board.Data {
   private GameObject screen;
 
   public Transform canvas;
@@ -19,6 +19,11 @@ public class GameController : MonoBehaviour {
   public Enemy[] enemies;
   public int[] levelXps;
   public int[] levelHps;
+
+  // from Board.Data
+  public Enemy[] Enemies => enemies;
+  public int[] LevelXps => levelXps;
+  public int[] LevelHps => levelHps;
 
   public World world { get; private set; }
 
@@ -49,6 +54,8 @@ public class GameController : MonoBehaviour {
   private void Start () {
     world = new World(players[0], enemies, levelXps, levelHps);
     ShowWorld();
+
+    Debug.Log(String.Join(", ", Enumerable.Range(0, Board.Spots).Select(Board.Coord)));
   }
 
   private void ShowWorld () {

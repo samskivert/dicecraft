@@ -10,20 +10,12 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 6992a282416fa495a8f4e61a0e6e6544, type: 3}
-  m_Name: dragon
+  m_Name: Dragon
   m_EditorClassIdentifier: 
-  name: dragon
   image: {fileID: 21300000, guid: bc808c1fd5e102040b1d2aff6114694d, type: 3}
   maxHp: 12
   xpAward: 3
   coinAward: 3
   slots: 05000000
-  dice1:
-  - {fileID: 11400000, guid: c05630898a38dc14894861f057d979b5, type: 2}
-  - {fileID: 11400000, guid: c05630898a38dc14894861f057d979b5, type: 2}
-  - {fileID: 11400000, guid: c05630898a38dc14894861f057d979b5, type: 2}
-  - {fileID: 11400000, guid: c05630898a38dc14894861f057d979b5, type: 2}
-  - {fileID: 11400000, guid: c05630898a38dc14894861f057d979b5, type: 2}
-  - {fileID: 11400000, guid: c05630898a38dc14894861f057d979b5, type: 2}
-  dice2: []
-  dice3: []
+  dice:
+  - {fileID: 11400000, guid: 694cd45bfad2246a5a7ad160a92f2c2e, type: 2}
