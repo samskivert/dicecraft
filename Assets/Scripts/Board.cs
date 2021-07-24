@@ -52,6 +52,10 @@ public class Board {
     roll.Update(dice);
   }
 
+  public void MaybeReRoll () {
+    if (!roll.current.Any(die => die > 0)) Roll();
+  }
+
   public void UseDie (int index) {
     var dice = roll.current;
     if (index >= dice.Length) {
@@ -79,8 +83,10 @@ public class Board {
     case Space.Type.Die:
     case Space.Type.Trap:
       // TODO
+      MaybeReRoll();
       break;
     }
+    else MaybeReRoll();
   }
 }
 }

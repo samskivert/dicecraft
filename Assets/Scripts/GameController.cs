@@ -43,6 +43,7 @@ public class GameController : MonoBehaviour, Player.LevelData {
     battleCtrl.Init(this, battle, () => {
       player.hp.Update(battle.player.hp);
       ShowBoard();
+      board.MaybeReRoll();
     }, () => {
       // TODO: you lose...
       ShowBoard();
