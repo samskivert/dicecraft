@@ -81,9 +81,13 @@ public class Board {
       battle.Emit(new Battle(player, data.enemies[nextBattle++]));
       return;
     case Space.Type.Chest:
-      if (data.loot.Length > nextLoot) AwardDie(data.loot[nextLoot++]);
-      else Debug.Log("Out of loot! " + nextLoot);
-      // TODO: clear loot spaces as we run out of loot
+      if (data.loot.Length > nextLoot) {
+        AwardDie(data.loot[nextLoot++]);
+        // if we are running out of loot, clear this space
+        var remain = data.loot.Length - nextLoot;
+        var lspaces = spaces.Values.Count(sd => sd != null && sd.spaceType == Space.Type.Chest);
+        if (lspaces > remain) spaces[newPos] = null;
+      }
       break;
     case Space.Type.Die:
       switch (sdata.dieType) {
