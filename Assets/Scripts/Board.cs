@@ -94,6 +94,9 @@ public class Board {
       case Die.Type.Heal:
         player.hp.UpdateVia(hp => hp = Math.Min(hp + sdata.level, player.MaxHp));
         break;
+      case Die.Type.Shield:
+        player.effects.Update(Effect.Type.Shield, s => s + sdata.level);
+        break;
       default:
         Debug.Log("TODO: handle die space " + sdata.dieType);
         break;
