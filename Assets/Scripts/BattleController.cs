@@ -47,8 +47,8 @@ public class BattleController : MonoBehaviour {
     lostPanel.GetComponentInChildren<Button>().onClick.AddListener(onLose);
 
     slotsPanel.SetActive(true);
-    player.Init(game.player, battle.player);
-    enemy.Init(game.player, battle.enemy);
+    player.Init(battle.player);
+    enemy.Init(battle.enemy);
     Roll(true);
   }
 
@@ -59,7 +59,7 @@ public class BattleController : MonoBehaviour {
 
   public void Roll (bool playerTurn) {
     this.playerTurn = playerTurn;
-    ShowSlots(playerTurn ? battle.player : battle.enemy);
+    ShowSlots(playerTurn ? battle.player.Slots : battle.enemy.Slots);
     if (playerTurn) {
       battle.player.Roll(battle.random);
       ShowDice(playerDice, battle.player.roll, true);
@@ -78,9 +78,9 @@ public class BattleController : MonoBehaviour {
     }
   }
 
-  private void ShowSlots (Combatant comb) {
-    slots = new SlotController[comb.slots];
-    for (var ii = 0; ii < comb.slots; ii += 1) {
+  private void ShowSlots (int slotCount) {
+    slots = new SlotController[slotCount];
+    for (var ii = 0; ii < slotCount; ii += 1) {
       var slot = Instantiate(slotPrefab, slotsPanel.transform).GetComponent<SlotController>();
       slot.Init();
       slots[ii] = slot;
@@ -99,8 +99,8 @@ public class BattleController : MonoBehaviour {
   private void Attack () {
     var slots = this.slots.Where(
       slot => slot.face != null).Select(slot => (slot.face, slot.upgrades));
-    var attacker = playerTurn ? battle.player : battle.enemy;
-    var defender = playerTurn ? battle.enemy : battle.player;
+    var attacker = playerTurn ? (Combatant)battle.player : (Combatant)battle.enemy;
+    var defender = playerTurn ? (Combatant)battle.enemy : (Combatant)battle.player;
     battle.Attack(slots, attacker, defender);
     ClearSlots();
     playerDice.DestroyChildren();

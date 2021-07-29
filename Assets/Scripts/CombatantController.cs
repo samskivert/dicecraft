@@ -1,5 +1,6 @@
 namespace dicecraft {
 
+using System;
 using System.Collections.Generic;
 
 using UnityEngine;
@@ -9,9 +10,7 @@ using TMPro;
 using React;
 
 public class CombatantController : MonoBehaviour {
-  private Player player;
-  private Combatant comb;
-  private Dictionary<Effect.Type, GameObject> effObjs = new Dictionary<Effect.Type, GameObject>();
+  private event Action onDestroy;
 
   public TMP_Text nameLabel;
   public Image image;
@@ -20,18 +19,17 @@ public class CombatantController : MonoBehaviour {
   public GameObject effects;
   public GameObject effectPrefab;
 
-  public void Init (Player player, Combatant comb) {
-    this.player = player;
-    this.comb = comb;
-    nameLabel.text = comb.data.Name;
-    image.sprite = comb.data.Image;
+  public void Init (Combatant comb) {
+    nameLabel.text = comb.Name;
+    image.sprite = comb.Image;
 
-    Values.Join(comb.hp, comb.maxHp).OnValue(pair => {
-      hpLabel.text = $"HP: {pair.Item1}/{pair.Item2}";
-      hpMeter.fillAmount = pair.Item1 / (float)pair.Item2;
+    onDestroy += comb.hp.OnValue(hp => {
+      hpLabel.text = $"HP: {hp}/{comb.MaxHp}";
+      hpMeter.fillAmount = hp / (float)comb.MaxHp;
     });
 
-    comb.effects.OnEntries((type, count, ocount) => {
+    var effObjs = new Dictionary<Effect.Type, GameObject>();
+    onDestroy += comb.effects.OnEntries((type, count, ocount) => {
       if (!effObjs.TryGetValue(type, out var effObj)) {
         if (count == 0) return;
         effObj = Instantiate(effectPrefab, effects.transform);
@@ -43,5 +41,7 @@ public class CombatantController : MonoBehaviour {
       }
     });
   }
+
+  private void OnDestroy () => onDestroy();
 }
 }

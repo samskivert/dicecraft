@@ -10,12 +10,12 @@ public class Battle {
 
   public readonly Random random = new Random();
 
-  public readonly Combatant player;
-  public readonly Combatant enemy;
+  public readonly Player player;
+  public readonly Enemy enemy;
 
   public Battle (Player player, EnemyData enemyData) {
-    this.player = new Combatant(player, player.data);
-    this.enemy = new Combatant(player, enemyData);
+    this.player = player;
+    this.enemy = new Enemy(enemyData);
   }
 
   public void Attack (IEnumerable<(FaceData, int)> dice, Combatant attacker, Combatant defender) {

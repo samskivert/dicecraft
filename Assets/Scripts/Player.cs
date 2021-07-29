@@ -7,7 +7,7 @@ using UnityEngine;
 
 using React;
 
-public class Player {
+public class Player : Combatant {
 
   public interface LevelData {
     public int[] LevelXps { get; }
@@ -17,7 +17,6 @@ public class Player {
   public readonly LevelData levelData;
   public readonly PlayerData data;
 
-  public readonly IMutable<int> hp = Values.Mutable(0);
   public readonly IMutable<int> level = Values.Mutable(0);
   public readonly IMutable<int> xp = Values.Mutable(0);
   public readonly IMutable<int> coins = Values.Mutable(0);
@@ -27,7 +26,11 @@ public class Player {
   public int nextLevelXp =>
     level.current < levelData.LevelXps.Length ? levelData.LevelXps[level.current] : 0;
 
-  public int MaxHp => data.MaxHp(this);
+  public override string Name => data.name;
+  public override Sprite Image => data.image;
+  public override IList<DieData> Dice => dice;
+  public override int MaxHp => data.maxHp + hpUp;
+  public override int Slots => level.current + 1;
 
   public Player (LevelData levelData, PlayerData data) {
     this.levelData = levelData;
