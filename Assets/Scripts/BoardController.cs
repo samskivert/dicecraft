@@ -17,6 +17,7 @@ public class BoardController : MonoBehaviour {
 
   public GameObject dicePanel;
   public GameObject pipDiePrefab;
+  public GameObject gotDiePrefab;
   public CombatantController player;
 
   public void Init (GameController game) {
@@ -35,6 +36,11 @@ public class BoardController : MonoBehaviour {
       while (dtx.childCount < dice.Length) Instantiate(pipDiePrefab, dtx).
         GetComponent<PipDieController>().Init(board, dtx.childCount-1);
       while (dtx.childCount > dice.Length) Destroy(dtx.GetChild(dtx.childCount-1));
+    });
+
+    onDestroy += board.gotDie.OnEmit(die => {
+      var gotDie = Instantiate(gotDiePrefab, transform.parent);
+      gotDie.GetComponent<GotDieController>().Show(die);
     });
   }
 

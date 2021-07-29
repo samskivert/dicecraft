@@ -37,6 +37,7 @@ public class Board {
   public MutableMap<int, SpaceData> spaces = RMaps.LocalMutable<int, SpaceData>();
 
   public Emitter<Battle> battle = new Emitter<Battle>();
+  public Emitter<DieData> gotDie = new Emitter<DieData>();
 
   public Board (Player player, BoardData data) {
     this.player = player;
@@ -80,8 +81,11 @@ public class Board {
       battle.Emit(new Battle(player, data.enemies[nextBattle++]));
       return;
     case Space.Type.Chest:
-      // TODO: animate
-      if (data.loot.Length > nextLoot) player.dice.Add(data.loot[nextLoot++]);
+      if (data.loot.Length > nextLoot) {
+        var die = data.loot[nextLoot++];
+        player.dice.Add(die);
+        gotDie.Emit(die);
+      }
       else Debug.Log("Out of loot! " + nextLoot);
       // TODO: clear loot spaces as we run out of loot
       break;
