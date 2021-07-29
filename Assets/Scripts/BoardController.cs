@@ -19,24 +19,21 @@ public class BoardController : MonoBehaviour {
   public GameObject pipDiePrefab;
   public CombatantController player;
 
-  public GameController game { get; private set; }
-
   public void Init (GameController game) {
-    this.game = game;
     var board = game.board;
     var idx = 0;
-    foreach (var space in spaces) space.Init(this, idx++);
+    foreach (var space in spaces) space.Init(board, idx++);
 
-    player.Init(game.player);
+    player.Init(board.player);
 
-    onDestroy += game.player.coins.OnValue(coins => {
+    onDestroy += board.player.coins.OnValue(coins => {
       coinsLabel.text = coins.ToString();
     });
 
     onDestroy += board.roll.OnValue(dice => {
       var dtx = dicePanel.transform;
       while (dtx.childCount < dice.Length) Instantiate(pipDiePrefab, dtx).
-        GetComponent<PipDieController>().Init(this, dtx.childCount-1);
+        GetComponent<PipDieController>().Init(board, dtx.childCount-1);
       while (dtx.childCount > dice.Length) Destroy(dtx.GetChild(dtx.childCount-1));
     });
   }

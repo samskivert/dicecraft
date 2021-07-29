@@ -13,24 +13,18 @@ using React;
 
 public class SpaceController : MonoBehaviour {
   private event Action onDestroy;
-  private int index;
 
   public Sprite blankImage;
   public Image image;
   public Image playerImage;
 
-  public BoardController board { get; private set; }
-
-  public void Init (BoardController board, int index) {
-    this.board = board;
-    this.index = index;
-
-    onDestroy += board.game.board.spaces.GetValue(index).OnValue(space => {
+  public void Init (Board board, int index) {
+    onDestroy += board.spaces.GetValue(index).OnValue(space => {
       image.sprite = space == null ? blankImage : space.image;
     });
 
-    onDestroy += board.game.board.playerPos.OnValue(idx => {
-      if (idx == index) playerImage.sprite = board.game.player.data.image;
+    onDestroy += board.playerPos.OnValue(idx => {
+      if (idx == index) playerImage.sprite = board.player.data.image;
       playerImage.gameObject.SetActive(idx == index);
     });
   }

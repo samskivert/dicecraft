@@ -11,7 +11,6 @@ using TMPro;
 
 public class BattleController : MonoBehaviour {
   private readonly System.Random random = new System.Random();
-  private GameController game;
   private Battle battle;
   private bool playerTurn;
 
@@ -36,8 +35,7 @@ public class BattleController : MonoBehaviour {
     attack.onClick.AddListener(Attack);
   }
 
-  public void Init (GameController game, Battle battle, UnityAction onWin, UnityAction onLose) {
-    this.game = game;
+  public void Init (Battle battle, UnityAction onWin, UnityAction onLose) {
     this.battle = battle;
 
     wonPanel.SetActive(false);
@@ -123,12 +121,12 @@ public class BattleController : MonoBehaviour {
     if (battle.player.hp.current > 0) {
       wonPanel.SetActive(true);
       var enemy = (EnemyData)battle.enemy.data;
-      var startXp = game.player.xp.current;
+      var startXp = battle.player.xp.current;
       var endXp = startXp + enemy.xpAward;
-      var maxXp = game.player.nextLevelXp;
+      var maxXp = battle.player.nextLevelXp;
       wonPanel.GetComponent<WonController>().AnimateXP(
-        game.player.level.current, startXp, endXp, maxXp);
-      game.player.Award(enemy.xpAward, enemy.coinAward);
+        battle.player.level.current, startXp, endXp, maxXp);
+      battle.player.Award(enemy.xpAward, enemy.coinAward);
     } else lostPanel.SetActive(true);
   }
 }
