@@ -32,7 +32,7 @@ public class CombatantController : MonoBehaviour {
     onDestroy += comb.effects.OnEntries((type, count, ocount) => {
       if (!effObjs.TryGetValue(type, out var effObj)) {
         if (count == 0) return;
-        effObj = Instantiate(effectPrefab, effects.transform);
+        effObjs.Add(type, effObj = Instantiate(effectPrefab, effects.transform));
       }
       if (count > 0) effObj.GetComponent<EffectController>().Show(type, count);
       else {
