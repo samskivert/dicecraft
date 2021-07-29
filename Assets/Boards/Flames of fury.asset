@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Flames of fury
   m_EditorClassIdentifier: 
   image: {fileID: 21300000, guid: 7aefe67fc80e23a439846d4210031764, type: 3}
-  player: {fileID: 0}
+  player: {fileID: 11400000, guid: 40b579768278e6e42b80352f48bb740d, type: 2}
   spaces:
   - {fileID: 11400000, guid: dca52ef26d6974f2ea97aaa7ed5abe7f, type: 2}
   - {fileID: 0}
@@ -36,7 +36,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 8853681f99f564092a216e27e3f62d7d, type: 2}
   - {fileID: 0}
   loot:
-  - {fileID: 11400000, guid: f713d642b2bd15f43ba73adaef7fa980, type: 2}
+  - {fileID: 11400000, guid: 7d66050880c834e4ea728d22f47a48a6, type: 2}
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
