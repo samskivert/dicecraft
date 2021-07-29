@@ -105,9 +105,7 @@ public class BattleController : MonoBehaviour {
     ClearSlots();
     playerDice.DestroyChildren();
     enemyDice.DestroyChildren();
-    player.Refresh();
-    enemy.Refresh();
-    if (battle.player.hp == 0 || battle.enemy.hp == 0) this.RunAfter(1, EndGame);
+    if (battle.player.hp.current == 0 || battle.enemy.hp.current == 0) this.RunAfter(1, EndGame);
     else Roll(!playerTurn);
   }
 
@@ -122,7 +120,7 @@ public class BattleController : MonoBehaviour {
 
   private void EndGame () {
     slotsPanel.SetActive(false);
-    if (battle.player.hp > 0) {
+    if (battle.player.hp.current > 0) {
       wonPanel.SetActive(true);
       var enemy = (EnemyData)battle.enemy.data;
       var startXp = game.player.xp.current;

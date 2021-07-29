@@ -17,6 +17,7 @@ public class BoardController : MonoBehaviour {
 
   public GameObject dicePanel;
   public GameObject pipDiePrefab;
+  public CombatantController player;
 
   public GameController game { get; private set; }
 

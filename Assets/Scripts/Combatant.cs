@@ -6,6 +6,8 @@ using System.Linq;
 
 using UnityEngine;
 
+using React;
+
 public class Combatant {
 
   public interface Data {
@@ -20,18 +22,17 @@ public class Combatant {
   public readonly List<FaceData> roll = new List<FaceData>();
 
   public readonly Data data;
-  public readonly int maxHp;
-  public readonly IEnumerable<DieData> dice;
-  public readonly int slots;
-  public int hp;
-  public int shield;
-  public int evade;
+  public readonly List<DieData> dice = new List<DieData>();
+  public readonly IMutable<int> maxHp = Values.Mutable(0);
+  public readonly IMutable<int> hp = Values.Mutable(0);
+  public readonly MutableMap<Effect.Type, int> effects = RMaps.LocalMutable<Effect.Type, int>();
+  public int slots;
 
   public Combatant (Player player, Data data) {
     this.data = data;
-    hp = data.StartHp(player);
-    maxHp = data.MaxHp(player);
-    dice = data.Dice(player);
+    hp.Update(data.StartHp(player));
+    maxHp.Update(data.MaxHp(player));
+    dice.AddRange(data.Dice(player));
     slots = data.Slots(player);
   }
 

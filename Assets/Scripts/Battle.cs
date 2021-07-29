@@ -4,6 +4,8 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 
+using React;
+
 public class Battle {
 
   public readonly Random random = new Random();
@@ -18,9 +20,6 @@ public class Battle {
 
   public void Attack (IEnumerable<(FaceData, int)> dice, Combatant attacker, Combatant defender) {
     var damage = 0;
-    var shield = 0;
-    var evade = 0;
-    var heal = 0;
     foreach (var pair in dice) {
       var face = pair.Item1;
       var upgrades = pair.Item2;
@@ -33,26 +32,27 @@ public class Battle {
         damage += face.amount;
         break;
       case Die.Type.Shield:
-        shield += face.amount;
+        attacker.effects.Update(Effect.Type.Shield, s => s + face.amount);
         break;
       case Die.Type.Evade:
-        evade += face.amount;
+        attacker.effects.Update(Effect.Type.Evade, s => s + face.amount);
         break;
       case Die.Type.Heal:
-        heal += face.amount;
+        attacker.hp.UpdateVia(hp => hp + face.amount);
         break;
       }
     }
-    // TODO: potentially evade this attack
-    if (defender.shield > 0) {
-      var used = Math.Min(damage, defender.shield);
-      damage -= used;
-      defender.shield -= used;
+
+    if (damage > 0) {
+      // TODO: potentially evade this attack
+      defender.effects.TryGetValue(Effect.Type.Shield, out var shield);
+      if (shield > 0) {
+        var used = Math.Min(damage, shield);
+        damage -= used;
+        defender.effects.Update(Effect.Type.Shield, s => s-used);
+      }
+      defender.hp.UpdateVia(hp => Math.Max(0, hp-damage));
     }
-    defender.hp = Math.Max(0, defender.hp-damage);
-    attacker.hp = Math.Min(attacker.hp+heal, attacker.maxHp);
-    attacker.shield += shield;
-    attacker.evade += evade;
   }
 }
 
