@@ -43,8 +43,8 @@ public class Board {
     this.player = player;
     this.data = data;
     for (var ii = 0; ii < data.spaces.Length; ii += 1) spaces.Add(ii, data.spaces[ii]);
-    // TODO: emit loot award
-    player.dice.Add(data.loot[nextLoot++]);
+    playerPos.Update(data.start);
+    AwardDie(data.loot[nextLoot++]);
   }
 
   public void Roll () {
@@ -81,11 +81,7 @@ public class Board {
       battle.Emit(new Battle(player, data.enemies[nextBattle++]));
       return;
     case Space.Type.Chest:
-      if (data.loot.Length > nextLoot) {
-        var die = data.loot[nextLoot++];
-        player.dice.Add(die);
-        gotDie.Emit(die);
-      }
+      if (data.loot.Length > nextLoot) AwardDie(data.loot[nextLoot++]);
       else Debug.Log("Out of loot! " + nextLoot);
       // TODO: clear loot spaces as we run out of loot
       break;
@@ -105,6 +101,11 @@ public class Board {
     }
 
     MaybeReRoll();
+  }
+
+  private void AwardDie (DieData die) {
+    player.dice.Add(die);
+    gotDie.Emit(die);
   }
 }
 }

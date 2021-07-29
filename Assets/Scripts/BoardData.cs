@@ -14,6 +14,7 @@ public class BoardData : ScriptableObject {
   public SpaceData[] spaces;
   public DieData[] loot;
   public EnemyData[] enemies;
+  public int start;
 
   public override string ToString () => name;
 }
