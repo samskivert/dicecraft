@@ -51,7 +51,10 @@ public class Player : Combatant {
       }
       return newXp;
     });
-    if (levelUp) level.UpdateVia(level => level+1);
+    if (levelUp) {
+      level.UpdateVia(level => level+1);
+      hp.Update(MaxHp);
+    }
 
     coins.UpdateVia(coins => coins + coinAward);
   }
