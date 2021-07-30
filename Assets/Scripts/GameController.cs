@@ -46,8 +46,10 @@ public class GameController : MonoBehaviour, Player.LevelData {
 
   private void ShowBoard () {
     var boardScreen = SetScreen(boardPrefab);
-    boardScreen.GetComponent<BoardController>().Init(this);
-    this.board.Roll();
+    var bctrl = boardScreen.GetComponent<BoardController>();
+    bctrl.Init(this);
+    if (board.RemainBattles == 0) bctrl.ShowCompleted(ShowTitle);
+    else board.MaybeReRoll();
   }
 
   private void StartBattle (Battle battle) {
@@ -55,7 +57,6 @@ public class GameController : MonoBehaviour, Player.LevelData {
     var battleCtrl = battleScreen.GetComponent<BattleController>();
     battleCtrl.Init(battle, () => {
       ShowBoard();
-      board.MaybeReRoll();
     }, ShowTitle);
   }
 

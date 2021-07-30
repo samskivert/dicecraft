@@ -39,6 +39,10 @@ public class Board {
   public Emitter<Battle> battle = new Emitter<Battle>();
   public Emitter<DieData> gotDie = new Emitter<DieData>();
 
+  public int RemainBattles => RemainSpaces(Space.Type.Battle);
+  private int RemainSpaces (Space.Type type) => spaces.Values.Count(
+    sd => sd != null && sd.spaceType == type);
+
   public Board (Player player, BoardData data) {
     this.player = player;
     this.data = data;
@@ -79,14 +83,14 @@ public class Board {
     if (sdata != null) switch (sdata.spaceType) {
     case Space.Type.Battle:
       battle.Emit(new Battle(player, data.enemies[nextBattle++]));
+      // if we are running out of battles, clear this space
+      if (RemainBattles > data.enemies.Length - nextBattle) spaces[newPos] = null;
       return;
     case Space.Type.Chest:
       if (data.loot.Length > nextLoot) {
         AwardDie(data.loot[nextLoot++]);
         // if we are running out of loot, clear this space
-        var remain = data.loot.Length - nextLoot;
-        var lspaces = spaces.Values.Count(sd => sd != null && sd.spaceType == Space.Type.Chest);
-        if (lspaces > remain) spaces[newPos] = null;
+        if (RemainSpaces(Space.Type.Chest) > data.loot.Length - nextLoot) spaces[newPos] = null;
       }
       break;
     case Space.Type.Die:

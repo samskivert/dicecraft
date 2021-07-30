@@ -603,19 +603,19 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4913607268464491193, guid: 75fe8a69a47274754b3d2acc873c9635, type: 3}
       propertyPath: levelHps.Array.data[2]
-      value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: 4913607268464491193, guid: 75fe8a69a47274754b3d2acc873c9635, type: 3}
-      propertyPath: levelHps.Array.data[3]
       value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 4913607268464491193, guid: 75fe8a69a47274754b3d2acc873c9635, type: 3}
-      propertyPath: levelHps.Array.data[4]
+      propertyPath: levelHps.Array.data[3]
       value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 4913607268464491193, guid: 75fe8a69a47274754b3d2acc873c9635, type: 3}
-      propertyPath: levelHps.Array.data[5]
+      propertyPath: levelHps.Array.data[4]
       value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 4913607268464491193, guid: 75fe8a69a47274754b3d2acc873c9635, type: 3}
+      propertyPath: levelHps.Array.data[5]
+      value: 10
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 75fe8a69a47274754b3d2acc873c9635, type: 3}
