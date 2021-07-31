@@ -1636,6 +1636,7 @@ MonoBehaviour:
   meter: {fileID: 4338133762881738276}
   meterLabel: {fileID: 420786041523615543}
   levelLabel: {fileID: 7654789446410382693}
+  rewardLabel: {fileID: 6292724094746035284}
 --- !u!1 &6979261397289643349
 GameObject:
   m_ObjectHideFlags: 0
