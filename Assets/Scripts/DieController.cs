@@ -21,6 +21,7 @@ public class DieController : MonoBehaviour {
   }
 
   public void Play (bool clickable) {
+    if (image.sprite == null) return;
     foreach (var slot in battle.slots) {
       if (!slot.CanPlay(face)) continue;
       image.sprite = null;
