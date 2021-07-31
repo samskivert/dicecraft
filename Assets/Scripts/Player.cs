@@ -44,7 +44,7 @@ public class Player : Combatant {
 
   public string LevelReward (int level) {
     int oldHp = data.maxHp + levelData.LevelHps[level];
-    int newHp = data.maxHp + levelData.LevelHps[level];
+    int newHp = data.maxHp + levelData.LevelHps[level+1];
     var reward = $"HP +{newHp-oldHp}!";
     int oldSlots = SlotsPerLevel[level], newSlots = SlotsPerLevel[level+1];
     if (newSlots > oldSlots) reward += " Attack Slot +1!";
