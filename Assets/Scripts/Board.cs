@@ -94,7 +94,7 @@ public class Board {
     case Space.Type.Die:
       switch (sdata.dieType) {
       case Die.Type.Heal:
-        player.hp.UpdateVia(hp => hp = Math.Min(hp + sdata.level, player.MaxHp));
+        player.hp.UpdateVia(hp => Math.Min(hp + sdata.level, player.MaxHp));
         break;
       case Die.Type.Shield:
         player.effects.Update(Effect.Type.Shield, s => s + sdata.level);
