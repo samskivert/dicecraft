@@ -30,8 +30,6 @@ public class Board {
   public readonly BoardData data;
   public readonly System.Random random = new System.Random();
 
-  public int dieCount = 2;
-
   public IMutable<int> playerPos = Values.Mutable(0);
   public IMutable<int[]> roll = Values.Mutable(new int[0]);
   public MutableMap<int, SpaceData> spaces = RMaps.LocalMutable<int, SpaceData>();
@@ -52,8 +50,8 @@ public class Board {
   }
 
   public void Roll () {
-    var dice = new int[dieCount];
-    for (var ii = 0; ii < dieCount; ii += 1) dice[ii] = random.Next(6)+1;
+    var dice = new int[player.BoardDice];
+    for (var ii = 0; ii < player.BoardDice; ii += 1) dice[ii] = random.Next(6)+1;
     roll.Update(dice);
   }
 

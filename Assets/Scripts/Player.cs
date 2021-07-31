@@ -9,6 +9,9 @@ using React;
 
 public class Player : Combatant {
 
+  private static int[] SlotsPerLevel = new [] { 1, 1, 2};
+  private static int[] DicePerLevel = new [] { 1, 2, 2};
+
   public interface LevelData {
     public int[] LevelXps { get; }
     public int[] LevelHps { get; }
@@ -30,12 +33,21 @@ public class Player : Combatant {
   public override Sprite Image => data.image;
   public override IList<DieData> Dice => dice;
   public override int MaxHp => data.maxHp + hpUp;
-  public override int Slots => level.current + 1;
+  public override int Slots => SlotsPerLevel[level.current];
+  public int BoardDice => DicePerLevel[level.current];
 
   public Player (LevelData levelData, PlayerData data) {
     this.levelData = levelData;
     this.data = data;
     hp.Update(MaxHp);
+  }
+
+  public string LevelReward (int level) {
+    switch (level) {
+    case 0: return "Board Dice +1!";
+    case 1: return "Attack Slot +1!";
+    default: return $"TODO: level up {level} reward!";
+    }
   }
 
   public void Award (int xpAward, int coinAward) {

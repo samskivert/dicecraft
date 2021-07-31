@@ -124,8 +124,7 @@ public class BattleController : MonoBehaviour {
       var startXp = battle.player.xp.current;
       var endXp = startXp + enemy.xpAward;
       var maxXp = battle.player.nextLevelXp;
-      wonPanel.GetComponent<WonController>().AnimateXP(
-        battle.player.level.current, startXp, endXp, maxXp);
+      wonPanel.GetComponent<WonController>().AnimateXP(battle.player, startXp, endXp, maxXp);
       battle.player.Award(enemy.xpAward, enemy.coinAward);
     } else lostPanel.SetActive(true);
   }

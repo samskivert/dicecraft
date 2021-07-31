@@ -14,12 +14,14 @@ public class WonController : MonoBehaviour {
   public Image meter;
   public TMP_Text meterLabel;
   public TMP_Text levelLabel;
+  public TMP_Text rewardLabel;
 
-  public void AnimateXP (int startLevel, int startXP, int endXP, int maxXP) {
+  public void AnimateXP (Player player, int startXP, int endXP, int maxXP) {
     void ShowXP (int xp) {
       meterLabel.text = $"XP: {xp}";
       meter.fillAmount = xp / (float)maxXP;
     }
+    var startLevel = player.level.current;
     levelLabel.text = $"Level: {startLevel+1}";
 
     IEnumerator Animate (int endXP) {
@@ -38,6 +40,8 @@ public class WonController : MonoBehaviour {
       IEnumerator ShowLevelUp () {
         yield return StartCoroutine(Animate(maxXP));
         levelLabel.text = "Level Up!";
+        rewardLabel.gameObject.SetActive(true);
+        rewardLabel.text = player.LevelReward(startLevel);
         ShowXP(0);
         if (endXP > maxXP) {
           yield return Animate(endXP - maxXP);
