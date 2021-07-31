@@ -38,7 +38,7 @@ public class Battle {
         attacker.effects.Update(Effect.Type.Evade, s => s + face.amount);
         break;
       case Die.Type.Heal:
-        attacker.hp.UpdateVia(hp => hp + face.amount);
+        attacker.hp.UpdateVia(hp => Math.Min(hp + face.amount, attacker.MaxHp));
         break;
       }
     }
