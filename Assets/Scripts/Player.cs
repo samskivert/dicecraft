@@ -9,8 +9,8 @@ using React;
 
 public class Player : Combatant {
 
-  private static int[] SlotsPerLevel = new [] { 1, 1, 2};
-  private static int[] DicePerLevel = new [] { 1, 2, 2};
+  private static int[] SlotsPerLevel = new [] { 1, 2, 2, 2, 2 };
+  private static int[] DicePerLevel  = new [] { 2, 2, 3, 3, 3 };
 
   public interface LevelData {
     public int[] LevelXps { get; }
@@ -43,11 +43,11 @@ public class Player : Combatant {
   }
 
   public string LevelReward (int level) {
-    switch (level) {
-    case 0: return "Board Dice +1!";
-    case 1: return "Attack Slot +1!";
-    default: return $"TODO: level up {level} reward!";
-    }
+    int oldSlots = SlotsPerLevel[level], newSlots = SlotsPerLevel[level+1];
+    int oldDice = DicePerLevel[level], newDice = DicePerLevel[level+1];
+    if (newSlots > oldSlots) return "Attack Slot +1!";
+    else if (newDice > oldDice) return "Board Dice +1!";
+    else return "Hrm, no reward?";
   }
 
   public void Award (int xpAward, int coinAward) {
