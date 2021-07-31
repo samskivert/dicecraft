@@ -25,7 +25,7 @@ public class CombatantController : MonoBehaviour {
     image.sprite = comb.Image;
 
     onDestroy += comb.hp.OnValue(hp => {
-      hpLabel.text = $"HP: {hp}/{comb.MaxHp}";
+      hpLabel.text = $"{hp}/{comb.MaxHp}";
       hpMeter.fillAmount = hp / (float)comb.MaxHp;
     });
 
