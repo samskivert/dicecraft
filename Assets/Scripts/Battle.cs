@@ -32,13 +32,13 @@ public class Battle {
         damage += face.amount;
         break;
       case Die.Type.Shield:
-        attacker.effects.Update(Effect.Type.Shield, s => s + face.amount);
+        attacker.AddEffect(Effect.Type.Shield, face.amount);
         break;
       case Die.Type.Evade:
-        attacker.effects.Update(Effect.Type.Evade, s => s + face.amount);
+        attacker.AddEffect(Effect.Type.Evade, face.amount);
         break;
       case Die.Type.Heal:
-        attacker.hp.UpdateVia(hp => Math.Min(hp + face.amount, attacker.MaxHp));
+        attacker.Heal(face.amount);
         break;
       }
     }
@@ -50,6 +50,7 @@ public class Battle {
         var used = Math.Min(damage, shield);
         damage -= used;
         defender.effects.Update(Effect.Type.Shield, s => s-used);
+        defender.effected.Emit((Effect.Type.Shield, -used));
       }
       defender.hp.UpdateVia(hp => Math.Max(0, hp-damage));
     }

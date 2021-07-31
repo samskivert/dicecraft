@@ -20,6 +20,20 @@ public class Combatant {
   public readonly IMutable<int> hp = Values.Mutable(0);
   public readonly MutableMap<Effect.Type, int> effects = RMaps.LocalMutable<Effect.Type, int>();
 
+  public Emitter<(Effect.Type, int)> effected = new Emitter<(Effect.Type, int)>();
+  public Emitter<(Die.Type, int)> diced = new Emitter<(Die.Type, int)>();
+
+  public void AddEffect (Effect.Type type, int amount) {
+    effects.Update(type, s => s + amount);
+    effected.Emit((type, amount));
+  }
+
+  public void Heal (int amount) {
+    var heal = Math.Min(amount, MaxHp-hp.current);
+    hp.UpdateVia(hp => hp + heal);
+    diced.Emit((Die.Type.Heal, heal));
+  }
+
   public void Roll (System.Random random) {
     roll.Clear();
     foreach (var die in Dice) roll.Add(die.faces[random.Next(die.faces.Length)]);

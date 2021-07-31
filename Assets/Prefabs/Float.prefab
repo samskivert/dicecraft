@@ -11,10 +11,10 @@ GameObject:
   - component: {fileID: 112490329635717962}
   - component: {fileID: 6339474222924024429}
   - component: {fileID: 1293183679328459367}
-  - component: {fileID: 5999594470712930374}
   - component: {fileID: 7376699681641670343}
+  - component: {fileID: 4381283270740363573}
   m_Layer: 5
-  m_Name: Effect
+  m_Name: Float
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -75,28 +75,6 @@ MonoBehaviour:
   m_ChildScaleWidth: 0
   m_ChildScaleHeight: 0
   m_ReverseArrangement: 0
---- !u!114 &5999594470712930374
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 741774598248520555}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5a90f6bbae4d647c6b18de4529602e75, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  effectIcons:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 21300000, guid: d4f6d91ae77c544779ce58f2f2d815ef, type: 3}
-  - {fileID: 21300000, guid: a464438fe267e444da1cc89a4420df2e, type: 3}
-  - {fileID: 21300000, guid: 8a4b400101f035b43a9caf78de3c5f61, type: 3}
-  - {fileID: 21300000, guid: 71c6b0edb94144e40bdccd80476429f5, type: 3}
-  - {fileID: 0}
-  icon: {fileID: 6893255499267615676}
-  countLabel: {fileID: 4281004572463976413}
 --- !u!114 &7376699681641670343
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -111,6 +89,38 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_HorizontalFit: 2
   m_VerticalFit: 2
+--- !u!114 &4381283270740363573
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 741774598248520555}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b6aaad783bc0f4f3db64f0d9862f7015, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  effectIcons:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 21300000, guid: d4f6d91ae77c544779ce58f2f2d815ef, type: 3}
+  - {fileID: 21300000, guid: a464438fe267e444da1cc89a4420df2e, type: 3}
+  - {fileID: 21300000, guid: 8a4b400101f035b43a9caf78de3c5f61, type: 3}
+  - {fileID: 21300000, guid: 71c6b0edb94144e40bdccd80476429f5, type: 3}
+  - {fileID: 0}
+  dieIcons:
+  - {fileID: 0}
+  - {fileID: 21300000, guid: b2eb7aaea0cc04c61ba3d87ee6253ec8, type: 3}
+  - {fileID: 21300000, guid: 2f949e059c2b34279a3a4f29ab0b8f11, type: 3}
+  - {fileID: 21300000, guid: 388f447bb2b734c2c95b270ddb087801, type: 3}
+  - {fileID: 21300000, guid: b91060a2934e99443b58cc32b70b7d7a, type: 3}
+  - {fileID: 21300000, guid: faf93c9709120ae468e0b69c37fd8445, type: 3}
+  - {fileID: 21300000, guid: 376aafcafdc7fb8488cf66f78d7f228f, type: 3}
+  - {fileID: 21300000, guid: 2ddd8b835750814429efe1267b7a7f92, type: 3}
+  hpIcon: {fileID: 21300000, guid: 02683280ab188de4082a5b95863f3804, type: 3}
+  icon: {fileID: 6893255499267615676}
+  countLabel: {fileID: 4281004572463976413}
 --- !u!1 &5385335898822643509
 GameObject:
   m_ObjectHideFlags: 0
@@ -203,8 +213,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 36
-  m_fontSizeBase: 36
+  m_fontSize: 72
+  m_fontSizeBase: 72
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
@@ -334,8 +344,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_IgnoreLayout: 0
-  m_MinWidth: 32
-  m_MinHeight: 32
+  m_MinWidth: 64
+  m_MinHeight: 64
   m_PreferredWidth: -1
   m_PreferredHeight: -1
   m_FlexibleWidth: -1

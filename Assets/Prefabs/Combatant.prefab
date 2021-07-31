@@ -675,3 +675,4 @@ MonoBehaviour:
   hpMeter: {fileID: 5291908217379255824}
   effects: {fileID: 7063990185873753109}
   effectPrefab: {fileID: 741774598248520555, guid: d90de01fca46146539ae0241761640e3, type: 3}
+  floatPrefab: {fileID: 741774598248520555, guid: db75400a826da43348324d639cf0597d, type: 3}
