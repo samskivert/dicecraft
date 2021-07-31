@@ -40,8 +40,11 @@ public class WonController : MonoBehaviour {
       IEnumerator ShowLevelUp () {
         yield return StartCoroutine(Animate(maxXP));
         levelLabel.text = "Level Up!";
-        rewardLabel.gameObject.SetActive(true);
-        rewardLabel.text = player.LevelReward(startLevel);
+        var reward = player.LevelReward(startLevel);
+        if (reward != null) {
+          rewardLabel.gameObject.SetActive(true);
+          rewardLabel.text = reward;
+        }
         ShowXP(0);
         if (endXP > maxXP) {
           yield return Animate(endXP - maxXP);

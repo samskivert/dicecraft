@@ -43,11 +43,14 @@ public class Player : Combatant {
   }
 
   public string LevelReward (int level) {
+    int oldHp = data.maxHp + levelData.LevelHps[level];
+    int newHp = data.maxHp + levelData.LevelHps[level];
+    var reward = $"HP +{newHp-oldHp}!";
     int oldSlots = SlotsPerLevel[level], newSlots = SlotsPerLevel[level+1];
+    if (newSlots > oldSlots) reward += " Attack Slot +1!";
     int oldDice = DicePerLevel[level], newDice = DicePerLevel[level+1];
-    if (newSlots > oldSlots) return "Attack Slot +1!";
-    else if (newDice > oldDice) return "Board Dice +1!";
-    else return "Hrm, no reward?";
+    if (newDice > oldDice) reward += " Board Dice +1!";
+    return reward;
   }
 
   public void Award (int xpAward, int coinAward) {
