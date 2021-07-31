@@ -13,14 +13,5 @@ MonoBehaviour:
   m_Name: cleric
   m_EditorClassIdentifier: 
   name: cleric
-  image: {fileID: 21300000, guid: bee39f30b78688c42be07039c60e6834, type: 3}
+  image: {fileID: 21300000, guid: 2c9ea848ff8142f4c9120398f60508d1, type: 3}
   maxHp: 10
-  slots: 0200000006000000
-  dice1:
-  - {fileID: 11400000, guid: 52240dda6f5e2a64381c8d2290ff993f, type: 2}
-  - {fileID: 11400000, guid: ff9069f1dd5015846a84531602cdce0b, type: 2}
-  - {fileID: 11400000, guid: 52240dda6f5e2a64381c8d2290ff993f, type: 2}
-  - {fileID: 11400000, guid: ff9069f1dd5015846a84531602cdce0b, type: 2}
-  - {fileID: 11400000, guid: 52240dda6f5e2a64381c8d2290ff993f, type: 2}
-  - {fileID: 11400000, guid: ff9069f1dd5015846a84531602cdce0b, type: 2}
-  dice2: []

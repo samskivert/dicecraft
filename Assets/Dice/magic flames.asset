@@ -15,8 +15,8 @@ MonoBehaviour:
   image: {fileID: 0}
   faces:
   - {fileID: 11400000, guid: de6eec31df1704941ab193da969e3bfa, type: 2}
+  - {fileID: 11400000, guid: 63f43cc91725030479bc7c9a6939b214, type: 2}
   - {fileID: 11400000, guid: de6eec31df1704941ab193da969e3bfa, type: 2}
   - {fileID: 11400000, guid: de6eec31df1704941ab193da969e3bfa, type: 2}
-  - {fileID: 11400000, guid: de6eec31df1704941ab193da969e3bfa, type: 2}
-  - {fileID: 11400000, guid: de6eec31df1704941ab193da969e3bfa, type: 2}
+  - {fileID: 11400000, guid: 63f43cc91725030479bc7c9a6939b214, type: 2}
   - {fileID: 11400000, guid: de6eec31df1704941ab193da969e3bfa, type: 2}

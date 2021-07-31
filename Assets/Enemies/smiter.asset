@@ -18,4 +18,4 @@ MonoBehaviour:
   coinAward: 1
   slots: 1
   dice:
-  - {fileID: 11400000, guid: a56eeafedb3afa14baa1c2c063031004, type: 2}
+  - {fileID: 11400000, guid: 3f2a3f19d98d26147bfd607b4d2ec1de, type: 2}

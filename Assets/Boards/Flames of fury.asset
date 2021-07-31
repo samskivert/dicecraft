@@ -37,20 +37,19 @@ MonoBehaviour:
   - {fileID: 0}
   loot:
   - {fileID: 11400000, guid: 7d66050880c834e4ea728d22f47a48a6, type: 2}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
+  - {fileID: 11400000, guid: 46a4578046a8143abbbead704f0826ed, type: 2}
+  - {fileID: 11400000, guid: a56eeafedb3afa14baa1c2c063031004, type: 2}
   enemies:
   - {fileID: 11400000, guid: fff5bc5d29d21d64f9475cfbb85a95fb, type: 2}
   - {fileID: 11400000, guid: fff5bc5d29d21d64f9475cfbb85a95fb, type: 2}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
+  - {fileID: 11400000, guid: a3775fc39658fe0488912a1d660da68b, type: 2}
   - {fileID: 11400000, guid: fff5bc5d29d21d64f9475cfbb85a95fb, type: 2}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
+  - {fileID: 11400000, guid: a3775fc39658fe0488912a1d660da68b, type: 2}
   - {fileID: 11400000, guid: fff5bc5d29d21d64f9475cfbb85a95fb, type: 2}
-  - {fileID: 0}
+  - {fileID: 11400000, guid: a3775fc39658fe0488912a1d660da68b, type: 2}
+  - {fileID: 11400000, guid: a3775fc39658fe0488912a1d660da68b, type: 2}
+  - {fileID: 11400000, guid: fff5bc5d29d21d64f9475cfbb85a95fb, type: 2}
+  - {fileID: 11400000, guid: fff5bc5d29d21d64f9475cfbb85a95fb, type: 2}
+  - {fileID: 11400000, guid: a3775fc39658fe0488912a1d660da68b, type: 2}
   - {fileID: 11400000, guid: 7e9bde7ac9e1f9e45bc92e07557332f1, type: 2}
   start: 1
