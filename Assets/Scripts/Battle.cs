@@ -30,6 +30,8 @@ public class Battle {
       case Die.Type.Blunt:
       case Die.Type.Magic:
         damage += face.amount;
+        if (defender.Resistance == face.dieType) damage -= 1;
+        if (defender.Weakness == face.dieType) damage += 1;
         break;
       case Die.Type.Shield:
         attacker.AddEffect(Effect.Type.Shield, face.amount);

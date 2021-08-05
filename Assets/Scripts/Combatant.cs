@@ -15,6 +15,8 @@ public class Combatant {
   public virtual IList<DieData> Dice { get; }
   public virtual int MaxHp { get; }
   public virtual int Slots { get; }
+  public virtual Die.Type Resistance { get; }
+  public virtual Die.Type Weakness { get; }
 
   public readonly List<FaceData> roll = new List<FaceData>();
   public readonly IMutable<int> hp = Values.Mutable(0);

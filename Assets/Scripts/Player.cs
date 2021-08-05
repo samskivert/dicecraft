@@ -34,6 +34,8 @@ public class Player : Combatant {
   public override IList<DieData> Dice => dice;
   public override int MaxHp => data.maxHp + hpUp;
   public override int Slots => SlotsPerLevel[level.current];
+  public override Die.Type Resistance => Die.Type.None;
+  public override Die.Type Weakness => Die.Type.None;
   public int BoardDice => DicePerLevel[level.current];
 
   public Player (LevelData levelData, PlayerData data) {
