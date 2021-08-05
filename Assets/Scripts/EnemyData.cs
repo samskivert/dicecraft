@@ -12,5 +12,7 @@ public class EnemyData : ScriptableObject {
   public int coinAward;
   public int slots;
   public DieData[] dice;
+  public Die.Type weakness;
+  public Die.Type resistance;
 }
 }
