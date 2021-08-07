@@ -26,7 +26,7 @@ public class BoardController : MonoBehaviour {
     var idx = 0;
     foreach (var space in spaces) space.Init(board, idx++);
 
-    player.Init(board.player);
+    player.Init(game, board.player);
 
     onDestroy += board.player.coins.OnValue(coins => {
       coinsLabel.text = coins.ToString();

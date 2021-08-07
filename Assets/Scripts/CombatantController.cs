@@ -18,9 +18,8 @@ public class CombatantController : MonoBehaviour {
   public Image hpMeter;
   public GameObject effects;
   public GameObject effectPrefab;
-  public GameObject floatPrefab;
 
-  public void Init (Combatant comb) {
+  public void Init (GameController game, Combatant comb) {
     nameLabel.text = comb.Name;
     image.sprite = comb.Image;
 
@@ -30,14 +29,11 @@ public class CombatantController : MonoBehaviour {
     });
 
     onDestroy += comb.effected.OnEmit(
-      pair => Instantiate(floatPrefab, transform.parent).
-        GetComponent<FloatController>().Float(gameObject, pair.Item1, pair.Item2));
+      pair => game.floater.Float(gameObject, pair.Item1, pair.Item2));
     onDestroy += comb.diced.OnEmit(
-      pair => Instantiate(floatPrefab, transform.parent).
-        GetComponent<FloatController>().Float(gameObject, pair.Item1, pair.Item2));
+      pair => game.floater.Float(gameObject, pair.Item1, pair.Item2));
     onDestroy += comb.hp.OnChange(
-      (hp, oldHp) => Instantiate(floatPrefab, transform.parent).
-        GetComponent<FloatController>().FloatHp(gameObject, hp-oldHp));
+      (hp, oldHp) => game.floater.FloatHp(gameObject, hp-oldHp));
 
     var effObjs = new Dictionary<Effect.Type, GameObject>();
     onDestroy += comb.effects.OnEntries((type, count, ocount) => {

@@ -8,13 +8,19 @@ using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 
+using Util;
+
 public class GameController : MonoBehaviour, Player.LevelData {
   private GameObject screen;
+
+  public readonly AnimPlayer anim = new AnimPlayer();
 
   public Transform canvas;
   public GameObject titlePrefab;
   public GameObject boardPrefab;
   public GameObject battlePrefab;
+
+  public FloatController floater;
 
   public EnemyData[] enemies;
   public int[] levelXps;
@@ -38,6 +44,8 @@ public class GameController : MonoBehaviour, Player.LevelData {
     ShowTitle();
   }
 
+  private void Update () => anim.Update(Time.deltaTime);
+
   private void ShowTitle () {
     var titleScreen = SetScreen(titlePrefab);
     titleScreen.GetComponent<TitleController>().Init(this);
@@ -55,7 +63,7 @@ public class GameController : MonoBehaviour, Player.LevelData {
   private void StartBattle (Battle battle) {
     var battleScreen = SetScreen(battlePrefab);
     var battleCtrl = battleScreen.GetComponent<BattleController>();
-    battleCtrl.Init(battle, () => {
+    battleCtrl.Init(this, battle, () => {
       ShowBoard();
     }, ShowTitle);
   }

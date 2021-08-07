@@ -9,6 +9,8 @@ using UnityEngine.Events;
 using UnityEngine.UI;
 using TMPro;
 
+using Util;
+
 public class BattleController : MonoBehaviour {
   private readonly System.Random random = new System.Random();
   private Battle battle;
@@ -35,7 +37,7 @@ public class BattleController : MonoBehaviour {
     attack.onClick.AddListener(Attack);
   }
 
-  public void Init (Battle battle, UnityAction onWin, UnityAction onLose) {
+  public void Init (GameController game, Battle battle, UnityAction onWin, UnityAction onLose) {
     this.battle = battle;
 
     wonPanel.SetActive(false);
@@ -44,9 +46,18 @@ public class BattleController : MonoBehaviour {
     lostPanel.SetActive(false);
     lostPanel.GetComponentInChildren<Button>().onClick.AddListener(onLose);
 
+    battle.flings.OnEmit(trip => {
+      var delay = trip.Item1;
+      var slot = slots[trip.Item2];
+      var player = trip.Item3;
+      game.floater.Fling(slot.gameObject, (player ? this.player : this.enemy).gameObject,
+                         slot.face.dieType, slot.face.amount);
+    });
+    battle.barriers.OnEmit(_ => game.anim.AddBarrier());
+
     slotsPanel.SetActive(true);
-    player.Init(battle.player);
-    enemy.Init(battle.enemy);
+    player.Init(game, battle.player);
+    enemy.Init(game, battle.enemy);
     Roll(true);
   }
 
@@ -80,7 +91,7 @@ public class BattleController : MonoBehaviour {
     slots = new SlotController[slotCount];
     for (var ii = 0; ii < slotCount; ii += 1) {
       var slot = Instantiate(slotPrefab, slotsPanel.transform).GetComponent<SlotController>();
-      slot.Init();
+      slot.Init(ii);
       slots[ii] = slot;
     }
     attack.transform.parent.SetAsLastSibling();
@@ -96,7 +107,7 @@ public class BattleController : MonoBehaviour {
 
   private void Attack () {
     var slots = this.slots.Where(
-      slot => slot.face != null).Select(slot => (slot.face, slot.upgrades));
+      slot => slot.face != null).Select(slot => (slot.face, slot.index, slot.upgrades));
     var attacker = playerTurn ? (Combatant)battle.player : (Combatant)battle.enemy;
     var defender = playerTurn ? (Combatant)battle.enemy : (Combatant)battle.player;
     battle.Attack(slots, attacker, defender);

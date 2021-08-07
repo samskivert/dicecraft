@@ -15,6 +15,7 @@ public class SlotController : MonoBehaviour {
 
   // public Die.Type type { get; private set; }
   public FaceData face { get; private set; }
+  public int index { get; private set; }
   public int upgrades { get; private set; }
 
   private void Awake () {
@@ -30,8 +31,9 @@ public class SlotController : MonoBehaviour {
     return unplay == null /* && type == face.dieType */;
   }
 
-  public void Init (/* Die.Type type, int upgrades*/) {
+  public void Init (int index) { // Die.Type type, int upgrades
     // this.type = type;
+    this.index = index;
     // this.upgrades = upgrades;
     typeLabel.text = "..."; // type.ToString();
     Reset();

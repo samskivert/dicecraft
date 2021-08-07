@@ -3,57 +3,65 @@ namespace dicecraft {
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
+using Util;
 
 public class FloatController : MonoBehaviour {
-  private const float Duration = 1f;
 
-  private RectTransform ownRect;
-  private float elapsed;
-  private Vector3 start;
-  private Vector3 finish;
+  private RectTransform canvasRt;
 
   [EnumArray(typeof(Effect.Type))] public Sprite[] effectIcons;
   [EnumArray(typeof(Die.Type))] public Sprite[] dieIcons;
   public Sprite hpIcon;
 
-  public Image icon;
-  public TMP_Text countLabel;
+  public GameController game;
+  public Canvas canvas;
+  public GameObject floatPrefab;
 
-  public void Float (GameObject over, Effect.Type type, int count) {
-    icon.sprite = effectIcons[(int)type];
-    countLabel.text = count < 0 ? count.ToString() : $"+{count}";
-    FloatOver(over);
-  }
+  public void Float (GameObject over, Effect.Type type, int count) => FloatOver(
+    effectIcons[(int)type], count < 0 ? count.ToString() : $"+{count}", over);
 
-  public void Float (GameObject over, Die.Type type, int count) {
-    icon.sprite = dieIcons[(int)type];
-    countLabel.text = count < 0 ? count.ToString() : $"+{count}";
-    FloatOver(over);
-  }
+  public void Float (GameObject over, Die.Type type, int count) => FloatOver(
+    dieIcons[(int)type], count < 0 ? count.ToString() : $"+{count}", over);
 
-  public void FloatHp (GameObject over, int count) {
-    icon.sprite = hpIcon;
-    countLabel.text = count < 0 ? count.ToString() : $"+{count}";
-    FloatOver(over);
-  }
+  public void FloatHp (GameObject over, int count) => FloatOver(
+    hpIcon, count < 0 ? count.ToString() : $"+{count}", over);
 
-  private void Awake () {
-    ownRect = GetComponent<RectTransform>();
+  public void Fling (GameObject fromObj, GameObject toObj, Die.Type type, int count) => Fling(
+    dieIcons[(int)type], count.ToString(), fromObj, toObj);
 
-  }
-  private void FloatOver (GameObject over) {
-    start = over.GetComponent<RectTransform>().anchoredPosition;
-    finish = start;
+  private void FloatOver (Sprite sprite, string text, GameObject over) {
+    var start = canvasRt.InverseTransformPoint(over.transform.position);
+    var finish = start;
     finish.y += 150;
-    ownRect.anchoredPosition = start;
+    Tween(sprite, text, start, finish, Interps.QuadOut, 500);
   }
 
-  private void Update () {
-    elapsed += Time.deltaTime;
-    var current = Vector3.Lerp(start, finish, elapsed/Duration);
-    ownRect.anchoredPosition = current;
-    if (elapsed >= Duration) Destroy(gameObject);
+  private void Fling (Sprite sprite, string text, GameObject fromObj, GameObject toObj) {
+    var start = canvasRt.InverseTransformPoint(fromObj.transform.position);
+    var finish = canvasRt.InverseTransformPoint(toObj.transform.position);
+    Tween(sprite, text, start, finish, Interps.QuadIn, 1200);
   }
 
+  private void Tween (
+    Sprite sprite, string text, Vector3 start, Vector3 finish, Interp interp, float velocity
+  ) {
+    GameObject obj = null;
+    RectTransform rect = null;
+    var duration = Vector3.Distance(start, finish) / velocity;
+    game.anim.Add(Anim.Serial(
+      Anim.Action(() => {
+        obj = Instantiate(floatPrefab, canvas.transform);
+        rect = obj.GetComponent<RectTransform>();
+        obj.transform.Find("Icon").GetComponent<Image>().sprite = sprite;
+        obj.transform.Find("Count").GetComponent<TMP_Text>().text = text;
+        rect.anchoredPosition = start;
+      }),
+      Anim.TweenVector3(pos => rect.anchoredPosition = pos, start, finish, duration, interp),
+      Anim.Action(() => Destroy(obj))));
+  }
+
+  private void Start () {
+    canvasRt = canvas.GetComponent<RectTransform>();
+  }
 }
 }

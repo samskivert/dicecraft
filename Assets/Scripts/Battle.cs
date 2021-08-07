@@ -9,20 +9,28 @@ using React;
 public class Battle {
 
   public readonly Random random = new Random();
-
   public readonly Player player;
   public readonly Enemy enemy;
+
+  // flings are (delay, slot idx, player/enemy)
+  public readonly Emitter<(float, int, bool)> flings = new Emitter<(float, int, bool)>();
+
+  public readonly Emitter<Battle> barriers = new Emitter<Battle>();
 
   public Battle (Player player, EnemyData enemyData) {
     this.player = player;
     this.enemy = new Enemy(enemyData);
   }
 
-  public void Attack (IEnumerable<(FaceData, int)> dice, Combatant attacker, Combatant defender) {
+  public void Attack (
+    IEnumerable<(FaceData, int, int)> dice, Combatant attacker, Combatant defender
+  ) {
     var damage = 0;
+    var delay = 0f;
     foreach (var pair in dice) {
       var face = pair.Item1;
-      var upgrades = pair.Item2;
+      var slot = pair.Item2;
+      var upgrades = pair.Item3;
 
       switch (face.dieType) {
       case Die.Type.Slash:
@@ -32,6 +40,8 @@ public class Battle {
         damage += face.amount;
         if (defender.Resistance == face.dieType) damage -= 1;
         if (defender.Weakness == face.dieType) damage += 1;
+        flings.Emit((delay, slot, attacker == enemy));
+        delay += 1;
         break;
       case Die.Type.Shield:
         attacker.AddEffect(Effect.Type.Shield, face.amount);
@@ -44,6 +54,7 @@ public class Battle {
         break;
       }
     }
+    barriers.Emit(this);
 
     if (damage > 0) {
       // TODO: potentially evade this attack
