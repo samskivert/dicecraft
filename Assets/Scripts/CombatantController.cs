@@ -18,6 +18,7 @@ public class CombatantController : MonoBehaviour {
   public Image hpMeter;
   public GameObject effects;
   public GameObject effectPrefab;
+  public GameObject buffPrefab;
 
   public void Init (GameController game, Combatant comb) {
     nameLabel.text = comb.Name;
@@ -27,6 +28,15 @@ public class CombatantController : MonoBehaviour {
       hpLabel.text = $"{hp}/{comb.MaxHp}";
       hpMeter.fillAmount = hp / (float)comb.MaxHp;
     });
+
+    if (comb.Resistance != Die.Type.None) {
+      var resObj = Instantiate(buffPrefab, effects.transform);
+      resObj.GetComponent<BuffController>().Show(comb.Resistance, -1);
+    }
+    if (comb.Weakness != Die.Type.None) {
+      var resObj = Instantiate(buffPrefab, effects.transform);
+      resObj.GetComponent<BuffController>().Show(comb.Weakness, 1);
+    }
 
     onDestroy += comb.effected.OnEmit(
       pair => game.floater.Float(gameObject, pair.Item1, pair.Item2));

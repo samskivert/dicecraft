@@ -19,3 +19,5 @@ MonoBehaviour:
   slots: 1
   dice:
   - {fileID: 11400000, guid: 34e4d45e2f744443b9763f886ca16582, type: 2}
+  weakness: 0
+  resistance: 0
