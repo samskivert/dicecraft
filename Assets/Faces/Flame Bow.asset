@@ -15,4 +15,4 @@ MonoBehaviour:
   image: {fileID: 21300000, guid: ad538f6613a0b419ca878f6cb189146d, type: 3}
   dieType: 2
   effectType: 1
-  amount: 3
+  amount: 1

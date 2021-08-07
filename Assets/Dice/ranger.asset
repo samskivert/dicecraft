@@ -14,9 +14,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   image: {fileID: 0}
   faces:
-  - {fileID: 11400000, guid: bbb33f3da6c2c4c329c1713cdbd0ca1a, type: 2}
-  - {fileID: 11400000, guid: bbb33f3da6c2c4c329c1713cdbd0ca1a, type: 2}
-  - {fileID: 11400000, guid: 45cd228e46850f64784ee8d2321375ab, type: 2}
-  - {fileID: 11400000, guid: 45cd228e46850f64784ee8d2321375ab, type: 2}
-  - {fileID: 11400000, guid: 45cd228e46850f64784ee8d2321375ab, type: 2}
-  - {fileID: 11400000, guid: 45cd228e46850f64784ee8d2321375ab, type: 2}
+  - {fileID: 11400000, guid: b5b8850c87fcd41b8b02ad12b2e5b3e1, type: 2}
+  - {fileID: 11400000, guid: b5b8850c87fcd41b8b02ad12b2e5b3e1, type: 2}
+  - {fileID: 11400000, guid: b5b8850c87fcd41b8b02ad12b2e5b3e1, type: 2}
+  - {fileID: 11400000, guid: 4a448627a52d1e24aaf41f04c6ccefb7, type: 2}
+  - {fileID: 11400000, guid: 4a448627a52d1e24aaf41f04c6ccefb7, type: 2}
+  - {fileID: 11400000, guid: 4a448627a52d1e24aaf41f04c6ccefb7, type: 2}

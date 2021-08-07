@@ -12,10 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 71bc2946b85dc49939f3cd5b403cfbd6, type: 3}
   m_Name: Ice Knife
   m_EditorClassIdentifier: 
-  name: Ice Knife
   image: {fileID: 21300000, guid: ac48645d22fbb8a47b324eac3e1cc0f3, type: 3}
   dieType: 1
-  damageType: 0
   effectType: 2
-  damage: 3
-  amount: 3
+  amount: 2

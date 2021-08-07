@@ -10,9 +10,9 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 71bc2946b85dc49939f3cd5b403cfbd6, type: 3}
-  m_Name: ice Bow
+  m_Name: icacins
   m_EditorClassIdentifier: 
-  image: {fileID: 21300000, guid: fc3b85cf702880c48976feeba0afc08e, type: 3}
-  dieType: 2
+  image: {fileID: 21300000, guid: eb4494a8e2a0ce9408cf0b847c7deaf9, type: 3}
+  dieType: 1
   effectType: 2
   amount: 1

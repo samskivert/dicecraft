@@ -12,10 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 71bc2946b85dc49939f3cd5b403cfbd6, type: 3}
   m_Name: Flame Sword
   m_EditorClassIdentifier: 
-  name: Flame Sword
   image: {fileID: 21300000, guid: 03c01b532103a4e938aece84537876b9, type: 3}
   dieType: 1
-  damageType: 0
   effectType: 1
-  damage: 3
-  amount: 3
+  amount: 1

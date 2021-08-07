@@ -10,14 +10,14 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 6992a282416fa495a8f4e61a0e6e6544, type: 3}
-  m_Name: Florala
+  m_Name: ice ninja
   m_EditorClassIdentifier: 
-  image: {fileID: 21300000, guid: efa6685c543c1114d8a9b57afce4e694, type: 3}
+  image: {fileID: 21300000, guid: 3876e49090764134c8a04f69b644d52c, type: 3}
   maxHp: 6
   xpAward: 2
-  coinAward: 1
+  coinAward: 2
   slots: 1
   dice:
-  - {fileID: 11400000, guid: 71833e1fdb77a4862b27e453325f7dfe, type: 2}
-  weakness: 1
-  resistance: 6
+  - {fileID: 11400000, guid: 0fefd4c03f213472ebfb808b68ec3e1b, type: 2}
+  weakness: 0
+  resistance: 3
