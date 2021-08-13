@@ -13,6 +13,7 @@ using Util;
 
 public class BattleController : MonoBehaviour {
   private readonly System.Random random = new System.Random();
+  private GameController game;
   private Battle battle;
   private bool playerTurn;
 
@@ -38,6 +39,7 @@ public class BattleController : MonoBehaviour {
   }
 
   public void Init (GameController game, Battle battle, UnityAction onWin, UnityAction onLose) {
+    this.game = game;
     this.battle = battle;
 
     wonPanel.SetActive(false);
@@ -71,10 +73,10 @@ public class BattleController : MonoBehaviour {
     ShowSlots(playerTurn ? battle.player.Slots : battle.enemy.Slots);
     if (playerTurn) {
       battle.player.Roll(battle.random);
-      ShowDice(playerDice, battle.player.roll, true);
+      ShowDice(battle.player, playerDice, battle.player.roll, true);
     } else {
       battle.enemy.Roll(battle.random);
-      ShowDice(enemyDice, battle.enemy.roll, false);
+      ShowDice(battle.enemy, enemyDice, battle.enemy.roll, false);
     }
     UpdateAttack();
     attack.gameObject.SetActive(playerTurn);
@@ -97,12 +99,45 @@ public class BattleController : MonoBehaviour {
     attack.transform.parent.SetAsLastSibling();
   }
 
-  private void ShowDice (GameObject dice, IEnumerable<FaceData> faces, bool clickable) {
+  private void ShowDice (
+    Combatant comb, GameObject dice, IEnumerable<FaceData> faces, bool clickable
+  ) {
     dice.DestroyChildren();
+    var added = new List<DieController>();
     foreach (var face in faces) {
       var die = Instantiate(diePrefab, dice.transform).GetComponent<DieController>();
-      die.Init(this, face, clickable);
+      added.Add(die);
+      die.Init(this, face);
     }
+
+    var delay = 0f;
+    comb.effects.TryGetValue(Effect.Type.Burn, out var burns);
+    for (var ii = 0; ii < burns; ii += 1) {
+      if (ii >= added.Count) break;
+      var die = added[ii];
+      game.anim.Add(Anim.DelayedAction(delay, () => {
+        die.SetBurning(true);
+        comb.effects.Update(Effect.Type.Burn, c => c-1);
+      }));
+      delay += 0.5f;
+    }
+    comb.effects.TryGetValue(Effect.Type.Freeze, out var freezes);
+    for (var ii = 0; ii < freezes; ii += 1) {
+      if (ii >= added.Count) break;
+      var die = added[added.Count-ii-1];
+      game.anim.Add(Anim.DelayedAction(delay, () => {
+        die.SetFrozen();
+        comb.effects.Update(Effect.Type.Freeze, c => c-1);
+      }));
+      delay += 0.5f;
+    }
+
+    game.anim.Add(Anim.DelayedAction(delay, () => {
+      if (clickable) foreach (var die in added) die.EnableClick(comb);
+      // any leftover burn or freeze are lost
+      comb.effects[Effect.Type.Burn] = 0;
+      comb.effects[Effect.Type.Freeze] = 0;
+    }));
   }
 
   private void Attack () {

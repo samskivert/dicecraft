@@ -53,6 +53,14 @@ public class Battle {
         attacker.Heal(face.amount);
         break;
       }
+
+      // TODO: other effects?
+      switch (face.effectType) {
+      case Effect.Type.Burn:
+      case Effect.Type.Freeze:
+        defender.AddEffect(face.effectType, 1);
+        break;
+      }
     }
     barriers.Emit(this);
 

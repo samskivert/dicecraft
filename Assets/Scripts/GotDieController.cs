@@ -14,7 +14,7 @@ public class GotDieController : MonoBehaviour {
 
   public void Show (DieData die) {
     dieName.text = die.name;
-    for (var ii = 0; ii < dieFaces.Length; ii += 1) dieFaces[ii].Init(null, die.faces[ii], false);
+    for (var ii = 0; ii < dieFaces.Length; ii += 1) dieFaces[ii].Init(null, die.faces[ii]);
     ok.onClick.AddListener(() => Destroy(gameObject));
   }
 }
