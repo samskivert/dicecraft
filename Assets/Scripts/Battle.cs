@@ -41,12 +41,18 @@ public class Battle {
         if (defender.Resistance == face.dieType) damage -= 1;
         if (defender.Weakness == face.dieType) damage += 1;
         flings.Emit((delay, slot, attacker == enemy));
+        barriers.Emit(this);
         delay += 1;
         break;
       case Die.Type.Shield:
+        flings.Emit((delay, slot, attacker == player));
+        barriers.Emit(this);
+        delay += 1;
         attacker.AddEffect(Effect.Type.Shield, face.amount);
         break;
       case Die.Type.Evade:
+        flings.Emit((delay, slot, attacker == player));
+        barriers.Emit(this);
         attacker.AddEffect(Effect.Type.Evade, face.amount);
         break;
       case Die.Type.Heal:
@@ -62,7 +68,6 @@ public class Battle {
         break;
       }
     }
-    barriers.Emit(this);
 
     if (damage > 0) {
       // TODO: potentially evade this attack
