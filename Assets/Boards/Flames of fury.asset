@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5fc8e5beb78c94121bed2955f3026cbf, type: 3}
   m_Name: Flames of fury
   m_EditorClassIdentifier: 
-  image: {fileID: 21300000, guid: 7bd538549d7094b4c871d37d7bf23663, type: 3}
+  image: {fileID: 21300000, guid: 4b5d38eefb34d644db42e205b1b2f833, type: 3}
   player: {fileID: 11400000, guid: 40b579768278e6e42b80352f48bb740d, type: 2}
   spaces:
   - {fileID: 11400000, guid: dca52ef26d6974f2ea97aaa7ed5abe7f, type: 2}
@@ -52,4 +52,5 @@ MonoBehaviour:
   - {fileID: 11400000, guid: fff5bc5d29d21d64f9475cfbb85a95fb, type: 2}
   - {fileID: 11400000, guid: a3775fc39658fe0488912a1d660da68b, type: 2}
   - {fileID: 11400000, guid: 7e9bde7ac9e1f9e45bc92e07557332f1, type: 2}
-  start: 1
+  startSpace: 0
+  price: 0
