@@ -17,14 +17,20 @@ public class FloatController : MonoBehaviour {
   public Canvas canvas;
   public GameObject floatPrefab;
 
-  public void Float (GameObject over, Effect.Type type, int count) => FloatOver(
-    effectIcons[(int)type], count < 0 ? count.ToString() : $"+{count}", over);
+  public void Float (GameObject over, Effect.Type type, int count) {
+    Debug.Log("Float effect " + type + ": " + count);
+    FloatOver(effectIcons[(int)type], count < 0 ? count.ToString() : $"+{count}", over);
+  }
 
-  public void Float (GameObject over, Die.Type type, int count) => FloatOver(
-    dieIcons[(int)type], count < 0 ? count.ToString() : $"+{count}", over);
+  public void Float (GameObject over, Die.Type type, int count) {
+    Debug.Log("Float die " + type + ": " + count);
+    FloatOver(dieIcons[(int)type], count < 0 ? count.ToString() : $"+{count}", over);
+  }
 
-  public void FloatHp (GameObject over, int count) => FloatOver(
-    hpIcon, count < 0 ? count.ToString() : $"+{count}", over);
+  public void FloatHp (GameObject over, int count) {
+    Debug.Log("Float HP: " + count);
+    FloatOver(hpIcon, count < 0 ? count.ToString() : $"+{count}", over);
+  }
 
   public void Fling (GameObject fromObj, GameObject toObj, Die.Type type, int count) => Fling(
     dieIcons[(int)type], count.ToString(), fromObj, toObj);
