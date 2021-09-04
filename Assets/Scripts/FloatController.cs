@@ -32,8 +32,11 @@ public class FloatController : MonoBehaviour {
     FloatOver(hpIcon, count < 0 ? count.ToString() : $"+{count}", over);
   }
 
-  public void Fling (GameObject fromObj, GameObject toObj, Die.Type type, int count) => Fling(
-    dieIcons[(int)type], count.ToString(), fromObj, toObj);
+  public void Fling (GameObject fromObj, GameObject toObj, Die.Type type, int count) =>
+    Fling(fromObj, toObj, dieIcons[(int)type], count);
+
+  public void Fling (GameObject fromObj, GameObject toObj, Sprite sprite, int count) =>
+    Fling(sprite, count.ToString(), fromObj, toObj);
 
   private void FloatOver (Sprite sprite, string text, GameObject over) {
     var start = canvasRt.InverseTransformPoint(over.transform.position);

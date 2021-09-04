@@ -54,13 +54,13 @@ public class SlotController : MonoBehaviour {
 
     image.sprite = face.image;
     var amount = face.amount; // type.Boost(upgrades, face.amount);
-    var eff = face.effectType == Effect.Type.None ? "" : $" {face.effectType}";
+    var eff = face.effectType == Effect.Type.None ? "" : $"{face.effectType} ";
     switch (face.dieType) {
     case Die.Type.Slash:
     case Die.Type.Pierce:
     case Die.Type.Blunt:
     case Die.Type.Magic:
-      damageLabel.text = $"{amount} {eff}damage";
+      damageLabel.text = $"{amount} {face.dieType} {eff}damage";
       break;
     case Die.Type.Shield:
       damageLabel.text = $"+{amount} shield";
