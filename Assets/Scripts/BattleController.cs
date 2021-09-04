@@ -60,7 +60,7 @@ public class BattleController : MonoBehaviour {
     slotsPanel.SetActive(true);
     player.Init(game, battle.player);
     enemy.Init(game, battle.enemy);
-    Roll(true);
+    StartTurn(true);
   }
 
   public void UpdateAttack () {
@@ -68,16 +68,14 @@ public class BattleController : MonoBehaviour {
     attack.interactable = canAttack;
   }
 
-  public void Roll (bool playerTurn) {
+  public void StartTurn (bool playerTurn) {
     this.playerTurn = playerTurn;
     ShowSlots(playerTurn ? battle.player.Slots : battle.enemy.Slots);
-    if (playerTurn) {
-      battle.player.Roll(battle.random);
-      ShowDice(battle.player, playerDice, battle.player.roll, true);
-    } else {
-      battle.enemy.Roll(battle.random);
-      ShowDice(battle.enemy, enemyDice, battle.enemy.roll, false);
-    }
+    battle.StartTurn(playerTurn);
+    if (playerTurn) ShowDice(battle.player, playerDice, battle.player.roll, true);
+    else ShowDice(battle.enemy, enemyDice, battle.enemy.roll, false);
+    // starting the turn may have ended the game due to poison
+    if (CheckGameOver()) return;
     UpdateAttack();
     attack.gameObject.SetActive(playerTurn);
     if (!playerTurn) this.RunAfter(1, EnemyPlay);
@@ -140,6 +138,12 @@ public class BattleController : MonoBehaviour {
     }));
   }
 
+  private bool CheckGameOver () {
+    if (battle.player.hp.current > 0 && battle.enemy.hp.current > 0) return false;
+    this.RunAfter(1, EndGame);
+    return true;
+  }
+
   private void Attack () {
     var slots = this.slots.Where(
       slot => slot.face != null).Select(slot => (slot.face, slot.index, slot.upgrades));
@@ -149,8 +153,7 @@ public class BattleController : MonoBehaviour {
     ClearSlots();
     playerDice.DestroyChildren();
     enemyDice.DestroyChildren();
-    if (battle.player.hp.current == 0 || battle.enemy.hp.current == 0) this.RunAfter(1, EndGame);
-    else Roll(!playerTurn);
+    if (!CheckGameOver()) this.RunAfter(2, () => StartTurn(!playerTurn));
   }
 
   private void EnemyPlay () {

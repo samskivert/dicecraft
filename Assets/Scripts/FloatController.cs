@@ -42,7 +42,7 @@ public class FloatController : MonoBehaviour {
     var start = canvasRt.InverseTransformPoint(over.transform.position);
     var finish = start;
     finish.y += 150;
-    Tween(sprite, text, start, finish, Interps.QuadOut, 500);
+    Tween(sprite, text, start, finish, Interps.QuadOut, 250);
   }
 
   private void Fling (Sprite sprite, string text, GameObject fromObj, GameObject toObj) {
@@ -67,6 +67,7 @@ public class FloatController : MonoBehaviour {
       }),
       Anim.TweenVector3(pos => rect.anchoredPosition = pos, start, finish, duration, interp),
       Anim.Action(() => Destroy(obj))));
+    game.anim.AddBarrier();
   }
 
   private void Start () {

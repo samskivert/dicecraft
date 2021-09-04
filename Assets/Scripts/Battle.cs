@@ -22,6 +22,16 @@ public class Battle {
     this.enemy = new Enemy(enemyData);
   }
 
+  public void StartTurn (bool playerTurn) {
+    var actor = playerTurn ? (Combatant)player : (Combatant)enemy;
+    actor.Roll(random);
+    actor.effects.TryGetValue(Effect.Type.Poison, out var poison);
+    if (poison > 0) {
+      actor.effects[Effect.Type.Poison] = poison-1;
+      actor.hp.UpdateVia(hp => Math.Max(0, hp-poison));
+    }
+  }
+
   public void Attack (
     IEnumerable<(FaceData, int, int)> dice, Combatant attacker, Combatant defender
   ) {
@@ -64,6 +74,7 @@ public class Battle {
       switch (face.effectType) {
       case Effect.Type.Burn:
       case Effect.Type.Freeze:
+      case Effect.Type.Poison:
         defender.AddEffect(face.effectType, 1);
         break;
       }
