@@ -12,6 +12,7 @@ public class WonController : MonoBehaviour {
 
   public Image outer;
   public Image meter;
+  public TMP_Text coinLabel;
   public TMP_Text meterLabel;
   public TMP_Text levelLabel;
   public TMP_Text rewardLabel;
