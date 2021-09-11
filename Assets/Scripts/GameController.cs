@@ -28,6 +28,8 @@ public class GameController : MonoBehaviour, Player.LevelData {
 
   public BoardData[] boards;
 
+  public readonly HashSet<BoardData> unlocked = new HashSet<BoardData>();
+
   // from Player.LevelData
   public int[] LevelXps => levelXps;
   public int[] LevelHps => levelHps;
@@ -41,6 +43,7 @@ public class GameController : MonoBehaviour, Player.LevelData {
   }
 
   private void Start () {
+    unlocked.Add(boards[0]);
     ShowTitle();
   }
 

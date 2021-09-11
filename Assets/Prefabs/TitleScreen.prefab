@@ -63,10 +63,10 @@ MonoBehaviour:
     m_Right: 0
     m_Top: 0
     m_Bottom: 0
-  m_ChildAlignment: 0
-  m_Spacing: 20
+  m_ChildAlignment: 4
+  m_Spacing: 32
   m_ChildForceExpandWidth: 0
-  m_ChildForceExpandHeight: 0
+  m_ChildForceExpandHeight: 1
   m_ChildControlWidth: 1
   m_ChildControlHeight: 1
   m_ChildScaleWidth: 0
@@ -145,4 +145,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   buttons: {fileID: 6909370312155114031}
-  buttonPrefab: {fileID: 2178402697909813337, guid: febd4461b8ebd4b76b9d540205f547d6, type: 3}
+  buttonPrefab: {fileID: 6771266921108681993, guid: febd4461b8ebd4b76b9d540205f547d6, type: 3}

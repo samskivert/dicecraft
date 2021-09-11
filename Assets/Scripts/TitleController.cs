@@ -17,8 +17,7 @@ public class TitleController : MonoBehaviour {
   public void Init (GameController game) {
     foreach (var board in game.boards) {
       var buttonObj = Instantiate(buttonPrefab, buttons.transform);
-      buttonObj.GetComponent<Button>().onClick.AddListener(() => game.StartBoard(board));
-      buttonObj.GetComponent<Image>().sprite = board.image;
+      buttonObj.GetComponent<BoardButtonController>().Init(game, board);
       // TODO: a name for each board
       // TODO: disable boards that are not unlocked yet
     }
