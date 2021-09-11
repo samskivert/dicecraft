@@ -10,9 +10,11 @@ using UnityEngine.UI;
 using TMPro;
 
 public class TitleController : MonoBehaviour {
+  private event Action onDestroy;
 
   public GameObject buttons;
   public GameObject buttonPrefab;
+  public TMP_Text coinsLabel;
 
   public void Init (GameController game) {
     foreach (var board in game.boards) {
@@ -21,6 +23,12 @@ public class TitleController : MonoBehaviour {
       // TODO: a name for each board
       // TODO: disable boards that are not unlocked yet
     }
+
+    onDestroy += board.player.coins.OnValue(coins => {
+      coinsLabel.text = coins.ToString();
+    });
   }
+
+  private void OnDestroy () => onDestroy();
 }
 }
