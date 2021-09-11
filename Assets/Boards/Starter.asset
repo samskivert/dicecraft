@@ -39,7 +39,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 29c92551214ae4c459b19c5fd2074186, type: 2}
   - {fileID: 11400000, guid: e6568d21300e04c13a422235f2bee01b, type: 2}
   - {fileID: 11400000, guid: ab82286b1fe6b4034854a62f922262f9, type: 2}
-  - {fileID: 11400000, guid: 69cf168ec91f84f128fb38b718491767, type: 2}
+  - {fileID: 11400000, guid: 4ce3df9e0a0c648d08e3c0aec5a9d183, type: 2}
   loot:
   - {fileID: 11400000, guid: f713d642b2bd15f43ba73adaef7fa980, type: 2}
   - {fileID: 11400000, guid: 0559c0a85ed934417ae845b724311a7e, type: 2}

@@ -10,10 +10,10 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: e89684c3a39354dc8a2620e2d7cdadce, type: 3}
-  m_Name: Daggers1
+  m_Name: Heal2
   m_EditorClassIdentifier: 
-  image: {fileID: 21300000, guid: 3afd4f19eff4e40858f7f824d08d1dd9, type: 3}
+  image: {fileID: 21300000, guid: 06fa12c8712104ffe83bab033abcaa2e, type: 3}
   spaceType: 2
-  dieType: 2
+  dieType: 7
   effectType: 0
-  level: 1
+  level: 2

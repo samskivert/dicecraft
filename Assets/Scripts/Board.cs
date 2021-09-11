@@ -46,7 +46,7 @@ public class Board {
     this.player = player;
     this.data = data;
     for (var ii = 0; ii < data.spaces.Length; ii += 1) spaces.Add(
-      ii, data.spaces[ii] ?? random.Pick(data.fillers));
+      ii, data.spaces[ii] ?? (ii > 0 ? random.Pick(data.fillers) : null));
     playerPos.Update(data.startSpace);
     AwardDie(data.loot[nextLoot++]);
   }
