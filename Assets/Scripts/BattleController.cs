@@ -177,7 +177,8 @@ public class BattleController : MonoBehaviour {
       if (enemy.coinAward > 0) wonCtrl.coinLabel.text = $"+{enemy.coinAward}";
       else wonCtrl.coinLabel.gameObject.transform.parent.gameObject.SetActive(false);
       wonCtrl.AnimateXP(battle.player, startXp, endXp, maxXp);
-      battle.player.Award(enemy.xpAward, enemy.coinAward);
+      battle.player.Award(enemy.xpAward);
+      game.Award(enemy.coinAward);
     } else lostPanel.SetActive(true);
   }
 }

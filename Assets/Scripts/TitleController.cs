@@ -24,7 +24,7 @@ public class TitleController : MonoBehaviour {
       // TODO: disable boards that are not unlocked yet
     }
 
-    onDestroy += board.player.coins.OnValue(coins => {
+    onDestroy += game.coins.OnValue(coins => {
       coinsLabel.text = coins.ToString();
     });
   }

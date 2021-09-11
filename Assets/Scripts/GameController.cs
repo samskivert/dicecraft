@@ -8,6 +8,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 
+using React;
 using Util;
 
 public class GameController : MonoBehaviour, Player.LevelData {
@@ -28,6 +29,7 @@ public class GameController : MonoBehaviour, Player.LevelData {
 
   public BoardData[] boards;
 
+  public readonly IMutable<int> coins = Values.Mutable(0);
   public readonly HashSet<BoardData> unlocked = new HashSet<BoardData>();
 
   // from Player.LevelData
@@ -40,6 +42,10 @@ public class GameController : MonoBehaviour, Player.LevelData {
     board = new Board(new Player(this, data.player), data);
     board.battle.OnEmit(StartBattle);
     ShowBoard();
+  }
+
+  public void Award (int coinAward) {
+    coins.UpdateVia(coins => coins + coinAward);
   }
 
   private void Start () {

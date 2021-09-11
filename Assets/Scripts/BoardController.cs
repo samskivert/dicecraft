@@ -28,7 +28,7 @@ public class BoardController : MonoBehaviour {
 
     player.Init(game, board.player);
 
-    onDestroy += board.player.coins.OnValue(coins => {
+    onDestroy += game.coins.OnValue(coins => {
       coinsLabel.text = coins.ToString();
     });
 

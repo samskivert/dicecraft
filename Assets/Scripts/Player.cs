@@ -22,7 +22,6 @@ public class Player : Combatant {
 
   public readonly IMutable<int> level = Values.Mutable(0);
   public readonly IMutable<int> xp = Values.Mutable(0);
-  public readonly IMutable<int> coins = Values.Mutable(0);
   public readonly List<DieData> dice = new List<DieData>();
 
   public int hpUp => levelData.LevelHps[level.current];
@@ -55,7 +54,7 @@ public class Player : Combatant {
     return reward;
   }
 
-  public void Award (int xpAward, int coinAward) {
+  public void Award (int xpAward) {
     var next = nextLevelXp;
     if (next == 0) return; // max!
 
@@ -72,8 +71,6 @@ public class Player : Combatant {
       level.UpdateVia(level => level+1);
       hp.Update(MaxHp);
     }
-
-    coins.UpdateVia(coins => coins + coinAward);
   }
 }
 }
