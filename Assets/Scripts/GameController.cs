@@ -56,7 +56,7 @@ public class GameController : MonoBehaviour, Player.LevelData {
 
   public void ShowLost () {
     var popObj = Instantiate(lostPopupPrefab, canvas.transform);
-    popObj.GetComponent<LostController>().ok.onClick.AddListener(() => {
+    popObj.GetComponentInChildren<Button>().onClick.AddListener(() => {
       Destroy(popObj);
       ShowTitle();
     });

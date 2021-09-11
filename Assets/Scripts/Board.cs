@@ -86,17 +86,13 @@ public class Board {
     case Space.Type.Battle:
       battle.Emit(new Battle(player, data.enemies[nextBattle++]));
       // if we are running out of battles, clear this space
-      if (RemainBattles > data.enemies.Length - nextBattle) {
-        spaces[newPos] = random.Pick(data.fillers);
-      }
+      if (RemainBattles > data.enemies.Length - nextBattle) spaces[newPos] = null;
       return;
     case Space.Type.Chest:
       if (data.loot.Length > nextLoot) {
         AwardDie(data.loot[nextLoot++]);
         // if we are running out of loot, clear this space
-        if (RemainSpaces(Space.Type.Chest) > data.loot.Length - nextLoot) {
-          spaces[newPos] = random.Pick(data.fillers);
-        }
+        if (RemainSpaces(Space.Type.Chest) > data.loot.Length - nextLoot) spaces[newPos] = null;
       }
       break;
     case Space.Type.Die:
@@ -117,6 +113,7 @@ public class Board {
         Debug.Log("TODO: handle die space " + sdata.dieType);
         break;
       }
+      spaces[newPos] = null;
       break;
     case Space.Type.Trap:
       // TODO

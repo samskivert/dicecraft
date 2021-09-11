@@ -546,7 +546,6 @@ GameObject:
   - component: {fileID: 8075285087259852939}
   - component: {fileID: 8075285087259852934}
   - component: {fileID: 1031618100659882477}
-  - component: {fileID: 1303044418102987320}
   m_Layer: 5
   m_Name: LostPopup
   m_TagString: Untagged
@@ -612,16 +611,3 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
---- !u!114 &1303044418102987320
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8075285087259852938}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9f5d5610f9ace4bf192278db022378bf, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  ok: {fileID: 1430895958618638780}
