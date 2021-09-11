@@ -13,8 +13,8 @@ MonoBehaviour:
   m_Name: yeti
   m_EditorClassIdentifier: 
   image: {fileID: 21300000, guid: c49a01ce8cd2c6342b1846d79569bbb9, type: 3}
-  maxHp: 12
-  xpAward: 3
+  maxHp: 13
+  xpAward: 4
   coinAward: 3
   slots: 1
   dice:
