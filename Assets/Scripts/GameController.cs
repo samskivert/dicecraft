@@ -30,7 +30,7 @@ public class GameController : MonoBehaviour, Player.LevelData {
   public BoardData[] boards;
 
   public readonly IMutable<int> coins = Values.Mutable(0);
-  public readonly HashSet<BoardData> unlocked = new HashSet<BoardData>();
+  public readonly MutableSet<BoardData> unlocked = RSets.LocalMutable<BoardData>();
 
   // from Player.LevelData
   public int[] LevelXps => levelXps;
@@ -46,6 +46,11 @@ public class GameController : MonoBehaviour, Player.LevelData {
 
   public void Award (int coinAward) {
     coins.UpdateVia(coins => coins + coinAward);
+  }
+
+  public void BuyBoard (BoardData board) {
+    coins.UpdateVia(coins => coins - board.price);
+    unlocked.Add(board);
   }
 
   private void Start () {

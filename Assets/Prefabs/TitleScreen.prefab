@@ -444,3 +444,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   buttons: {fileID: 6909370312155114031}
   buttonPrefab: {fileID: 6771266921108681993, guid: febd4461b8ebd4b76b9d540205f547d6, type: 3}
+  coinsLabel: {fileID: 7204564713042197933}
