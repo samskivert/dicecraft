@@ -38,7 +38,7 @@ public class Combatant {
 
   public void Roll (System.Random random) {
     roll.Clear();
-    foreach (var die in Dice) roll.Add(die.faces[random.Next(die.faces.Length)]);
+    foreach (var die in Dice) roll.Add(random.Pick(die.faces));
   }
 
   public void Play (DieController[] dice, SlotController[] slots) {

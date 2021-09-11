@@ -12,6 +12,7 @@ public class BoardData : ScriptableObject {
   public Sprite image;
   public PlayerData player;
   public SpaceData[] spaces;
+  public SpaceData[] fillers;
   public DieData[] loot;
   public EnemyData[] enemies;
   public int startSpace;

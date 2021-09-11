@@ -43,6 +43,8 @@ public class BoardController : MonoBehaviour {
       var gotDie = Instantiate(gotDiePrefab, transform.parent);
       gotDie.GetComponent<GotDieController>().Show(die);
     });
+
+    board.onDied += () => game.ShowLost();
   }
 
   public void ShowCompleted (UnityAction onClick) {

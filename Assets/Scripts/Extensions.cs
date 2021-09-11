@@ -36,6 +36,10 @@ public static class Extensions {
     yield return new WaitForSeconds(seconds);
     action();
   }
+
+  public static T Pick<T> (this System.Random random, IList<T> list, T ifEmpty = default) {
+    return list.Count == 0 ? ifEmpty : list[random.Next(list.Count)];
+  }
 }
 
 }

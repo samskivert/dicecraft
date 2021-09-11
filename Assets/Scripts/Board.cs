@@ -36,6 +36,7 @@ public class Board {
 
   public Emitter<Battle> battle = new Emitter<Battle>();
   public Emitter<DieData> gotDie = new Emitter<DieData>();
+  public Action onDied;
 
   public int RemainBattles => RemainSpaces(Space.Type.Battle);
   private int RemainSpaces (Space.Type type) => spaces.Values.Count(
@@ -44,14 +45,17 @@ public class Board {
   public Board (Player player, BoardData data) {
     this.player = player;
     this.data = data;
-    for (var ii = 0; ii < data.spaces.Length; ii += 1) spaces.Add(ii, data.spaces[ii]);
+    for (var ii = 0; ii < data.spaces.Length; ii += 1) spaces.Add(
+      ii, data.spaces[ii] ?? random.Pick(data.fillers));
     playerPos.Update(data.startSpace);
     AwardDie(data.loot[nextLoot++]);
   }
 
+  public const int MaxDie = 3;
+
   public void Roll () {
     var dice = new int[player.BoardDice];
-    for (var ii = 0; ii < player.BoardDice; ii += 1) dice[ii] = random.Next(6)+1;
+    for (var ii = 0; ii < player.BoardDice; ii += 1) dice[ii] = random.Next(MaxDie)+1;
     roll.Update(dice);
   }
 
@@ -82,13 +86,17 @@ public class Board {
     case Space.Type.Battle:
       battle.Emit(new Battle(player, data.enemies[nextBattle++]));
       // if we are running out of battles, clear this space
-      if (RemainBattles > data.enemies.Length - nextBattle) spaces[newPos] = null;
+      if (RemainBattles > data.enemies.Length - nextBattle) {
+        spaces[newPos] = random.Pick(data.fillers);
+      }
       return;
     case Space.Type.Chest:
       if (data.loot.Length > nextLoot) {
         AwardDie(data.loot[nextLoot++]);
         // if we are running out of loot, clear this space
-        if (RemainSpaces(Space.Type.Chest) > data.loot.Length - nextLoot) spaces[newPos] = null;
+        if (RemainSpaces(Space.Type.Chest) > data.loot.Length - nextLoot) {
+          spaces[newPos] = random.Pick(data.fillers);
+        }
       }
       break;
     case Space.Type.Die:
@@ -98,6 +106,12 @@ public class Board {
         break;
       case Die.Type.Shield:
         player.AddEffect(Effect.Type.Shield, sdata.level);
+        break;
+      case Die.Type.Slash:
+      case Die.Type.Pierce:
+      case Die.Type.Blunt:
+        player.hp.UpdateVia(hp => Math.Max(hp - sdata.level, 0));
+        if (player.hp.current == 0) onDied();
         break;
       default:
         Debug.Log("TODO: handle die space " + sdata.dieType);

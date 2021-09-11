@@ -20,6 +20,7 @@ public class GameController : MonoBehaviour, Player.LevelData {
   public GameObject titlePrefab;
   public GameObject boardPrefab;
   public GameObject battlePrefab;
+  public GameObject lostPopupPrefab;
 
   public FloatController floater;
 
@@ -53,6 +54,14 @@ public class GameController : MonoBehaviour, Player.LevelData {
     unlocked.Add(board);
   }
 
+  public void ShowLost () {
+    var popObj = Instantiate(lostPopupPrefab, canvas.transform);
+    popObj.GetComponent<LostController>().ok.onClick.AddListener(() => {
+      Destroy(popObj);
+      ShowTitle();
+    });
+  }
+
   private void Start () {
     unlocked.Add(boards[0]);
     ShowTitle();
@@ -77,9 +86,7 @@ public class GameController : MonoBehaviour, Player.LevelData {
   private void StartBattle (Battle battle) {
     var battleScreen = SetScreen(battlePrefab);
     var battleCtrl = battleScreen.GetComponent<BattleController>();
-    battleCtrl.Init(this, battle, () => {
-      ShowBoard();
-    }, ShowTitle);
+    battleCtrl.Init(this, battle, ShowBoard);
   }
 
   private GameObject SetScreen (GameObject prefab) {

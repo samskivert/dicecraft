@@ -30,7 +30,6 @@ public class BattleController : MonoBehaviour {
   public GameObject enemyDice;
 
   public GameObject wonPanel;
-  public GameObject lostPanel;
 
   public SlotController[] slots { get; private set; }
 
@@ -38,15 +37,12 @@ public class BattleController : MonoBehaviour {
     attack.onClick.AddListener(Attack);
   }
 
-  public void Init (GameController game, Battle battle, UnityAction onWin, UnityAction onLose) {
+  public void Init (GameController game, Battle battle, UnityAction onWin) {
     this.game = game;
     this.battle = battle;
 
     wonPanel.SetActive(false);
     wonPanel.GetComponentInChildren<Button>().onClick.AddListener(onWin);
-
-    lostPanel.SetActive(false);
-    lostPanel.GetComponentInChildren<Button>().onClick.AddListener(onLose);
 
     battle.flings.OnEmit(trip => {
       var delay = trip.Item1;
@@ -179,7 +175,7 @@ public class BattleController : MonoBehaviour {
       wonCtrl.AnimateXP(battle.player, startXp, endXp, maxXp);
       battle.player.Award(enemy.xpAward);
       game.Award(enemy.coinAward);
-    } else lostPanel.SetActive(true);
+    } else game.ShowLost();
   }
 }
 }
