@@ -53,4 +53,4 @@ MonoBehaviour:
   - {fileID: 11400000, guid: a3775fc39658fe0488912a1d660da68b, type: 2}
   - {fileID: 11400000, guid: 7e9bde7ac9e1f9e45bc92e07557332f1, type: 2}
   startSpace: 0
-  price: 0
+  price: 10
