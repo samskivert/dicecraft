@@ -21,7 +21,12 @@ public class BoardController : MonoBehaviour {
   public GameObject dicePanel;
   public GameObject pipDiePrefab;
   public GameObject gotDiePrefab;
+
   public CombatantController player;
+  public Image xpMeter;
+  public TMP_Text xpMeterLabel;
+  public TMP_Text levelLabel;
+
   public GameObject wonPanel;
 
   public IMutable<bool> moving = Values.Mutable(false);
@@ -49,6 +54,12 @@ public class BoardController : MonoBehaviour {
       var gotDie = Instantiate(gotDiePrefab, transform.parent);
       gotDie.GetComponent<GotDieController>().Show(die);
     });
+
+    onDestroy += board.player.xp.OnValue(xp => {
+      xpMeterLabel.text = $"XP: {xp}";
+      xpMeter.fillAmount = xp / (float)board.player.nextLevelXp;
+    });
+    onDestroy += board.player.level.OnValue(level => levelLabel.text = $"Level: {level+1}");
 
     board.onDied += () => game.ShowLost();
   }
