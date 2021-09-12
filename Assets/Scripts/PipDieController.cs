@@ -23,6 +23,7 @@ public class PipDieController : MonoBehaviour {
       die.SetActive(pips > 0);
     });
     button.onClick.AddListener(() => owner.UseDie(index));
+    owner.moving.OnValue(moving => button.interactable = !moving);
   }
 
   private void OnDestroy () => onDestroy();

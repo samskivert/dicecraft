@@ -24,6 +24,7 @@ public class BoardController : MonoBehaviour {
   public CombatantController player;
   public GameObject wonPanel;
 
+  public IMutable<bool> moving = Values.Mutable(false);
   public Board board { get; private set; }
 
   public void Init (GameController game) {
@@ -56,12 +57,14 @@ public class BoardController : MonoBehaviour {
     IEnumerator MovePlayer () {
       var moves = board.UseDie(index);
       var ppos = board.playerPos.current;
+      moving.Update(true);
       for (var ii = 0; ii < moves; ii += 1) {
         ppos = (ppos + 1) % Board.Spots;
         board.playerPos.Update(ppos);
         yield return new WaitForSeconds(0.5f);
       }
       board.ProcessSpace(ppos);
+      moving.Update(false);
     }
     StartCoroutine(MovePlayer());
   }
