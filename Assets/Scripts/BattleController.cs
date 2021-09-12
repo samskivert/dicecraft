@@ -149,7 +149,9 @@ public class BattleController : MonoBehaviour {
     ClearSlots();
     playerDice.DestroyChildren();
     enemyDice.DestroyChildren();
-    if (!CheckGameOver()) this.RunAfter(2, () => StartTurn(!playerTurn));
+    game.anim.Add(Anim.Action(() => {
+      if (!CheckGameOver()) this.RunAfter(0.5f, () => StartTurn(!playerTurn));
+    }));
   }
 
   private void EnemyPlay () {
