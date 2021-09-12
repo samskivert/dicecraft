@@ -1,6 +1,7 @@
 namespace dicecraft {
 
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -8,6 +9,8 @@ using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.UI;
 using TMPro;
+
+using React;
 
 public class BoardController : MonoBehaviour {
   private event Action onDestroy;
@@ -21,8 +24,10 @@ public class BoardController : MonoBehaviour {
   public CombatantController player;
   public GameObject wonPanel;
 
+  public Board board { get; private set; }
+
   public void Init (GameController game) {
-    var board = game.board;
+    this.board = game.board;
     var idx = 0;
     foreach (var space in spaces) space.Init(board, idx++);
 
@@ -35,7 +40,7 @@ public class BoardController : MonoBehaviour {
     onDestroy += board.roll.OnValue(dice => {
       var dtx = dicePanel.transform;
       while (dtx.childCount < dice.Length) Instantiate(pipDiePrefab, dtx).
-        GetComponent<PipDieController>().Init(board, dtx.childCount-1);
+        GetComponent<PipDieController>().Init(this, dtx.childCount-1);
       while (dtx.childCount > dice.Length) Destroy(dtx.GetChild(dtx.childCount-1));
     });
 
@@ -45,6 +50,20 @@ public class BoardController : MonoBehaviour {
     });
 
     board.onDied += () => game.ShowLost();
+  }
+
+  public void UseDie (int index) {
+    IEnumerator MovePlayer () {
+      var moves = board.UseDie(index);
+      var ppos = board.playerPos.current;
+      for (var ii = 0; ii < moves; ii += 1) {
+        ppos = (ppos + 1) % Board.Spots;
+        board.playerPos.Update(ppos);
+        yield return new WaitForSeconds(0.5f);
+      }
+      board.ProcessSpace(ppos);
+    }
+    StartCoroutine(MovePlayer());
   }
 
   public void ShowCompleted (UnityAction onClick) {

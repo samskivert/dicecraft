@@ -63,36 +63,36 @@ public class Board {
     if (!roll.current.Any(die => die > 0)) Roll();
   }
 
-  public void UseDie (int index) {
+  public int UseDie (int index) {
     var dice = roll.current;
     if (index >= dice.Length) {
       Debug.Log($"Invalid die index {index} (have {dice.Length}).");
-      return;
+      return 0;
     }
     var pips = dice[index];
     if (pips < 1) {
       Debug.Log($"Using invalid die ({index}, value {pips}.");
-      return;
+      return 0;
     }
 
     dice[index] = -1;
     roll.ForceUpdate(dice);
+    return pips;
+  }
 
-    var newPos = (playerPos.current + pips) % Spots;
-    playerPos.Update(newPos);
-
-    spaces.TryGetValue(newPos, out var sdata);
+  public void ProcessSpace (int pos) {
+    spaces.TryGetValue(pos, out var sdata);
     if (sdata != null) switch (sdata.spaceType) {
     case Space.Type.Battle:
       battle.Emit(new Battle(player, data.enemies[nextBattle++]));
       // if we are running out of battles, clear this space
-      if (RemainBattles > data.enemies.Length - nextBattle) spaces[newPos] = null;
+      if (RemainBattles > data.enemies.Length - nextBattle) spaces[pos] = null;
       return;
     case Space.Type.Chest:
       if (data.loot.Length > nextLoot) {
         AwardDie(data.loot[nextLoot++]);
         // if we are running out of loot, clear this space
-        if (RemainSpaces(Space.Type.Chest) > data.loot.Length - nextLoot) spaces[newPos] = null;
+        if (RemainSpaces(Space.Type.Chest) > data.loot.Length - nextLoot) spaces[pos] = null;
       }
       break;
     case Space.Type.Die:
@@ -112,7 +112,7 @@ public class Board {
         Debug.Log("TODO: handle die space " + sdata.dieType);
         break;
       }
-      spaces[newPos] = null;
+      spaces[pos] = null;
       break;
     case Space.Type.Trap:
       // TODO

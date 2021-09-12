@@ -16,13 +16,13 @@ public class PipDieController : MonoBehaviour {
   public TMP_Text number;
   public Button button;
 
-  public void Init (Board board, int index) {
-    onDestroy += board.roll.OnValue(dice => {
+  public void Init (BoardController owner, int index) {
+    onDestroy += owner.board.roll.OnValue(dice => {
       var pips = dice[index];
       if (pips > 0) number.text = pips.ToString();
       die.SetActive(pips > 0);
     });
-    button.onClick.AddListener(() => board.UseDie(index));
+    button.onClick.AddListener(() => owner.UseDie(index));
   }
 
   private void OnDestroy () => onDestroy();
