@@ -48,6 +48,7 @@ public class DieController : MonoBehaviour {
     if (burning) {
       comb.hp.UpdateVia(hp => Math.Max(0, hp-Effect.FireDamage));
       SetBurning(false);
+      battle.CheckGameOver();
       return;
     }
 

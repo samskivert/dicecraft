@@ -77,6 +77,12 @@ public class BattleController : MonoBehaviour {
     if (!playerTurn) this.RunAfter(1, EnemyPlay);
   }
 
+  public bool CheckGameOver () {
+    if (battle.player.hp.current > 0 && battle.enemy.hp.current > 0) return false;
+    this.RunAfter(1, EndGame);
+    return true;
+  }
+
   private void ClearSlots () {
     if (slots != null) for (var ii = slots.Length-1; ii >= 0; ii -= 1) {
       Destroy(slotsPanel.transform.GetChild(ii).gameObject);
@@ -132,12 +138,6 @@ public class BattleController : MonoBehaviour {
       comb.effects[Effect.Type.Burn] = 0;
       comb.effects[Effect.Type.Freeze] = 0;
     }));
-  }
-
-  private bool CheckGameOver () {
-    if (battle.player.hp.current > 0 && battle.enemy.hp.current > 0) return false;
-    this.RunAfter(1, EndGame);
-    return true;
   }
 
   private void Attack () {

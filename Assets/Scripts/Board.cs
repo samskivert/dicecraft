@@ -106,8 +106,7 @@ public class Board {
       case Die.Type.Slash:
       case Die.Type.Pierce:
       case Die.Type.Blunt:
-        player.hp.UpdateVia(hp => Math.Max(hp - sdata.level, 0));
-        if (player.hp.current == 0) onDied();
+        if (player.ApplyDamage(sdata.dieType, sdata.level)) onDied();
         break;
       default:
         Debug.Log("TODO: handle die space " + sdata.dieType);

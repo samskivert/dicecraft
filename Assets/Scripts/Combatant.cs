@@ -30,6 +30,22 @@ public class Combatant {
     effected.Emit((type, amount));
   }
 
+  public bool ApplyDamage (Die.Type dieType, int amount) {
+    var damage = amount;
+    if (Resistance == dieType) damage -= 1;
+    if (Weakness == dieType) damage += 1;
+    // TODO: potentially evade this attack
+    effects.TryGetValue(Effect.Type.Shield, out var shield);
+    if (shield > 0) {
+      var used = Math.Min(damage, shield);
+      damage -= used;
+      effects.Update(Effect.Type.Shield, s => s-used);
+      effected.Emit((Effect.Type.Shield, -used));
+    }
+    hp.UpdateVia(hp => Math.Max(0, hp-damage));
+    return hp.current == 0;
+  }
+
   public void Heal (int amount) {
     var heal = Math.Min(amount, MaxHp-hp.current);
     hp.UpdateVia(hp => hp + heal);

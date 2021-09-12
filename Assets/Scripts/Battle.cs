@@ -35,7 +35,6 @@ public class Battle {
   public void Attack (
     IEnumerable<(FaceData, int, int)> dice, Combatant attacker, Combatant defender
   ) {
-    var damage = 0;
     var delay = 0f;
     foreach (var pair in dice) {
       var face = pair.Item1;
@@ -47,11 +46,9 @@ public class Battle {
       case Die.Type.Pierce:
       case Die.Type.Blunt:
       case Die.Type.Magic:
-        damage += face.amount;
-        if (defender.Resistance == face.dieType) damage -= 1;
-        if (defender.Weakness == face.dieType) damage += 1;
         flings.Emit((delay, slot, attacker == enemy));
         barriers.Emit(this);
+        if (defender.ApplyDamage(face.dieType, face.amount)) return; // dead
         delay += 1;
         break;
       case Die.Type.Shield:
@@ -78,18 +75,6 @@ public class Battle {
         defender.AddEffect(face.effectType, 1);
         break;
       }
-    }
-
-    if (damage > 0) {
-      // TODO: potentially evade this attack
-      defender.effects.TryGetValue(Effect.Type.Shield, out var shield);
-      if (shield > 0) {
-        var used = Math.Min(damage, shield);
-        damage -= used;
-        defender.effects.Update(Effect.Type.Shield, s => s-used);
-        defender.effected.Emit((Effect.Type.Shield, -used));
-      }
-      defender.hp.UpdateVia(hp => Math.Max(0, hp-damage));
     }
   }
 }
