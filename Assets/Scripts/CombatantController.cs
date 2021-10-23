@@ -43,8 +43,10 @@ public class CombatantController : MonoBehaviour {
 
     onDestroy += comb.effected.OnEmit(
       pair => game.floater.Float(gameObject, pair.Item1, pair.Item2));
-    onDestroy += comb.diced.OnEmit(
-      pair => game.floater.Float(gameObject, pair.Item1, pair.Item2));
+    onDestroy += comb.diced.OnEmit(pair => {
+      if (pair.Item1 == Die.Type.Heal) return; // don't animate heal; we'll see the HP float
+      game.floater.Float(gameObject, pair.Item1, pair.Item2);
+    });
     onDestroy += comb.hp.OnChange(
       (hp, oldHp) => game.floater.FloatHp(gameObject, hp-oldHp));
 
