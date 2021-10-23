@@ -15,31 +15,26 @@ MonoBehaviour:
   image: {fileID: 21300000, guid: 7aefe67fc80e23a439846d4210031764, type: 3}
   player: {fileID: 11400000, guid: 829caa89924b941eaa54ec76a0a1e121, type: 2}
   spaces:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 11400000, guid: 8853681f99f564092a216e27e3f62d7d, type: 2}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 11400000, guid: dca52ef26d6974f2ea97aaa7ed5abe7f, type: 2}
-  - {fileID: 0}
-  - {fileID: 11400000, guid: 8853681f99f564092a216e27e3f62d7d, type: 2}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 11400000, guid: 8853681f99f564092a216e27e3f62d7d, type: 2}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 11400000, guid: dca52ef26d6974f2ea97aaa7ed5abe7f, type: 2}
-  - {fileID: 0}
-  - {fileID: 11400000, guid: 8853681f99f564092a216e27e3f62d7d, type: 2}
-  - {fileID: 0}
-  fillers:
-  - {fileID: 11400000, guid: 29c92551214ae4c459b19c5fd2074186, type: 2}
-  - {fileID: 11400000, guid: e6568d21300e04c13a422235f2bee01b, type: 2}
-  - {fileID: 11400000, guid: ab82286b1fe6b4034854a62f922262f9, type: 2}
   - {fileID: 11400000, guid: 4ce3df9e0a0c648d08e3c0aec5a9d183, type: 2}
+  - {fileID: 0}
+  - {fileID: 11400000, guid: 8853681f99f564092a216e27e3f62d7d, type: 2}
+  - {fileID: 0}
+  - {fileID: 11400000, guid: 29c92551214ae4c459b19c5fd2074186, type: 2}
+  - {fileID: 0}
+  - {fileID: 11400000, guid: dca52ef26d6974f2ea97aaa7ed5abe7f, type: 2}
+  - {fileID: 0}
+  - {fileID: 11400000, guid: 8853681f99f564092a216e27e3f62d7d, type: 2}
+  - {fileID: 0}
+  - {fileID: 11400000, guid: ab82286b1fe6b4034854a62f922262f9, type: 2}
+  - {fileID: 0}
+  - {fileID: 11400000, guid: 8853681f99f564092a216e27e3f62d7d, type: 2}
+  - {fileID: 0}
+  - {fileID: 11400000, guid: e6568d21300e04c13a422235f2bee01b, type: 2}
+  - {fileID: 0}
+  - {fileID: 11400000, guid: dca52ef26d6974f2ea97aaa7ed5abe7f, type: 2}
+  - {fileID: 0}
+  - {fileID: 11400000, guid: 8853681f99f564092a216e27e3f62d7d, type: 2}
+  - {fileID: 0}
   loot:
   - {fileID: 11400000, guid: f713d642b2bd15f43ba73adaef7fa980, type: 2}
   - {fileID: 11400000, guid: 0559c0a85ed934417ae845b724311a7e, type: 2}
@@ -55,5 +50,5 @@ MonoBehaviour:
   - {fileID: 11400000, guid: e90a7d668f5dc054b90ba65c2bd0ad15, type: 2}
   - {fileID: 11400000, guid: a136ddb6a1ee52943b4b4a2f0cd10dd3, type: 2}
   - {fileID: 11400000, guid: 87e737dbf2e1fc0448d563c330d50e09, type: 2}
-  startSpace: 0
+  startSpace: 1
   price: 10
