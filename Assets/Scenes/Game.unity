@@ -665,6 +665,7 @@ MonoBehaviour:
   - {fileID: 21300000, guid: faf93c9709120ae468e0b69c37fd8445, type: 3}
   - {fileID: 21300000, guid: 376aafcafdc7fb8488cf66f78d7f228f, type: 3}
   - {fileID: 21300000, guid: 2ddd8b835750814429efe1267b7a7f92, type: 3}
+  icons: {fileID: 11400000, guid: ef1bd7846cf01447d98f65e899bcfe03, type: 2}
   hpIcon: {fileID: 21300000, guid: 0b8029e6d6c5e994a930e9f0c7a7bdac, type: 3}
   game: {fileID: 4913607266627143313}
   canvas: {fileID: 923909729}

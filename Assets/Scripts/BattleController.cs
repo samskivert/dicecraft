@@ -49,7 +49,7 @@ public class BattleController : MonoBehaviour {
       var slot = slots[trip.Item2];
       var player = trip.Item3;
       game.floater.Fling(slot.gameObject, (player ? this.player : this.enemy).gameObject,
-                         slot.face.image, slot.face.amount);
+                         slot.face);
     });
     battle.barriers.OnEmit(_ => game.anim.AddBarrier());
 
