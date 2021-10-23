@@ -45,8 +45,7 @@ public class Board {
   public Board (Player player, BoardData data) {
     this.player = player;
     this.data = data;
-    for (var ii = 0; ii < data.spaces.Length; ii += 1) spaces.Add(
-      ii, data.spaces[ii] ?? (ii > 0 ? random.Pick(data.fillers) : null));
+    for (var ii = 0; ii < data.spaces.Length; ii += 1) spaces.Add(ii, data.spaces[ii]);
     playerPos.Update(data.startSpace);
     AwardDie(data.loot[nextLoot++]);
   }
@@ -113,6 +112,9 @@ public class Board {
         break;
       }
       spaces[pos] = null;
+      // move this spot to a random place on the board
+      var newPos = spaces.Keys.Where(ii => spaces[ii] == null).PickUnknown(random);
+      spaces[newPos] = sdata;
       break;
     case Space.Type.Trap:
       // TODO
