@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5fc8e5beb78c94121bed2955f3026cbf, type: 3}
   m_Name: spring land
   m_EditorClassIdentifier: 
+  saveId: spring_land
   image: {fileID: 21300000, guid: 7aefe67fc80e23a439846d4210031764, type: 3}
   player: {fileID: 11400000, guid: 829caa89924b941eaa54ec76a0a1e121, type: 2}
   spaces:

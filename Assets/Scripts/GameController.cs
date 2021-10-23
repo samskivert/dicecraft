@@ -64,7 +64,31 @@ public class GameController : MonoBehaviour, Player.LevelData {
   }
 
   private void Start () {
+    // sync the player's coins and unlocked boards to prefs
+    coins.Update(PlayerPrefs.GetInt("coins"));
+    coins.OnEmit(coins => PlayerPrefs.SetInt("coins", coins));
+
+    foreach (var board in boards) {
+      if (String.IsNullOrEmpty(board.saveId)) {
+        Debug.LogWarning($"Missing save id for board: {board}");
+        return;
+      } else if (board.saveId.Contains(":")) {
+        Debug.LogWarning($"Invalid save id ({board.saveId}) for board: {board}");
+        return;
+      }
+    }
+
+    var unlockedIds = PlayerPrefs.GetString("unlocked");
+    if (!String.IsNullOrEmpty(unlockedIds)) {
+      var ids = new HashSet<string>(unlockedIds.Split(':'));
+      foreach (var board in boards) if (ids.Contains(board.saveId)) unlocked.Add(board);
+    }
     unlocked.Add(boards[0]);
+    unlocked.OnEmit(uboards => {
+      var saveIds = String.Join(":", uboards.Select(board => board.saveId));
+      PlayerPrefs.SetString("unlocked", saveIds);
+    });
+
     ShowTitle();
   }
 

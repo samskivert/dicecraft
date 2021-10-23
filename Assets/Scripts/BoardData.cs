@@ -9,6 +9,7 @@ using UnityEngine;
 [CreateAssetMenu(menuName = "Dicecraft/Board", fileName = "Board")]
 public class BoardData : ScriptableObject {
 
+  public string saveId;
   public Sprite image;
   public PlayerData player;
   public SpaceData[] spaces;
