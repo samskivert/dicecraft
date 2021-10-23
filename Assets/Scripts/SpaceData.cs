@@ -11,6 +11,6 @@ public class SpaceData : ScriptableObject {
   public Effect.Type effectType;
   public int level;
 
-  public override string ToString () => $"{name}/{spaceType}/{level}";
+  public override string ToString () => $"{name}/{spaceType}/{dieType}/{effectType}/{level}";
 }
 }

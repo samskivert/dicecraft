@@ -110,7 +110,7 @@ public class Board {
         if (player.ApplyDamage(sdata.dieType, sdata.level)) onDied();
         break;
       default:
-        Debug.Log("TODO: handle die space " + sdata.dieType);
+        Debug.Log("TODO: handle die space: " + sdata);
         break;
       }
       spaces[pos] = null;
@@ -119,7 +119,8 @@ public class Board {
       spaces[newPos] = sdata;
       break;
     case Space.Type.Trap:
-      // TODO
+      if (sdata.effectType != Effect.Type.None) player.AddEffect(sdata.effectType, sdata.level);
+      else Debug.Log("TODO: handle trap space: " + sdata);
       break;
     }
 
