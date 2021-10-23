@@ -58,7 +58,11 @@ public class Combatant {
   }
 
   public void Play (DieController[] dice, SlotController[] slots) {
-    foreach (var die in dice) die.Play(this, false);
+    foreach (var die in dice) {
+      if (die.frozen) continue;
+      if (die.burning) die.Play(this, false);
+      die.Play(this, false);
+    }
   }
 }
 
