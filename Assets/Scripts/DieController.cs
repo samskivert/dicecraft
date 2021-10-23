@@ -10,9 +10,11 @@ using React;
 public class DieController : MonoBehaviour {
   private BattleController battle;
 
+  public IconData icons;
   public Image above;
   public Image image;
   public Image below;
+  public Image type;
   public FaceData face { get; private set; }
 
   public bool burning { get; private set; }
@@ -22,6 +24,7 @@ public class DieController : MonoBehaviour {
     this.battle = battle;
     this.face = face;
     image.sprite = face.image;
+    type.sprite = icons.Die(face.dieType);
   }
 
   public void EnableClick (Combatant comb) {
