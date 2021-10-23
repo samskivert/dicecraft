@@ -14,6 +14,7 @@ using React;
 
 public class BoardController : MonoBehaviour {
   private event Action onDestroy;
+  private GameController game;
 
   public SpaceController[] spaces;
   public TMP_Text coinsLabel;
@@ -33,6 +34,7 @@ public class BoardController : MonoBehaviour {
   public Board board { get; private set; }
 
   public void Init (GameController game) {
+    this.game = game;
     this.board = game.board;
     var idx = 0;
     foreach (var space in spaces) space.Init(board, idx++);
@@ -61,7 +63,7 @@ public class BoardController : MonoBehaviour {
     });
     onDestroy += board.player.level.OnValue(level => levelLabel.text = $"Level: {level+1}");
 
-    board.onDied += () => game.ShowLost();
+    board.onDied += () => game.ShowLost(board);
   }
 
   public void UseDie (int index) {
@@ -83,6 +85,7 @@ public class BoardController : MonoBehaviour {
   public void ShowCompleted (UnityAction onClick) {
     wonPanel.SetActive(true);
     wonPanel.GetComponentInChildren<Button>().onClick.AddListener(onClick);
+    wonPanel.GetComponentInChildren<EarnedCoinsController>().Init(board.earnedCoins);
   }
 
   private void OnDestroy () => onDestroy();

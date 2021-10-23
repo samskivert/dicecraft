@@ -15,6 +15,7 @@ public class BattleController : MonoBehaviour {
   private readonly System.Random random = new System.Random();
   private GameController game;
   private Battle battle;
+  private Board board;
   private bool playerTurn;
 
   public CombatantController player;
@@ -37,8 +38,9 @@ public class BattleController : MonoBehaviour {
     attack.onClick.AddListener(Attack);
   }
 
-  public void Init (GameController game, Battle battle, UnityAction onWin) {
+  public void Init (GameController game, Board board, Battle battle, UnityAction onWin) {
     this.game = game;
+    this.board = board;
     this.battle = battle;
 
     wonPanel.SetActive(false);
@@ -176,8 +178,9 @@ public class BattleController : MonoBehaviour {
       else wonCtrl.coinLabel.gameObject.transform.parent.gameObject.SetActive(false);
       wonCtrl.AnimateXP(battle.player, startXp, endXp, maxXp);
       battle.player.Award(enemy.xpAward);
+      board.earnedCoins += enemy.coinAward;
       game.Award(enemy.coinAward);
-    } else game.ShowLost();
+    } else game.ShowLost(board);
   }
 }
 }

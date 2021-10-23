@@ -54,8 +54,9 @@ public class GameController : MonoBehaviour, Player.LevelData {
     unlocked.Add(board);
   }
 
-  public void ShowLost () {
+  public void ShowLost (Board board) {
     var popObj = Instantiate(lostPopupPrefab, canvas.transform);
+    popObj.GetComponentInChildren<EarnedCoinsController>().Init(board.earnedCoins);
     popObj.GetComponentInChildren<Button>().onClick.AddListener(() => {
       Destroy(popObj);
       ShowTitle();
@@ -86,7 +87,7 @@ public class GameController : MonoBehaviour, Player.LevelData {
   private void StartBattle (Battle battle) {
     var battleScreen = SetScreen(battlePrefab);
     var battleCtrl = battleScreen.GetComponent<BattleController>();
-    battleCtrl.Init(this, battle, ShowBoard);
+    battleCtrl.Init(this, board, battle, ShowBoard);
   }
 
   private GameObject SetScreen (GameObject prefab) {

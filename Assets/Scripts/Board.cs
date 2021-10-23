@@ -38,6 +38,8 @@ public class Board {
   public Emitter<DieData> gotDie = new Emitter<DieData>();
   public Action onDied;
 
+  public int earnedCoins;
+
   public int RemainBattles => RemainSpaces(Space.Type.Battle);
   private int RemainSpaces (Space.Type type) => spaces.Values.Count(
     sd => sd != null && sd.spaceType == type);
