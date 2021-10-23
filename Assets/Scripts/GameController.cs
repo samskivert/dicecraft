@@ -22,9 +22,11 @@ public class GameController : MonoBehaviour, Player.LevelData {
   public GameObject battlePrefab;
   public GameObject lostPopupPrefab;
 
+  public GameObject debugPrefab;
+  public Button debugButton;
+
   public FloatController floater;
 
-  public EnemyData[] enemies;
   public int[] levelXps;
   public int[] levelHps;
 
@@ -68,6 +70,17 @@ public class GameController : MonoBehaviour, Player.LevelData {
     coins.Update(PlayerPrefs.GetInt("coins"));
     coins.OnEmit(coins => PlayerPrefs.SetInt("coins", coins));
 
+    debugButton.gameObject.SetActive(Application.isEditor);
+    debugButton.onClick.AddListener(() => {
+      if (screen.GetComponent<DebugController>() != null) {
+        ShowTitle();
+        debugButton.GetComponentInChildren<TMP_Text>().text = "Debug";
+      } else {
+        ShowDebug();
+        debugButton.GetComponentInChildren<TMP_Text>().text = "Back";
+      }
+    });
+
     foreach (var board in boards) {
       if (String.IsNullOrEmpty(board.saveId)) {
         Debug.LogWarning($"Missing save id for board: {board}");
@@ -95,22 +108,23 @@ public class GameController : MonoBehaviour, Player.LevelData {
   private void Update () => anim.Update(Time.deltaTime);
 
   private void ShowTitle () {
-    var titleScreen = SetScreen(titlePrefab);
-    titleScreen.GetComponent<TitleController>().Init(this);
+    SetScreen(titlePrefab).GetComponent<TitleController>().Init(this);
     board = null;
   }
 
+  private void ShowDebug () {
+    SetScreen(debugPrefab).GetComponent<DebugController>().Init(this);
+  }
+
   private void ShowBoard () {
-    var boardScreen = SetScreen(boardPrefab);
-    var bctrl = boardScreen.GetComponent<BoardController>();
+    var bctrl = SetScreen(boardPrefab).GetComponent<BoardController>();
     bctrl.Init(this);
     if (board.RemainBattles == 0) bctrl.ShowCompleted(ShowTitle);
     else board.MaybeReRoll();
   }
 
   private void StartBattle (Battle battle) {
-    var battleScreen = SetScreen(battlePrefab);
-    var battleCtrl = battleScreen.GetComponent<BattleController>();
+    var battleCtrl = SetScreen(battlePrefab).GetComponent<BattleController>();
     battleCtrl.Init(this, board, battle, ShowBoard);
   }
 

@@ -49,15 +49,10 @@ public class SlotController : MonoBehaviour {
     damageLabel.text = " ";
   }
 
-  public void PlayDie (FaceData face, bool clickable, UnityAction unplay) {
+  public void Show (FaceData face) {
     typeLabel.text = face.name;
-    this.face = face;
-    this.unplay = unplay;
-    button.interactable = clickable;
-
     typeBack.sprite = icons.Die(face.dieType);
     image.sprite = face.image;
-
     var amount = face.amount; // type.Boost(upgrades, face.amount);
     var eff = face.effectType == Effect.Type.None ? "" : $"{face.effectType} ";
     switch (face.dieType) {
@@ -65,7 +60,7 @@ public class SlotController : MonoBehaviour {
     case Die.Type.Pierce:
     case Die.Type.Blunt:
     case Die.Type.Magic:
-      damageLabel.text = $"{amount} {face.dieType} {eff}damage";
+      damageLabel.text = $"{amount} {eff}damage";
       break;
     case Die.Type.Shield:
       damageLabel.text = $"+{amount} shield";
@@ -77,7 +72,14 @@ public class SlotController : MonoBehaviour {
       damageLabel.text = $"+{amount} HP";
       break;
     }
+  }
 
+  public void PlayDie (FaceData face, bool clickable, UnityAction unplay) {
+    this.face = face;
+    this.unplay = unplay;
+    button.interactable = clickable;
+
+    Show(face);
     // Debug.Log($"Playing {face} on {type}");
   }
 }

@@ -19,9 +19,7 @@ public class SpaceController : MonoBehaviour {
   public Image playerImage;
 
   public void Init (Board board, int index) {
-    onDestroy += board.spaces.GetValue(index).OnValue(space => {
-      image.sprite = space == null ? blankImage : space.image;
-    });
+    onDestroy += board.spaces.GetValue(index).OnValue(Show);
 
     onDestroy += board.playerPos.OnValue(idx => {
       if (idx == index) playerImage.sprite = board.player.data.image;
@@ -29,6 +27,10 @@ public class SpaceController : MonoBehaviour {
     });
   }
 
-  private void OnDestroy () => onDestroy();
+  public void Show (SpaceData space) {
+    image.sprite = space == null ? blankImage : space.image;
+  }
+
+  private void OnDestroy () => onDestroy?.Invoke();
 }
 }

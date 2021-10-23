@@ -2,10 +2,13 @@ namespace dicecraft {
 
 using System;
 using System.Collections.Generic;
+using System.Linq;
 
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
+
+using React;
 
 public static class Extensions {
 
@@ -67,6 +70,30 @@ public static class Extensions {
     }
     return list;
   }
+
+  /// <summary>Configures `dropdown` to pick from a list of values.</summary>
+  public static IMutable<E> PickValues<E> (
+    this TMP_Dropdown dropdown, IList<E> values, int start, Func<E, string> toString
+  ) {
+    dropdown.ClearOptions();
+    dropdown.AddOptions(values.Select(vv => toString(vv)).ToList());
+    dropdown.value = start;
+    var option = Values.Mutable(values[start]);
+    dropdown.onValueChanged.RemoveAllListeners();
+    dropdown.onValueChanged.AddListener(value => option.Update(values[value]));
+    return option;
+  }
+
+  /// <summary>Configures `dropdown` to pick from a list of values.</summary>
+  public static IMutable<E> PickValues<E> (this TMP_Dropdown dropdown, IList<E> values, int start) =>
+    PickValues(dropdown, values, start, vv => vv.ToString());
+
+  /// <summary>Configures `dropdown` to pick an enum value.</summary>
+  public static IMutable<E> PickEnum<E> (this TMP_Dropdown dropdown, E start) where E : Enum {
+    var values = (E[])Enum.GetValues(typeof(E));
+    return PickValues(dropdown, values, Array.IndexOf(values, start));
+  }
+
 }
 
 }

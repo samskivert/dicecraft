@@ -23,8 +23,12 @@ public class DieController : MonoBehaviour {
   public void Init (BattleController battle, FaceData face) {
     this.battle = battle;
     this.face = face;
-    typeBack.sprite = icons.Die(face.dieType);
-    image.sprite = face.image;
+    Show(face);
+  }
+
+  public void Show (FaceData face) {
+    typeBack.sprite = face == null ? null : icons.Die(face.dieType);
+    image.sprite = face?.image;
   }
 
   public void EnableClick (Combatant comb) {
@@ -57,11 +61,9 @@ public class DieController : MonoBehaviour {
 
     foreach (var slot in battle.slots) {
       if (!slot.CanPlay(face)) continue;
-      typeBack.sprite = null;
-      image.sprite = null;
+      Show(null);
       slot.PlayDie(face, clickable, () => {
-        typeBack.sprite = icons.Die(face.dieType);
-        image.sprite = face.image;
+        Show(face);
         battle.UpdateAttack();
       });
       battle.UpdateAttack();

@@ -8,13 +8,16 @@ using TMPro;
 
 public class GotDieController : MonoBehaviour {
 
-  public DieController[] dieFaces;
   public TMP_Text dieName;
   public Button ok;
 
+  public GameObject faces;
+  public GameObject slotPrefab;
+
   public void Show (DieData die) {
     dieName.text = die.name;
-    for (var ii = 0; ii < dieFaces.Length; ii += 1) dieFaces[ii].Init(null, die.faces[ii]);
+    foreach (var face in die.faces) Instantiate(slotPrefab, faces.transform).
+      GetComponent<SlotController>().Show(face);
     ok.onClick.AddListener(() => Destroy(gameObject));
   }
 }
