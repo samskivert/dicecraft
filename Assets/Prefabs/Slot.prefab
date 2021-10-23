@@ -118,9 +118,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f220f29f43fd549fbbb586739c6971c3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  icons: {fileID: 11400000, guid: ef1bd7846cf01447d98f65e899bcfe03, type: 2}
   typeLabel: {fileID: 6582502701499003780}
   damageLabel: {fileID: 1297549440040339043}
   button: {fileID: 2293948282219368006}
+  typeBack: {fileID: 3703297124093571827}
   image: {fileID: 523837039952433749}
 --- !u!1 &4211325910183272389
 GameObject:

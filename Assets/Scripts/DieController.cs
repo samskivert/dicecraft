@@ -12,9 +12,9 @@ public class DieController : MonoBehaviour {
 
   public IconData icons;
   public Image above;
+  public Image typeBack;
   public Image image;
   public Image below;
-  public Image type;
   public FaceData face { get; private set; }
 
   public bool burning { get; private set; }
@@ -23,8 +23,8 @@ public class DieController : MonoBehaviour {
   public void Init (BattleController battle, FaceData face) {
     this.battle = battle;
     this.face = face;
+    typeBack.sprite = icons.Die(face.dieType);
     image.sprite = face.image;
-    type.sprite = icons.Die(face.dieType);
   }
 
   public void EnableClick (Combatant comb) {
@@ -57,8 +57,10 @@ public class DieController : MonoBehaviour {
 
     foreach (var slot in battle.slots) {
       if (!slot.CanPlay(face)) continue;
+      typeBack.sprite = null;
       image.sprite = null;
       slot.PlayDie(face, clickable, () => {
+        typeBack.sprite = icons.Die(face.dieType);
         image.sprite = face.image;
         battle.UpdateAttack();
       });

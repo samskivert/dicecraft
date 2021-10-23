@@ -8,9 +8,11 @@ using TMPro;
 public class SlotController : MonoBehaviour {
   private UnityAction unplay;
 
+  public IconData icons;
   public TMP_Text typeLabel;
   public TMP_Text damageLabel;
   public Button button;
+  public Image typeBack;
   public Image image;
 
   // public Die.Type type { get; private set; }
@@ -43,6 +45,7 @@ public class SlotController : MonoBehaviour {
     face = null;
     unplay = null;
     image.sprite = null;
+    typeBack.sprite = null;
     damageLabel.text = " ";
   }
 
@@ -52,7 +55,9 @@ public class SlotController : MonoBehaviour {
     this.unplay = unplay;
     button.interactable = clickable;
 
+    typeBack.sprite = icons.Die(face.dieType);
     image.sprite = face.image;
+
     var amount = face.amount; // type.Boost(upgrades, face.amount);
     var eff = face.effectType == Effect.Type.None ? "" : $"{face.effectType} ";
     switch (face.dieType) {
