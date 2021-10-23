@@ -15,25 +15,25 @@ MonoBehaviour:
   image: {fileID: 21300000, guid: 7aefe67fc80e23a439846d4210031764, type: 3}
   player: {fileID: 11400000, guid: 829caa89924b941eaa54ec76a0a1e121, type: 2}
   spaces:
-  - {fileID: 11400000, guid: 29c92551214ae4c459b19c5fd2074186, type: 2}
   - {fileID: 0}
-  - {fileID: 11400000, guid: 8853681f99f564092a216e27e3f62d7d, type: 2}
   - {fileID: 0}
-  - {fileID: 11400000, guid: e6568d21300e04c13a422235f2bee01b, type: 2}
   - {fileID: 0}
-  - {fileID: 11400000, guid: dca52ef26d6974f2ea97aaa7ed5abe7f, type: 2}
   - {fileID: 0}
-  - {fileID: 11400000, guid: 8853681f99f564092a216e27e3f62d7d, type: 2}
   - {fileID: 0}
-  - {fileID: 11400000, guid: 29c92551214ae4c459b19c5fd2074186, type: 2}
   - {fileID: 0}
-  - {fileID: 11400000, guid: 8853681f99f564092a216e27e3f62d7d, type: 2}
   - {fileID: 0}
-  - {fileID: 11400000, guid: e6568d21300e04c13a422235f2bee01b, type: 2}
   - {fileID: 0}
-  - {fileID: 11400000, guid: dca52ef26d6974f2ea97aaa7ed5abe7f, type: 2}
   - {fileID: 0}
-  - {fileID: 11400000, guid: 8853681f99f564092a216e27e3f62d7d, type: 2}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
   - {fileID: 0}
   loot:
   - {fileID: 11400000, guid: f713d642b2bd15f43ba73adaef7fa980, type: 2}
