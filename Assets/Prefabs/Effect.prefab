@@ -87,14 +87,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5a90f6bbae4d647c6b18de4529602e75, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  effectIcons:
-  - {fileID: 0}
-  - {fileID: 21300000, guid: ddb11879c21ec274991650fb9ea186e2, type: 3}
-  - {fileID: 21300000, guid: d4f6d91ae77c544779ce58f2f2d815ef, type: 3}
-  - {fileID: 21300000, guid: a464438fe267e444da1cc89a4420df2e, type: 3}
-  - {fileID: 21300000, guid: 8a4b400101f035b43a9caf78de3c5f61, type: 3}
-  - {fileID: 21300000, guid: 71c6b0edb94144e40bdccd80476429f5, type: 3}
-  - {fileID: 0}
+  icons: {fileID: 11400000, guid: ef1bd7846cf01447d98f65e899bcfe03, type: 2}
   icon: {fileID: 6893255499267615676}
   countLabel: {fileID: 4281004572463976413}
 --- !u!114 &7376699681641670343

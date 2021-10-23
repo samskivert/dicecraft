@@ -101,15 +101,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f5028b33d16b14f6d90f8c574478b75f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  dieIcons:
-  - {fileID: 0}
-  - {fileID: 21300000, guid: b5c26f558539241a9a622e9937f265a9, type: 3}
-  - {fileID: 21300000, guid: bdfb64de135594701a39f27aca914668, type: 3}
-  - {fileID: 21300000, guid: 8dd6e3a9c6b724f53a252a46d86425f2, type: 3}
-  - {fileID: 21300000, guid: c6bc61513fb314a269443a33da439023, type: 3}
-  - {fileID: 0}
-  - {fileID: 21300000, guid: 6c44c33137b4c4f0fafa3bb10ea73cd3, type: 3}
-  - {fileID: 21300000, guid: 2ddd8b835750814429efe1267b7a7f92, type: 3}
+  icons: {fileID: 11400000, guid: ef1bd7846cf01447d98f65e899bcfe03, type: 2}
   icon: {fileID: 6893255499267615676}
   countLabel: {fileID: 4281004572463976413}
 --- !u!1 &5385335898822643509
