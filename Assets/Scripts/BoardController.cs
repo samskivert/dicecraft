@@ -22,6 +22,10 @@ public class BoardController : MonoBehaviour {
   public GameObject dicePanel;
   public GameObject pipDiePrefab;
   public GameObject gotDiePrefab;
+  public GameObject showDiePrefab;
+
+  public GameObject diceBagPanel;
+  public GameObject bagDiePrefab;
 
   public CombatantController player;
   public Image xpMeter;
@@ -52,9 +56,19 @@ public class BoardController : MonoBehaviour {
       while (dtx.childCount > dice.Length) Destroy(dtx.GetChild(dtx.childCount-1));
     });
 
+    void AddBagDie (DieData die) {
+      var dieObj = Instantiate(bagDiePrefab, diceBagPanel.transform);
+      dieObj.GetComponent<DieController>().Show(die.faces[0]);
+      dieObj.SetActive(true);
+      var button = dieObj.AddComponent<Button>();
+      button.onClick.AddListener(() => {
+        Instantiate(showDiePrefab, transform.parent).GetComponent<GotDieController>().Show(die);
+      });
+    }
+
     onDestroy += board.gotDie.OnEmit(die => {
-      var gotDie = Instantiate(gotDiePrefab, transform.parent);
-      gotDie.GetComponent<GotDieController>().Show(die);
+      Instantiate(gotDiePrefab, transform.parent).GetComponent<GotDieController>().Show(die);
+      AddBagDie(die);
     });
 
     onDestroy += board.player.xp.OnValue(xp => {
@@ -64,6 +78,7 @@ public class BoardController : MonoBehaviour {
     onDestroy += board.player.level.OnValue(level => levelLabel.text = $"Level: {level+1}");
 
     board.onDied += () => game.ShowLost(board);
+    foreach (var die in board.player.dice) AddBagDie(die);
   }
 
   public void UseDie (int index) {
