@@ -49,14 +49,13 @@ public class DieController : MonoBehaviour {
     below.gameObject.SetActive(true);
   }
 
-  public void Play (Combatant comb, bool clickable) {
-    if (image.sprite == null || frozen) return;
+  public bool Play (Combatant comb, bool clickable) {
+    if (image.sprite == null || frozen) return false;
 
     if (burning) {
       comb.hp.UpdateVia(hp => Math.Max(0, hp-Effect.FireDamage));
       SetBurning(false);
-      battle.CheckGameOver();
-      return;
+      return battle.CheckGameOver();
     }
 
     foreach (var slot in battle.slots) {
@@ -69,6 +68,8 @@ public class DieController : MonoBehaviour {
       battle.UpdateAttack();
       break;
     }
+    // TODO: should we check whether the game ended here too?
+    return false;
   }
 }
 }

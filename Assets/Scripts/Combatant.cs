@@ -60,7 +60,10 @@ public class Combatant {
   public void Play (DieController[] dice, SlotController[] slots) {
     foreach (var die in dice) {
       if (die.frozen) continue;
-      if (die.burning) die.Play(this, false);
+      if (die.burning) {
+        // if this ends the game, stop here
+        if (die.Play(this, false)) return;
+      }
       die.Play(this, false);
     }
   }
