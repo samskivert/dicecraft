@@ -19,7 +19,6 @@ public class PaletteController : MonoBehaviour {
   public IMutable<ScriptableObject> selectedCell = Values.Mutable<ScriptableObject>(null);
 
   private void Awake () {
-
     void AddHeader (string label) {
       var labelObj = Instantiate(labelPrefab, transform);
       labelObj.GetComponent<TMP_Text>().text = label;
@@ -40,7 +39,6 @@ public class PaletteController : MonoBehaviour {
         button.cell = data;
         button.toggle.group = group;
         button.toggle.onValueChanged.AddListener(sel => {
-          Debug.Log("Toggled " + data + " " + sel);
           if (sel) selectedCell.Update(data);
         });
       }
