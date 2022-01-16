@@ -1,8 +1,6 @@
 namespace dicecraft {
 
-using System;
 using System.Collections.Generic;
-using System.Linq;
 using UnityEngine;
 
 using React;
@@ -40,7 +38,7 @@ public class Player : Combatant {
   public Player (LevelData levelData, PlayerData data) {
     this.levelData = levelData;
     this.data = data;
-    hp.Update(MaxHp);
+    // hp.Update(MaxHp);
   }
 
   public string LevelReward (int level) {

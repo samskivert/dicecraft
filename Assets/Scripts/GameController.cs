@@ -31,6 +31,7 @@ public class GameController : MonoBehaviour, Player.LevelData {
   public int[] levelHps;
 
   public BoardData[] boards;
+  public LevelData[] levels;
 
   public readonly IMutable<int> coins = Values.Mutable(0);
   public readonly MutableSet<BoardData> unlocked = RSets.LocalMutable<BoardData>();
@@ -40,6 +41,7 @@ public class GameController : MonoBehaviour, Player.LevelData {
   public int[] LevelHps => levelHps;
 
   public Board board { get; private set; }
+  public Level level { get; private set; }
 
   public void StartBoard (BoardData data) {
     board = new Board(new Player(this, data.player), data);
