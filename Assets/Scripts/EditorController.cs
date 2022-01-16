@@ -1,12 +1,15 @@
 namespace dicecraft {
 
+using UnityEditor;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class EditorController : MonoBehaviour {
   private Level _level;
 
   public CellGridController cellGrid;
   public PaletteController palette;
+  public Button save;
 
   public PlayerData player;
   public LevelData level; // TEMP
@@ -14,6 +17,10 @@ public class EditorController : MonoBehaviour {
   private void Awake () {
     _level = new Level(new Player(null, this.player), this.level);
     cellGrid.Init(_level, CellClicked);
+
+    save.onClick.AddListener(() => {
+      AssetDatabase.SaveAssetIfDirty(level);
+    });
   }
 
   private void CellClicked (int index) {
