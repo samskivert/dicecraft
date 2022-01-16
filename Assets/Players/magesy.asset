@@ -17,5 +17,5 @@ MonoBehaviour:
   maxHp: 10
   weakness: 1
   resistance: 6
-  special: {fileID: 0}
-  specialTurns: 0
+  special: {fileID: 11400000, guid: 3ce2935af22c097449d8cf6cd3f94069, type: 2}
+  specialTurns: 3

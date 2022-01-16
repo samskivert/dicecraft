@@ -9,10 +9,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 71bc2946b85dc49939f3cd5b403cfbd6, type: 3}
-  m_Name: molty spell
+  m_Script: {fileID: 11500000, guid: b1a6a902598ca44eead7332db1443dfe, type: 3}
+  m_Name: Stone depth
   m_EditorClassIdentifier: 
-  image: {fileID: 21300000, guid: f7e1898e06d0b5e48b5c2615c28ed451, type: 3}
-  dieType: 6
-  effectType: 4
-  amount: 3
+  image: {fileID: 21300000, guid: f566bfe15c4357241b0f4f1d47d49f80, type: 3}
