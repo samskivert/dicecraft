@@ -21,8 +21,9 @@ public class EditorController : MonoBehaviour {
   private void Awake () {
     var guids = AssetDatabase.FindAssets("t:LevelData");
     var paths = guids.Select(AssetDatabase.GUIDToAssetPath).ToList();
+    var names = paths.Select(path => path.Substring(path.LastIndexOf("/")+1)).ToList();
     levels.ClearOptions();
-    levels.AddOptions(paths);
+    levels.AddOptions(names);
     levels.onValueChanged.AddListener(value => SetLevel(paths[value]));
     if (paths.Count > 0) SetLevel(paths[0]);
 
