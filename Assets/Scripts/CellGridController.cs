@@ -12,6 +12,10 @@ public class CellGridController : MonoBehaviour {
   public GameObject cellPrefab;
 
   public void Init (Level level, Action<int> onClick = null) {
+    for (var ii = transform.childCount-1; ii >= 0; ii -= 1) {
+      Destroy(transform.GetChild(ii));
+    }
+
     this.level = level;
     cells = new CellController[level.CellCount];
     for (var ii = 0; ii < cells.Length; ii += 1) {
