@@ -38,7 +38,7 @@ public class Level {
     this.data = data;
     for (var ii = 0; ii < data.cells.Length; ii += 1) {
       var cell = (Cell.Info)data.cells[ii];
-      if (cell != null && cell.Type == Cell.Type.Start) playerPos.Update(ii);
+      if (cell != null && cell.Type == Cell.Type.Entry) playerPos.Update(ii);
       cells.Add(ii, cell);
     }
     // AwardDie(data.loot[nextLoot++]);

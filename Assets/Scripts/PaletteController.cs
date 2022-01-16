@@ -48,6 +48,7 @@ public class PaletteController : MonoBehaviour {
 
     AddGrid<WallData>("Walls", "t:WallData", true);
     AddGrid<EnemyData>("Enemies", "t:EnemyData", false);
+    AddGrid<ItemData>("Items", "t:ItemData", false);
   }
 }
 }
