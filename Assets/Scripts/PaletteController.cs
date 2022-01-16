@@ -25,27 +25,29 @@ public class PaletteController : MonoBehaviour {
       labelObj.SetActive(true);
     }
 
-    void AddGrid<T> (string label, string query) where T : ScriptableObject {
+    void AddGrid<T> (string label, string query, bool addNone) where T : ScriptableObject {
       AddHeader(label);
       var grid = Instantiate(cellButtonGridPrefab, transform);
       grid.SetActive(true);
-      var guids = AssetDatabase.FindAssets(query);
-      foreach (var path in guids.Select(AssetDatabase.GUIDToAssetPath)) {
-        var data = AssetDatabase.LoadAssetAtPath<T>(path);
+      void AddButton (T data) {
         var cell = (Cell.Info)data;
         var buttonObj = Instantiate(cellButtonPrefab, grid.transform);
         var button = buttonObj.GetComponent<CellButtonController>();
-        button.image.sprite = cell.Image;
+        button.image.sprite = cell?.Image;
         button.cell = data;
         button.toggle.group = group;
         button.toggle.onValueChanged.AddListener(sel => {
           if (sel) selectedCell.Update(data);
         });
       }
+      if (addNone) AddButton(null);
+      var guids = AssetDatabase.FindAssets(query);
+      foreach (var path in guids.Select(AssetDatabase.GUIDToAssetPath)) AddButton(
+        AssetDatabase.LoadAssetAtPath<T>(path));
     }
 
-    AddGrid<WallData>("Walls", "t:WallData");
-    AddGrid<EnemyData>("Enemies", "t:EnemyData");
+    AddGrid<WallData>("Walls", "t:WallData", true);
+    AddGrid<EnemyData>("Enemies", "t:EnemyData", false);
   }
 }
 }
