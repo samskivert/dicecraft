@@ -20,7 +20,7 @@ public class UnlockButtonController : MonoBehaviour {
   public TMP_Text cost;
   public GameObject buyPrefab;
 
-  public void Init (GameController game, Unlockable unlock) {
+  public void Init (GameController game, IMutable<Unlockable> selected, Unlockable unlock) {
     title.text = unlock.Name;
     image.sprite = unlock.Image;
     cost.text = unlock.Price.ToString();
@@ -30,11 +30,13 @@ public class UnlockButtonController : MonoBehaviour {
       costPanel.SetActive(!unlocked);
       lockImage.gameObject.SetActive(!unlocked);
     });
-    // toggle.onClick.AddListener(() => {
-    //   if (unlockedV.current) game.SetPlayer(player);
-    //   else Instantiate(buyPrefab, game.canvas.transform).
-    //     GetComponent<BuyController>().Show(game, player);
-    // });
+    toggle.isOn = selected.current == unlock;
+    toggle.onValueChanged.AddListener(sel => {
+      if (!sel) return;
+      else if (unlockedV.current) selected.Update(unlock);
+      else Instantiate(buyPrefab, game.canvas.transform).
+        GetComponent<BuyController>().Show(game, unlock);
+    });
   }
 
   private void OnDestroy () => onDestroy();

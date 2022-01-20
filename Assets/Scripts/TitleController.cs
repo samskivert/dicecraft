@@ -20,15 +20,15 @@ public class TitleController : MonoBehaviour {
     foreach (var level in game.levels) {
       var levelObj = Instantiate(buttonPrefab, levelButtons.transform);
       var ctrl = levelObj.GetComponent<UnlockButtonController>();
-      ctrl.Init(game, level);
+      ctrl.Init(game, game.selLevel, level);
       ctrl.toggle.group = levelGroup;
     }
 
-    var playerGroup = levelButtons.GetComponent<ToggleGroup>();
+    var playerGroup = playerButtons.GetComponent<ToggleGroup>();
     foreach (var player in game.players) {
       var playerObj = Instantiate(buttonPrefab, playerButtons.transform);
       var ctrl = playerObj.GetComponent<UnlockButtonController>();
-      ctrl.Init(game, player);
+      ctrl.Init(game, game.selPlayer, player);
       ctrl.toggle.group = playerGroup;
     }
 

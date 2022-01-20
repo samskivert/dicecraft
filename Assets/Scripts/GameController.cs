@@ -12,8 +12,6 @@ using Util;
 
 public class GameController : MonoBehaviour, Player.LevelData {
   private GameObject screen;
-  private LevelData selLevel;
-  private PlayerData selPlayer;
 
   public readonly AnimPlayer anim = new AnimPlayer();
 
@@ -44,11 +42,12 @@ public class GameController : MonoBehaviour, Player.LevelData {
   public Level level { get; private set; }
   public Player player { get; private set; }
 
-  public void SetLevel (LevelData level) { selLevel = level; }
-  public void SetPlayer (PlayerData player) { selPlayer = player; }
+  public readonly IMutable<Unlockable> selLevel = Values.Mutable<Unlockable>(null);
+  public readonly IMutable<Unlockable> selPlayer = Values.Mutable<Unlockable>(null);
+
   public void StartLevel () {
-    player = new Player(this, selPlayer);
-    level = new Level(player, selLevel);
+    player = new Player(this, (PlayerData)selPlayer.current);
+    level = new Level(player, (LevelData)selLevel.current);
     level.battle.OnEmit(StartBattle);
     ShowLevel();
   }
@@ -75,6 +74,9 @@ public class GameController : MonoBehaviour, Player.LevelData {
     // sync the player's coins and unlocked levels & players to prefs
     coins.Update(PlayerPrefs.GetInt("coins"));
     coins.OnEmit(coins => PlayerPrefs.SetInt("coins", coins));
+
+    selLevel.Update(levels[0]);
+    selPlayer.Update(players[0]);
 
     // debugButton.gameObject.SetActive(Application.isEditor);
     // debugButton.onClick.AddListener(() => {
