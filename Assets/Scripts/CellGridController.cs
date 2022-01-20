@@ -12,8 +12,8 @@ public class CellGridController : MonoBehaviour {
   public GameObject cellPrefab;
 
   public void Init (Level level, Action<int> onClick = null) {
-    for (var ii = transform.childCount-1; ii >= 0; ii -= 1) {
-      Destroy(transform.GetChild(ii));
+    if (cells != null) {
+      foreach (var cell in cells) Destroy(cell.gameObject);
     }
 
     this.level = level;
