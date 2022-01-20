@@ -17,6 +17,7 @@ public class Level {
 
   public IMutable<int> playerPos = Values.Mutable(0);
   public MutableMap<int, Cell.Info> cells = RMaps.LocalMutable<int, Cell.Info>();
+  public MutableMap<int, ItemData> items = RMaps.LocalMutable<int, ItemData>();
 
   public Emitter<Battle> battle = new Emitter<Battle>();
   public Emitter<DieData> gotDie = new Emitter<DieData>();
@@ -33,13 +34,18 @@ public class Level {
   // private int RemainSpaces (Space.Type type) => cells.Values.Count(
   //   sd => sd != null && sd.spaceType == type);
 
-  public Level (Player player, LevelData data) {
+  public Level (Player player, LevelData data, CellData chest) {
     this.player = player;
     this.data = data;
     for (var ii = 0; ii < data.cells.Length; ii += 1) {
       var cell = (Cell.Info)data.cells[ii];
       if (cell != null && cell.Type == Cell.Type.Entry) playerPos.Update(ii);
-      cells.Add(ii, cell);
+      if (cell is ItemData item && chest != null) {
+        items.Add(ii, item);
+        cells.Add(ii, chest);
+      } else {
+        cells.Add(ii, cell);
+      }
     }
     playerPos.OnValue(ProcessSpace);
     // AwardDie(data.loot[nextLoot++]);

@@ -25,6 +25,7 @@ public class GameController : MonoBehaviour {
   public Button debugButton;
 
   public FloatController floater;
+  public CellData chest;
 
   public LevelData[] levels;
   public PlayerData[] players;
@@ -40,7 +41,7 @@ public class GameController : MonoBehaviour {
 
   public void StartLevel () {
     player = new Player((PlayerData)selPlayer.current);
-    level = new Level(player, (LevelData)selLevel.current);
+    level = new Level(player, (LevelData)selLevel.current, chest);
     level.battle.OnEmit(StartBattle);
     ShowLevel();
   }
