@@ -10,20 +10,26 @@ public class TitleController : MonoBehaviour {
   private event Action onDestroy;
 
   public GameObject levelButtons;
-  public GameObject levelButtonPrefab;
   public GameObject playerButtons;
-  public GameObject playerButtonPrefab;
+  public GameObject buttonPrefab;
   public Button playButton;
   public TMP_Text coinsLabel;
 
   public void Init (GameController game) {
+    var levelGroup = levelButtons.GetComponent<ToggleGroup>();
     foreach (var level in game.levels) {
-      var levelObj = Instantiate(levelButtonPrefab, levelButtons.transform);
-      levelObj.GetComponent<LevelButtonController>().Init(game, level);
+      var levelObj = Instantiate(buttonPrefab, levelButtons.transform);
+      var ctrl = levelObj.GetComponent<UnlockButtonController>();
+      ctrl.Init(game, level);
+      ctrl.toggle.group = levelGroup;
     }
+
+    var playerGroup = levelButtons.GetComponent<ToggleGroup>();
     foreach (var player in game.players) {
-      var playerObj = Instantiate(playerButtonPrefab, playerButtons.transform);
-      playerObj.GetComponent<PlayerButtonController>().Init(game, player);
+      var playerObj = Instantiate(buttonPrefab, playerButtons.transform);
+      var ctrl = playerObj.GetComponent<UnlockButtonController>();
+      ctrl.Init(game, player);
+      ctrl.toggle.group = playerGroup;
     }
 
     onDestroy += game.coins.OnValue(coins => {
