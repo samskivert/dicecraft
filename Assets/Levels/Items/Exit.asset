@@ -12,5 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2cdb43798b04f4182a0e352ed5c9827f, type: 3}
   m_Name: Exit
   m_EditorClassIdentifier: 
-  image: {fileID: 21300000, guid: 36eae4f110825d6478bead743c3804a8, type: 3}
+  image: {fileID: 21300000, guid: a41199a8bb2cf9844abc8a9a7a8fb3f0, type: 3}
   type: 2
