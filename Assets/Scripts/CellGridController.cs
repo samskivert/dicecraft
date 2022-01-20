@@ -18,10 +18,12 @@ public class CellGridController : MonoBehaviour {
 
     this.level = level;
     cells = new CellController[level.CellCount];
+    var rando = new System.Random(); // TODO: seed?
     for (var ii = 0; ii < cells.Length; ii += 1) {
       var cellObj = Instantiate(cellPrefab, transform);
       cells[ii] = cellObj.GetComponent<CellController>();
-      cells[ii].Init(level, ii, level.data.floorTiles[0]);
+      var floorTile = rando.Pick(level.data.floorTiles);
+      cells[ii].Init(level, ii, floorTile);
 
       if (onClick != null) {
         var index = ii;

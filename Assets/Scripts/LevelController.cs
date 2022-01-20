@@ -12,13 +12,12 @@ public class LevelController : MonoBehaviour {
   private event Action onDestroy;
   private GameController game;
 
-  public CellController[] cells;
   public TMP_Text coinsLabel;
+  public CellGridController cellGrid;
 
   public GameObject dicePanel;
   public GameObject pipDiePrefab;
   public GameObject gotDiePrefab;
-  public GameObject showDiePrefab;
 
   public GameObject diceBagPanel;
   public GameObject bagDiePrefab;
@@ -36,14 +35,9 @@ public class LevelController : MonoBehaviour {
   public void Init (GameController game) {
     this.game = game;
     this.level = game.level;
-    var rando = new System.Random(); // TODO: seed?
-    var idx = 0;
-    foreach (var cell in cells) {
-      var floorTile = rando.Pick(level.data.floorTiles);
-      cell.Init(level, idx++, floorTile);
-    }
 
-    // player.Init(game, game.player);
+    cellGrid.Init(game.level, null); // TODO: onClick?
+    player.Init(game, game.player);
 
     onDestroy += game.coins.OnValue(coins => {
       coinsLabel.text = coins.ToString();

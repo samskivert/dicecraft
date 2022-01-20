@@ -8,7 +8,7 @@ using TMPro;
 
 using React;
 
-public class BoardButtonController : MonoBehaviour {
+public class LevelButtonController : MonoBehaviour {
   private Action onDestroy;
 
   public TMP_Text title;
@@ -18,22 +18,22 @@ public class BoardButtonController : MonoBehaviour {
 
   public GameObject costPanel;
   public TMP_Text cost;
-  public GameObject buyBoardPrefab;
+  public GameObject buyPrefab;
 
-  public void Init (GameController game, BoardData board) {
-    title.text = board.name;
-    image.sprite = board.image;
-    cost.text = board.price.ToString();
+  public void Init (GameController game, LevelData level) {
+    title.text = level.name;
+    image.sprite = level.image;
+    cost.text = level.price.ToString();
 
-    var unlockedV = game.unlocked.ContainsValue(board);
+    var unlockedV = game.unlocked.ContainsValue(level);
     onDestroy += unlockedV.OnValue(unlocked => {
       costPanel.SetActive(!unlocked);
       lockImage.gameObject.SetActive(!unlocked);
     });
     button.onClick.AddListener(() => {
-      if (unlockedV.current) game.StartBoard(board);
-      else Instantiate(buyBoardPrefab, game.canvas.transform).
-        GetComponent<BuyBoardController>().Show(game, board);
+      if (unlockedV.current) game.SetLevel(level);
+      else Instantiate(buyPrefab, game.canvas.transform).
+        GetComponent<BuyController>().Show(game, level);
     });
   }
 

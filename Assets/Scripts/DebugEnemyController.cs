@@ -1,12 +1,8 @@
 namespace dicecraft {
 
-using System;
-
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
-
-using Util;
 
 public class DebugEnemyController : MonoBehaviour {
 
@@ -18,7 +14,7 @@ public class DebugEnemyController : MonoBehaviour {
   public GameObject diePrefab;
   public GameObject gotDiePrefab;
 
-  public void Show (DebugController owner, EnemyData data) {
+  public void Show (GameObject owner, EnemyData data) {
     nameLabel.text = data.name;
     image.sprite = data.image;
     hpLabel.text = data.maxHp.ToString();
