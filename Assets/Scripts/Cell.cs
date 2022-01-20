@@ -11,5 +11,9 @@ public static class Cell {
     Sprite Image { get; }
     bool Walkable { get; }
   }
+
+  public interface Floor {
+    Sprite[] images { get; }
+  }
 }
 }

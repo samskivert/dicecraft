@@ -2,8 +2,6 @@ namespace dicecraft {
 
 using System;
 
-using UnityEngine;
-
 using React;
 
 public class Level {
