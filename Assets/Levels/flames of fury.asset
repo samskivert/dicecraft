@@ -18,6 +18,7 @@ MonoBehaviour:
   width: 14
   floorTiles:
   - {fileID: 21300000, guid: 16a1d72b31503d349844eb2966bde061, type: 3}
+  - {fileID: 21300000, guid: aa49c4a7e31f17245990dce138e97853, type: 3}
   cells:
   - {fileID: 11400000, guid: 5a85418987e6cc4438790f7d1277b4bf, type: 2}
   - {fileID: 11400000, guid: cc63470cfc85dd34a9a577760f649feb, type: 2}
