@@ -32,6 +32,8 @@ public class TitleController : MonoBehaviour {
       ctrl.toggle.group = playerGroup;
     }
 
+    playButton.onClick.AddListener(game.StartLevel);
+
     onDestroy += game.coins.OnValue(coins => {
       coinsLabel.text = coins.ToString();
     });
