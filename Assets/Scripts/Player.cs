@@ -1,6 +1,5 @@
 namespace dicecraft {
 
-using System.Collections.Generic;
 using UnityEngine;
 
 using React;
@@ -14,14 +13,12 @@ public class Player : Combatant {
 
   public readonly IMutable<int> level = Values.Mutable(0);
   public readonly IMutable<int> xp = Values.Mutable(0);
-  public readonly List<DieData> dice = new List<DieData>();
 
   public int hpUp => data.levelHps[level.current];
   public int nextLevelXp => level.current < data.levelXps.Length ? data.levelXps[level.current] : 0;
 
   public override string Name => data.name;
   public override Sprite Image => data.image;
-  public override IList<DieData> Dice => dice;
   public override int MaxHp => data.maxHp + hpUp;
   public override int Slots => SlotsPerLevel[level.current];
   public override Die.Type Resistance => Die.Type.None;
@@ -32,6 +29,11 @@ public class Player : Combatant {
     this.data = data;
     dice.AddRange(data.dice);
     hp.Update(MaxHp);
+  }
+
+  public void AwardItem (ItemData item) {
+    items.Add(item);
+    gotItem.Emit(item);
   }
 
   public string LevelReward (int level) {

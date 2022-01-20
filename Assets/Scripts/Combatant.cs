@@ -2,7 +2,6 @@ namespace dicecraft {
 
 using System;
 using System.Collections.Generic;
-using System.Linq;
 
 using UnityEngine;
 
@@ -12,7 +11,13 @@ public class Combatant {
 
   public virtual string Name { get; }
   public virtual Sprite Image { get; }
-  public virtual IList<DieData> Dice { get; }
+
+  public readonly List<DieData> dice = new List<DieData>();
+  public readonly Emitter<DieData> gotDie = new Emitter<DieData>();
+
+  public readonly List<ItemData> items = new List<ItemData>();
+  public readonly Emitter<ItemData> gotItem = new Emitter<ItemData>();
+
   public virtual int MaxHp { get; }
   public virtual int Slots { get; }
   public virtual Die.Type Resistance { get; }
@@ -54,7 +59,7 @@ public class Combatant {
 
   public void Roll (System.Random random) {
     roll.Clear();
-    foreach (var die in Dice) roll.Add(random.Pick(die.faces));
+    foreach (var die in dice) roll.Add(random.Pick(die.faces));
   }
 
   public void Play (DieController[] dice, SlotController[] slots) {

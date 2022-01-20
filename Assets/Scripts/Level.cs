@@ -20,7 +20,6 @@ public class Level {
   public MutableMap<int, ItemData> items = RMaps.LocalMutable<int, ItemData>();
 
   public Emitter<Battle> battle = new Emitter<Battle>();
-  public Emitter<DieData> gotDie = new Emitter<DieData>();
   public Action onDied;
 
   public int Row (int pos) => pos / data.width;
@@ -29,10 +28,6 @@ public class Level {
 
   public int CellCount => data.cells.Length;
   public int earnedCoins;
-
-  // public int RemainBattles => RemainSpaces(Space.Type.Battle);
-  // private int RemainSpaces (Space.Type type) => cells.Values.Count(
-  //   sd => sd != null && sd.spaceType == type);
 
   public Level (Player player, LevelData data, CellData chest) {
     this.player = player;
@@ -48,7 +43,6 @@ public class Level {
       }
     }
     playerPos.OnValue(ProcessSpace);
-    // AwardDie(data.loot[nextLoot++]);
   }
 
   public const int MaxDie = 3;
@@ -78,11 +72,8 @@ public class Level {
       battle.Emit(new Battle(player, (EnemyData)cell));
       return;
     case Cell.Type.Chest:
-      // if (data.loot.Length > nextLoot) {
-      //   AwardDie(data.loot[nextLoot++]);
-      //   // if we are running out of loot, clear this space
-      //   if (RemainSpaces(Space.Type.Chest) > data.loot.Length - nextLoot) spaces[pos] = null;
-      // }
+      player.AwardItem(items.GetValueOrDefault(pos));
+      cells[pos] = null;
       break;
     // case Cell.Type.Die:
     //   switch (cell.dieType) {
@@ -112,10 +103,5 @@ public class Level {
     //   break;
     }
   }
-
-  // private void AwardDie (DieData die) {
-  //   player.dice.Add(die);
-  //   gotDie.Emit(die);
-  // }
 }
 }

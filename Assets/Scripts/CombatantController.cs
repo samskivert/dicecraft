@@ -21,6 +21,16 @@ public class CombatantController : MonoBehaviour {
   public GameObject effectPrefab;
   public GameObject buffPrefab;
 
+  public GameObject diceBagPanel;
+  public GameObject bagDiePrefab;
+  public GameObject showDiePrefab;
+  public GameObject gotDiePrefab;
+
+  public GameObject itemBagPanel;
+  public GameObject bagItemPrefab;
+  public GameObject showItemPrefab;
+  public GameObject gotItemPrefab;
+
   public void Init (GameController game, Combatant comb) {
     nameLabel.text = comb.Name;
     image.sprite = comb.Image;
@@ -40,6 +50,18 @@ public class CombatantController : MonoBehaviour {
       var resObj = Instantiate(buffPrefab, effects.transform);
       resObj.GetComponent<BuffController>().Show(comb.Weakness, 1);
     }
+
+    foreach (var die in comb.dice) AddBagDie(die);
+    onDestroy += comb.gotDie.OnEmit(die => {
+      Instantiate(gotDiePrefab, transform.parent).GetComponent<GotDieController>().Show(die);
+      AddBagDie(die);
+    });
+
+    foreach (var item in comb.items) AddBagItem(item);
+    onDestroy += comb.gotItem.OnEmit(item => {
+      Instantiate(gotItemPrefab, transform.parent).GetComponent<GotItemController>().Show(item);
+      AddBagItem(item);
+    });
 
     onDestroy += comb.effected.OnEmit(
       pair => game.floater.Float(gameObject, pair.Item1, pair.Item2));
@@ -63,6 +85,26 @@ public class CombatantController : MonoBehaviour {
           effObjs.Remove(type);
         }
       }));
+    });
+  }
+
+    void AddBagDie (DieData die) {
+      var dieObj = Instantiate(bagDiePrefab, diceBagPanel.transform);
+      dieObj.GetComponent<DieController>().Show(die.faces[0]);
+      dieObj.SetActive(true);
+      var button = dieObj.AddComponent<Button>();
+      button.onClick.AddListener(() => {
+        Instantiate(showDiePrefab, transform.parent).GetComponent<GotDieController>().Show(die);
+      });
+    }
+
+  public void AddBagItem (ItemData item) {
+    var itemObj = Instantiate(bagItemPrefab, itemBagPanel.transform);
+    itemObj.GetComponent<Image>().sprite = item.image;
+    itemObj.SetActive(true);
+    var button = itemObj.AddComponent<Button>();
+    button.onClick.AddListener(() => {
+      Instantiate(showItemPrefab, transform.parent).GetComponent<GotItemController>().Show(item);
     });
   }
 
