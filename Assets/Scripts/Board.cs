@@ -100,8 +100,8 @@ public class Board {
       case Die.Type.Heal:
         player.hp.UpdateVia(hp => Math.Min(hp + sdata.level, player.MaxHp));
         break;
-      case Die.Type.Shield:
-        player.AddEffect(Effect.Type.Shield, sdata.level);
+      case Die.Type.SelfEffect:
+        player.AddEffect(sdata.effectType, sdata.level);
         break;
       case Die.Type.Slash:
       case Die.Type.Pierce:
@@ -116,10 +116,6 @@ public class Board {
       // move this spot to a random place on the board
       var newPos = spaces.Keys.Where(ii => spaces[ii] == null).PickUnknown(random);
       spaces[newPos] = sdata;
-      break;
-    case Space.Type.Trap:
-      if (sdata.effectType != Effect.Type.None) player.AddEffect(sdata.effectType, sdata.level);
-      else Debug.Log("TODO: handle trap space: " + sdata);
       break;
     }
 

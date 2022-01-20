@@ -14,5 +14,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   image: {fileID: 21300000, guid: b91060a2934e99443b58cc32b70b7d7a, type: 3}
   dieType: 4
-  effectType: 0
+  effectType: 5
   amount: 1

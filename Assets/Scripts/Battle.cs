@@ -2,7 +2,6 @@ namespace dicecraft {
 
 using System;
 using System.Collections.Generic;
-using System.Linq;
 
 using React;
 
@@ -39,7 +38,7 @@ public class Battle {
     foreach (var pair in dice) {
       var face = pair.Item1;
       var slot = pair.Item2;
-      var upgrades = pair.Item3;
+      // var upgrades = pair.Item3;
 
       switch (face.dieType) {
       case Die.Type.Slash:
@@ -49,30 +48,24 @@ public class Battle {
         flings.Emit((delay, slot, attacker == enemy));
         barriers.Emit(this);
         if (defender.ApplyDamage(face.dieType, face.amount)) return; // dead
+        // TODO: just 1 effect?
+        if (face.effectType != Effect.Type.None) defender.AddEffect(face.effectType, 1);
         delay += 1;
         break;
-      case Die.Type.Shield:
+      case Die.Type.SelfEffect:
         flings.Emit((delay, slot, attacker == player));
         barriers.Emit(this);
         delay += 1;
-        attacker.AddEffect(Effect.Type.Shield, face.amount);
+        attacker.AddEffect(face.effectType, face.amount);
         break;
-      case Die.Type.Evade:
-        flings.Emit((delay, slot, attacker == player));
+      case Die.Type.OtherEffect:
+        flings.Emit((delay, slot, attacker != player));
         barriers.Emit(this);
-        attacker.AddEffect(Effect.Type.Evade, face.amount);
+        delay += 1;
+        defender.AddEffect(face.effectType, face.amount);
         break;
       case Die.Type.Heal:
         attacker.Heal(face.amount);
-        break;
-      }
-
-      // TODO: other effects?
-      switch (face.effectType) {
-      case Effect.Type.Burn:
-      case Effect.Type.Freeze:
-      case Effect.Type.Poison:
-        defender.AddEffect(face.effectType, 1);
         break;
       }
     }

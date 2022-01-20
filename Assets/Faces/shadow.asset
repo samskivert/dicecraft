@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 71bc2946b85dc49939f3cd5b403cfbd6, type: 3}
   m_Name: shadow
   m_EditorClassIdentifier: 
-  image: {fileID: 21300000, guid: b91060a2934e99443b58cc32b70b7d7a, type: 3}
-  dieType: 5
-  effectType: 0
+  image: {fileID: 21300000, guid: faf93c9709120ae468e0b69c37fd8445, type: 3}
+  dieType: 4
+  effectType: 6
   amount: 1

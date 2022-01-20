@@ -62,11 +62,15 @@ public class SlotController : MonoBehaviour {
     case Die.Type.Magic:
       damageLabel.text = $"{amount} {eff}damage";
       break;
-    case Die.Type.Shield:
-      damageLabel.text = $"+{amount} shield";
-      break;
-    case Die.Type.Evade:
-      damageLabel.text = $"+{amount}% evade";
+    case Die.Type.SelfEffect:
+      switch (face.effectType) {
+      case Effect.Type.Shield:
+        damageLabel.text = $"+{amount} shield";
+        break;
+      case Effect.Type.Evade:
+        damageLabel.text = $"+{amount}% evade";
+        break;
+      }
       break;
     case Die.Type.Heal:
       damageLabel.text = $"+{amount} HP";
