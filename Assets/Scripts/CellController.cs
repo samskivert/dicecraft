@@ -13,9 +13,9 @@ public class CellController : MonoBehaviour {
   public Image floorImage;
   public Image thingImage;
 
-  public void Init (Level level, int index) {
+  public void Init (Level level, int index, Sprite floorTile) {
     onDestroy += level.cells.GetValue(index).OnValue(Show);
-    floorImage.sprite = level.data.floorTiles[0]; // TODO
+    floorImage.sprite = floorTile;
   }
 
   public void Show (Cell.Info cell) {

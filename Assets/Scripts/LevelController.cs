@@ -36,8 +36,12 @@ public class LevelController : MonoBehaviour {
   public void Init (GameController game) {
     this.game = game;
     this.level = game.level;
+    var rando = new System.Random(); // TODO: seed?
     var idx = 0;
-    foreach (var cell in cells) cell.Init(level, idx++);
+    foreach (var cell in cells) {
+      var floorTile = rando.Pick(level.data.floorTiles);
+      cell.Init(level, idx++, floorTile);
+    }
 
     // player.Init(game, game.player);
 

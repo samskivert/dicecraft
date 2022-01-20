@@ -21,7 +21,7 @@ public class CellGridController : MonoBehaviour {
     for (var ii = 0; ii < cells.Length; ii += 1) {
       var cellObj = Instantiate(cellPrefab, transform);
       cells[ii] = cellObj.GetComponent<CellController>();
-      cells[ii].Init(level, ii);
+      cells[ii].Init(level, ii, level.data.floorTiles[0]);
 
       if (onClick != null) {
         var index = ii;
