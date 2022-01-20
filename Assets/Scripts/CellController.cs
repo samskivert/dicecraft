@@ -18,7 +18,7 @@ public class CellController : MonoBehaviour {
     var cellV = level.cells.GetValue(index);
     onDestroy += cellV.OnValue(Show);
     floorImage.sprite = floorTile;
-    level.playerPos.OnValue(pos => {
+    onDestroy += level.playerPos.OnValue(pos => {
       playerImage.sprite = (pos == index) ? level.player.Image : null;
       playerImage.gameObject.SetActive(pos == index);
     });

@@ -176,7 +176,7 @@ public class BattleController : MonoBehaviour {
       else wonCtrl.coinLabel.gameObject.transform.parent.gameObject.SetActive(false);
       wonCtrl.AnimateXP(battle.player, startXp, endXp, maxXp);
       battle.player.Award(enemy.xpAward);
-      level.earnedCoins += enemy.coinAward;
+      level.WonBattle(enemy.coinAward);
       game.Award(enemy.coinAward);
     } else game.ShowLost(level);
   }

@@ -18,6 +18,7 @@ public class LevelController : MonoBehaviour {
   public GameObject dicePanel;
   public GameObject pipDiePrefab;
   public GameObject gotDiePrefab;
+  public GameObject showDiePrefab;
 
   public GameObject diceBagPanel;
   public GameObject bagDiePrefab;
@@ -43,29 +44,29 @@ public class LevelController : MonoBehaviour {
       coinsLabel.text = coins.ToString();
     });
 
-    // void AddBagDie (DieData die) {
-    //   var dieObj = Instantiate(bagDiePrefab, diceBagPanel.transform);
-    //   dieObj.GetComponent<DieController>().Show(die.faces[0]);
-    //   dieObj.SetActive(true);
-    //   var button = dieObj.AddComponent<Button>();
-    //   button.onClick.AddListener(() => {
-    //     Instantiate(showDiePrefab, transform.parent).GetComponent<GotDieController>().Show(die);
-    //   });
-    // }
+    void AddBagDie (DieData die) {
+      var dieObj = Instantiate(bagDiePrefab, diceBagPanel.transform);
+      dieObj.GetComponent<DieController>().Show(die.faces[0]);
+      dieObj.SetActive(true);
+      var button = dieObj.AddComponent<Button>();
+      button.onClick.AddListener(() => {
+        Instantiate(showDiePrefab, transform.parent).GetComponent<GotDieController>().Show(die);
+      });
+    }
 
     // onDestroy += board.gotDie.OnEmit(die => {
     //   Instantiate(gotDiePrefab, transform.parent).GetComponent<GotDieController>().Show(die);
     //   AddBagDie(die);
     // });
 
-    // onDestroy += board.player.xp.OnValue(xp => {
-    //   xpMeterLabel.text = $"XP: {xp}";
-    //   xpMeter.fillAmount = xp / (float)board.player.nextLevelXp;
-    // });
-    // onDestroy += board.player.level.OnValue(level => levelLabel.text = $"Level: {level+1}");
+    onDestroy += level.player.xp.OnValue(xp => {
+      xpMeterLabel.text = $"XP: {xp}";
+      xpMeter.fillAmount = xp / (float)level.player.nextLevelXp;
+    });
+    onDestroy += level.player.level.OnValue(level => levelLabel.text = $"Level: {level+1}");
 
-    // board.onDied += () => game.ShowLost(board);
-    // foreach (var die in board.player.dice) AddBagDie(die);
+    level.onDied += () => game.ShowLost(level);
+    foreach (var die in level.player.dice) AddBagDie(die);
   }
 
   private void Update () {

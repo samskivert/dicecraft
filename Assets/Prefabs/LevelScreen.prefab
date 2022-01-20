@@ -1412,6 +1412,7 @@ MonoBehaviour:
   dicePanel: {fileID: 0}
   pipDiePrefab: {fileID: 0}
   gotDiePrefab: {fileID: 8075285087259852938, guid: aea8b8c471e3443adb2c7e3a411d0450, type: 3}
+  showDiePrefab: {fileID: 8075285087259852938, guid: 6765ac855f4c24a1c8c3e2ec8a97667f, type: 3}
   diceBagPanel: {fileID: 1574676107577673611}
   bagDiePrefab: {fileID: 4997515738949861918}
   player: {fileID: 2874295168401438914}

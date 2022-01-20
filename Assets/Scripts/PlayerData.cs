@@ -14,6 +14,10 @@ public class PlayerData : ScriptableObject, Unlockable {
   public Die.Type resistance;
   public FaceData special;
   public int specialTurns;
+  public DieData[] dice;
+
+  public int[] levelXps;
+  public int[] levelHps;
 
   public string SaveId => saveId;
   public string Name => name;

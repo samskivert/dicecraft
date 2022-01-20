@@ -10,21 +10,14 @@ public class Player : Combatant {
   private static int[] SlotsPerLevel = new [] { 1, 2, 2, 2, 2 };
   private static int[] DicePerLevel  = new [] { 2, 2, 3, 3, 3 };
 
-  public interface LevelData {
-    public int[] LevelXps { get; }
-    public int[] LevelHps { get; }
-  }
-
-  public readonly LevelData levelData;
   public readonly PlayerData data;
 
   public readonly IMutable<int> level = Values.Mutable(0);
   public readonly IMutable<int> xp = Values.Mutable(0);
   public readonly List<DieData> dice = new List<DieData>();
 
-  public int hpUp => levelData.LevelHps[level.current];
-  public int nextLevelXp =>
-    level.current < levelData.LevelXps.Length ? levelData.LevelXps[level.current] : 0;
+  public int hpUp => data.levelHps[level.current];
+  public int nextLevelXp => level.current < data.levelXps.Length ? data.levelXps[level.current] : 0;
 
   public override string Name => data.name;
   public override Sprite Image => data.image;
@@ -35,15 +28,15 @@ public class Player : Combatant {
   public override Die.Type Weakness => Die.Type.None;
   public int BoardDice => DicePerLevel[level.current];
 
-  public Player (LevelData levelData, PlayerData data) {
-    this.levelData = levelData;
+  public Player (PlayerData data) {
     this.data = data;
-    // hp.Update(MaxHp);
+    dice.AddRange(data.dice);
+    hp.Update(MaxHp);
   }
 
   public string LevelReward (int level) {
-    int oldHp = data.maxHp + levelData.LevelHps[level];
-    int newHp = data.maxHp + levelData.LevelHps[level+1];
+    int oldHp = data.maxHp + data.levelHps[level];
+    int newHp = data.maxHp + data.levelHps[level+1];
     var reward = $"HP +{newHp-oldHp}!";
     int oldSlots = SlotsPerLevel[level], newSlots = SlotsPerLevel[level+1];
     if (newSlots > oldSlots) reward += " Attack Slot +1!";

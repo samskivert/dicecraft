@@ -21,3 +21,7 @@ MonoBehaviour:
   resistance: 1
   special: {fileID: 11400000, guid: 60c1bbc7807ecb44cbc98883a4ffe5bc, type: 2}
   specialTurns: 3
+  dice:
+  - {fileID: 11400000, guid: f713d642b2bd15f43ba73adaef7fa980, type: 2}
+  levelXps: 03000000060000000a0000000e00000014000000
+  levelHps: 00000000020000000400000006000000080000000a000000

@@ -10,7 +10,7 @@ using UnityEngine.UI;
 using React;
 using Util;
 
-public class GameController : MonoBehaviour, Player.LevelData {
+public class GameController : MonoBehaviour {
   private GameObject screen;
 
   public readonly AnimPlayer anim = new AnimPlayer();
@@ -26,18 +26,11 @@ public class GameController : MonoBehaviour, Player.LevelData {
 
   public FloatController floater;
 
-  public int[] levelXps;
-  public int[] levelHps;
-
   public LevelData[] levels;
   public PlayerData[] players;
 
   public readonly IMutable<int> coins = Values.Mutable(0);
   public readonly MutableSet<Unlockable> unlocked = RSets.LocalMutable<Unlockable>();
-
-  // from Player.LevelData
-  public int[] LevelXps => levelXps;
-  public int[] LevelHps => levelHps;
 
   public Level level { get; private set; }
   public Player player { get; private set; }
@@ -46,7 +39,7 @@ public class GameController : MonoBehaviour, Player.LevelData {
   public readonly IMutable<Unlockable> selPlayer = Values.Mutable<Unlockable>(null);
 
   public void StartLevel () {
-    player = new Player(this, (PlayerData)selPlayer.current);
+    player = new Player((PlayerData)selPlayer.current);
     level = new Level(player, (LevelData)selLevel.current);
     level.battle.OnEmit(StartBattle);
     ShowLevel();
