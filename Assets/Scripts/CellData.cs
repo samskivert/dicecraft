@@ -2,8 +2,8 @@ namespace dicecraft {
 
 using UnityEngine;
 
-[CreateAssetMenu(menuName = "Dicecraft/Item", fileName = "Item")]
-public class ItemData : ScriptableObject, Cell.Info {
+[CreateAssetMenu(menuName = "Dicecraft/Cell", fileName = "Cell")]
+public class CellData : ScriptableObject, Cell.Info {
 
   public Sprite image;
   public Cell.Type type;
