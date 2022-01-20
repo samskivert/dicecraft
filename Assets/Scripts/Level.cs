@@ -1,7 +1,9 @@
 namespace dicecraft {
 
 using System;
+using System.Collections.Generic;
 
+using UnityEngine;
 using React;
 
 public class Level {
@@ -40,9 +42,24 @@ public class Level {
       cells.Add(ii, cell);
     }
     // AwardDie(data.loot[nextLoot++]);
+    playerPos.OnValue(ii => Debug.Log("Player pos " + ii));
   }
 
   public const int MaxDie = 3;
+
+  public void Move (int dx, int dy) {
+    Debug.Log("Move " + dx + " / " + dy);
+    var pos = playerPos.current;
+    var nrow = Row(pos) + dy;
+    var ncol = Col(pos) + dx;
+    var npos = Pos(nrow, ncol);
+    var cell = cells.GetValueOrDefault(npos);
+    if (cell != null && !cell.Walkable) {
+      Debug.Log("Can't move to " + npos + " " + cell);
+      return;
+    }
+    playerPos.Update(npos);
+  }
 
   // public void ProcessSpace (int pos) {
   //   cells.TryGetValue(pos, out var sdata);

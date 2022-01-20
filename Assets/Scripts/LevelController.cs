@@ -68,6 +68,13 @@ public class LevelController : MonoBehaviour {
     // foreach (var die in board.player.dice) AddBagDie(die);
   }
 
+  private void Update () {
+    if (Input.GetKeyDown(KeyCode.UpArrow)) level.Move(0, -1);
+    else if (Input.GetKeyDown(KeyCode.DownArrow)) level.Move(0, 1);
+    else if (Input.GetKeyDown(KeyCode.RightArrow)) level.Move(1, 0);
+    else if (Input.GetKeyDown(KeyCode.LeftArrow)) level.Move(-1, 0);
+  }
+
   // public void UseDie (int index) {
   //   IEnumerator MovePlayer () {
   //     var moves = board.UseDie(index);

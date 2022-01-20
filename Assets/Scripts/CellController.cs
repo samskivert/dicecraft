@@ -12,15 +12,23 @@ public class CellController : MonoBehaviour {
 
   public Image floorImage;
   public Image thingImage;
+  public Image playerImage;
 
   public void Init (Level level, int index, Sprite floorTile) {
-    onDestroy += level.cells.GetValue(index).OnValue(Show);
+    var cellV = level.cells.GetValue(index);
+    onDestroy += cellV.OnValue(Show);
     floorImage.sprite = floorTile;
+    level.playerPos.OnValue(pos => {
+      playerImage.sprite = (pos == index) ? level.player.Image : null;
+      playerImage.gameObject.SetActive(pos == index);
+    });
   }
 
-  public void Show (Cell.Info cell) {
-    thingImage.sprite = cell == null ? null : cell.Image;
-    thingImage.gameObject.SetActive(cell != null);
+  public void Show (Cell.Info cell) => SetThing(cell?.Image);
+
+  private void SetThing (Sprite sprite) {
+    thingImage.sprite = sprite;
+    thingImage.gameObject.SetActive(sprite != null);
   }
 
   private void OnDestroy () => onDestroy?.Invoke();
