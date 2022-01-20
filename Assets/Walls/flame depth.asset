@@ -12,4 +12,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b1a6a902598ca44eead7332db1443dfe, type: 3}
   m_Name: flame depth
   m_EditorClassIdentifier: 
-  image: {fileID: 21300000, guid: f566bfe15c4357241b0f4f1d47d49f80, type: 3}
+  image: {fileID: 21300000, guid: 183909727eb770645ac14fc481689975, type: 3}
