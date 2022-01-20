@@ -584,9 +584,9 @@ RectTransform:
   m_Father: {fileID: 4122678610481496902}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 759, y: 0}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 759, y: -497}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &3537982108821248037
@@ -846,9 +846,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   levelButtons: {fileID: 6909370312155114031}
-  levelButtonPrefab: {fileID: 6771266921108681993, guid: febd4461b8ebd4b76b9d540205f547d6, type: 3}
   playerButtons: {fileID: 9040450444336943806}
-  playerButtonPrefab: {fileID: 6771266921108681993, guid: a4da3577dfce44f62aeaa4be0c38f3a4, type: 3}
   buttonPrefab: {fileID: 6771266921108681993, guid: a4da3577dfce44f62aeaa4be0c38f3a4, type: 3}
   playButton: {fileID: 2125602673482572938}
   coinsLabel: {fileID: 7204564713042197933}
@@ -887,9 +885,9 @@ RectTransform:
   m_Father: {fileID: 4122678610481496902}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 759, y: 0}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 759, y: -517}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &8270444219202803190

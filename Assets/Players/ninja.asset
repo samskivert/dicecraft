@@ -12,6 +12,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4207e6e1962804db8a19fca580ae0dcc, type: 3}
   m_Name: ninja
   m_EditorClassIdentifier: 
-  name: ninja
+  name: Ninja
+  saveId: ninja
+  price: 5
   image: {fileID: 21300000, guid: a9eb83373f72778459755c6e418eacc8, type: 3}
   maxHp: 14
+  weakness: 0
+  resistance: 0
+  special: {fileID: 0}
+  specialTurns: 0

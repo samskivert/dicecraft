@@ -1395,10 +1395,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 51adc6c37ed264deeb03bee273f473b8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  levelTitle: {fileID: 8423645119848389277}
   title: {fileID: 8423645119848389277}
-  levelImage: {fileID: 1896571179316167375}
-  image: {fileID: 1896571179316167375}
+  image: {fileID: 5328059644448149283}
   costCoins: {fileID: 469703105335208344}
   buyButton: {fileID: 3736373646446417192}
   cancelButton: {fileID: 4811177565745295219}

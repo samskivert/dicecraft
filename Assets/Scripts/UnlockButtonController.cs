@@ -30,12 +30,12 @@ public class UnlockButtonController : MonoBehaviour {
       costPanel.SetActive(!unlocked);
       lockImage.gameObject.SetActive(!unlocked);
     });
-    toggle.isOn = selected.current == unlock;
+    selected.OnValue(sel => toggle.isOn = sel == unlock);
     toggle.onValueChanged.AddListener(sel => {
       if (!sel) return;
       else if (unlockedV.current) selected.Update(unlock);
       else Instantiate(buyPrefab, game.canvas.transform).
-        GetComponent<BuyController>().Show(game, unlock);
+        GetComponent<BuyController>().Show(game, selected, unlock);
     });
   }
 

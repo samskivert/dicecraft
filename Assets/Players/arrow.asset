@@ -12,7 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4207e6e1962804db8a19fca580ae0dcc, type: 3}
   m_Name: arrow
   m_EditorClassIdentifier: 
-  name: arrow
+  name: Arrow
+  saveId: arrow
+  price: 2
   image: {fileID: 21300000, guid: 13c89c5748fde894e8bd1851b5510df2, type: 3}
   maxHp: 10
   weakness: 2

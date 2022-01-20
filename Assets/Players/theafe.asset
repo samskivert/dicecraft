@@ -12,15 +12,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4207e6e1962804db8a19fca580ae0dcc, type: 3}
   m_Name: theafe
   m_EditorClassIdentifier: 
-  name: theafe
+  name: Theafe
+  saveId: theafe
+  price: 3
   image: {fileID: 21300000, guid: 936129a3ab2ccba4ca6281e34ce715a9, type: 3}
   maxHp: 10
-  slots: 0100000003000000
-  dice1:
-  - {fileID: 11400000, guid: 4a448627a52d1e24aaf41f04c6ccefb7, type: 2}
-  - {fileID: 11400000, guid: 4a1ebd41171ce934d98c1477b27b16c6, type: 2}
-  - {fileID: 11400000, guid: 4a448627a52d1e24aaf41f04c6ccefb7, type: 2}
-  - {fileID: 11400000, guid: 4a1ebd41171ce934d98c1477b27b16c6, type: 2}
-  - {fileID: 11400000, guid: b5b8850c87fcd41b8b02ad12b2e5b3e1, type: 2}
-  - {fileID: 11400000, guid: 4a448627a52d1e24aaf41f04c6ccefb7, type: 2}
-  dice2: []
+  weakness: 0
+  resistance: 0
+  special: {fileID: 0}
+  specialTurns: 0
