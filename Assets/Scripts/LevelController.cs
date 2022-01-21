@@ -16,7 +16,7 @@ public class LevelController : MonoBehaviour {
   public TMP_Text coinsLabel;
   public CellGridController cellGrid;
   public CombatantController player;
-  public GameObject wonPanel;
+  public GameObject wonPrefab;
   public GameObject buyDiePrefab;
   public GameObject upPrefab;
   public GameObject gotItemPrefab;
@@ -71,9 +71,7 @@ public class LevelController : MonoBehaviour {
   }
 
   public void ShowCompleted () {
-    wonPanel.SetActive(true);
-    wonPanel.GetComponentInChildren<EarnedGemsController>().Init(level.earnedGems.current);
-    wonPanel.GetComponentInChildren<Button>().onClick.AddListener(() => game.ShowTitle());
+    game.ShowPopup<WonPopup>(wonPrefab).Show(game, level.earnedGems.current);
   }
 
   private void OnDestroy () => onDestroy();
