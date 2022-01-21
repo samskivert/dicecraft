@@ -1397,7 +1397,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   title: {fileID: 8423645119848389277}
   image: {fileID: 5328059644448149283}
-  costCoins: {fileID: 469703105335208344}
+  costGems: {fileID: 469703105335208344}
   buyButton: {fileID: 3736373646446417192}
   cancelButton: {fileID: 4811177565745295219}
 --- !u!1 &8915242069449970021

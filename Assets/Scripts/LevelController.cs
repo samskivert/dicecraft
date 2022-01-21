@@ -3,6 +3,7 @@ namespace dicecraft {
 using System;
 
 using UnityEngine;
+using UnityEngine.Events;
 using UnityEngine.UI;
 using TMPro;
 
@@ -12,6 +13,7 @@ public class LevelController : MonoBehaviour {
   private event Action onDestroy;
   private GameController game;
 
+  public TMP_Text gemsLabel;
   public TMP_Text coinsLabel;
   public CellGridController cellGrid;
 
@@ -28,21 +30,13 @@ public class LevelController : MonoBehaviour {
   public void Init (GameController game) {
     this.game = game;
     this.level = game.level;
-
     cellGrid.Init(game.level, null); // TODO: onClick?
     player.Init(game, game.player);
-
-    onDestroy += game.coins.OnValue(coins => {
-      coinsLabel.text = coins.ToString();
-    });
-
-    onDestroy += level.player.xp.OnValue(xp => {
-      xpMeterLabel.text = $"XP: {xp}";
-      xpMeter.fillAmount = xp / (float)level.player.nextLevelXp;
-    });
-    onDestroy += level.player.level.OnValue(level => levelLabel.text = $"Level: {level+1}");
-
+    onDestroy += game.gems.OnValue(gems => gemsLabel.text = gems.ToString());
+    onDestroy += level.coins.OnValue(coins => coinsLabel.text = coins.ToString());
     level.onDied += () => game.ShowLost(level);
+    // when the player earns an item, they also get a gem (TODO: separate?)
+    game.player.items.OnAdd((ii, item, oitem) => game.Award(1));
   }
 
   private void Update () {
@@ -52,11 +46,11 @@ public class LevelController : MonoBehaviour {
     else if (Input.GetKeyDown(KeyCode.LeftArrow)) level.Move(-1, 0);
   }
 
-  // public void ShowCompleted (UnityAction onClick) {
-  //   wonPanel.SetActive(true);
-  //   wonPanel.GetComponentInChildren<Button>().onClick.AddListener(onClick);
-  //   wonPanel.GetComponentInChildren<EarnedCoinsController>().Init(board.earnedCoins);
-  // }
+  public void ShowCompleted (UnityAction onClick) {
+    wonPanel.SetActive(true);
+    wonPanel.GetComponentInChildren<Button>().onClick.AddListener(onClick);
+    wonPanel.GetComponentInChildren<EarnedGemsController>().Init(level.earnedGems);
+  }
 
   private void OnDestroy () => onDestroy();
 }

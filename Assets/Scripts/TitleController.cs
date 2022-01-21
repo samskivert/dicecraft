@@ -34,7 +34,7 @@ public class TitleController : MonoBehaviour {
 
     playButton.onClick.AddListener(game.StartLevel);
 
-    onDestroy += game.coins.OnValue(coins => {
+    onDestroy += game.gems.OnValue(coins => {
       coinsLabel.text = coins.ToString();
     });
   }

@@ -168,16 +168,10 @@ public class BattleController : MonoBehaviour {
     if (battle.player.hp.current > 0) {
       wonPanel.SetActive(true);
       var enemy = (EnemyData)battle.enemy.data;
-      var startXp = battle.player.xp.current;
-      var endXp = startXp + enemy.xpAward;
-      var maxXp = battle.player.nextLevelXp;
       var wonCtrl = wonPanel.GetComponent<WonController>();
       if (enemy.coinAward > 0) wonCtrl.coinLabel.text = $"+{enemy.coinAward}";
       else wonCtrl.coinLabel.gameObject.transform.parent.gameObject.SetActive(false);
-      wonCtrl.AnimateXP(battle.player, startXp, endXp, maxXp);
-      battle.player.Award(enemy.xpAward);
       level.WonBattle(enemy.coinAward);
-      game.Award(enemy.coinAward);
     } else game.ShowLost(level);
   }
 }

@@ -30,7 +30,7 @@ public class GameController : MonoBehaviour {
   public LevelData[] levels;
   public PlayerData[] players;
 
-  public readonly IMutable<int> coins = Values.Mutable(0);
+  public readonly IMutable<int> gems = Values.Mutable(0);
   public readonly MutableSet<Unlockable> unlocked = RSets.LocalMutable<Unlockable>();
 
   public Level level { get; private set; }
@@ -46,18 +46,18 @@ public class GameController : MonoBehaviour {
     ShowLevel();
   }
 
-  public void Award (int coinAward) {
-    coins.UpdateVia(coins => coins + coinAward);
+  public void Award (int gemAward) {
+    gems.UpdateVia(gems => gems + gemAward);
   }
 
   public void BuyUnlock (Unlockable unlock) {
-    coins.UpdateVia(coins => coins - unlock.Price);
+    gems.UpdateVia(gems => gems - unlock.Price);
     unlocked.Add(unlock);
   }
 
   public void ShowLost (Level level) {
     var popObj = Instantiate(lostPopupPrefab, canvas.transform);
-    popObj.GetComponentInChildren<EarnedCoinsController>().Init(level.earnedCoins);
+    popObj.GetComponentInChildren<EarnedGemsController>().Init(level.earnedGems);
     popObj.GetComponentInChildren<Button>().onClick.AddListener(() => {
       Destroy(popObj);
       ShowTitle();
@@ -65,9 +65,9 @@ public class GameController : MonoBehaviour {
   }
 
   private void Start () {
-    // sync the player's coins and unlocked levels & players to prefs
-    coins.Update(PlayerPrefs.GetInt("coins"));
-    coins.OnEmit(coins => PlayerPrefs.SetInt("coins", coins));
+    // sync the player's gems and unlocked levels & players to prefs
+    gems.Update(PlayerPrefs.GetInt("gems"));
+    gems.OnEmit(gems => PlayerPrefs.SetInt("gems", gems));
 
     selLevel.Update(levels[0]);
     selPlayer.Update(players[0]);

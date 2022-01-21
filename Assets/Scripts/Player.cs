@@ -3,28 +3,19 @@ namespace dicecraft {
 using System;
 using UnityEngine;
 
-using React;
-
 public class Player : Combatant {
-
-  private static int[] SlotsPerLevel = new [] { 1, 2, 2, 2, 2 };
-  private static int[] DicePerLevel  = new [] { 2, 2, 3, 3, 3 };
 
   public readonly PlayerData data;
 
-  public readonly IMutable<int> level = Values.Mutable(0);
-  public readonly IMutable<int> xp = Values.Mutable(0);
-
-  public int hpUp => data.levelHps[level.current];
-  public int nextLevelXp => level.current < data.levelXps.Length ? data.levelXps[level.current] : 0;
+  public int hpUp = 0;
+  public int slots = 1;
 
   public override string Name => data.name;
   public override Sprite Image => data.image;
   public override int MaxHp => data.maxHp + hpUp;
-  public override int Slots => SlotsPerLevel[level.current];
+  public override int Slots => slots;
   public override Die.Type Resistance => data.resistance;
   public override Die.Type Weakness => data.weakness;
-  public int BoardDice => DicePerLevel[level.current];
 
   public Player (PlayerData data) {
     this.data = data;
@@ -38,34 +29,13 @@ public class Player : Combatant {
     items.Add(next, item);
   }
 
-  public string LevelReward (int level) {
-    int oldHp = data.maxHp + data.levelHps[level];
-    int newHp = data.maxHp + data.levelHps[level+1];
-    var reward = $"HP +{newHp-oldHp}!";
-    int oldSlots = SlotsPerLevel[level], newSlots = SlotsPerLevel[level+1];
-    if (newSlots > oldSlots) reward += " Attack Slot +1!";
-    int oldDice = DicePerLevel[level], newDice = DicePerLevel[level+1];
-    if (newDice > oldDice) reward += " Board Dice +1!";
-    return reward;
+  public void HealthUp () {
+    hpUp += 2; // TODO: allow PlayerData to config
+    hp.Update(MaxHp);
   }
 
-  public void Award (int xpAward) {
-    var next = nextLevelXp;
-    if (next == 0) return; // max!
-
-    bool levelUp = false;
-    xp.UpdateVia(xp => {
-      var newXp = xp + xpAward;
-      if (newXp >= next) {
-        levelUp = true;
-        newXp -= next;
-      }
-      return newXp;
-    });
-    if (levelUp) {
-      level.UpdateVia(level => level+1);
-      hp.Update(MaxHp);
-    }
+  public void DiceUp () {
+    slots += 1;
   }
 }
 }

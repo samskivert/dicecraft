@@ -15,6 +15,7 @@ public class Level {
   public readonly LevelData data;
   public readonly System.Random random = new System.Random();
 
+  public IMutable<int> coins = Values.Mutable(0);
   public IMutable<int> playerPos = Values.Mutable(0);
   public MutableMap<int, Cell.Info> cells = RMaps.LocalMutable<int, Cell.Info>();
   public MutableMap<int, ItemData> items = RMaps.LocalMutable<int, ItemData>();
@@ -27,7 +28,7 @@ public class Level {
   public int Pos (int row, int col) => row * data.width + col;
 
   public int CellCount => data.cells.Length;
-  public int earnedCoins;
+  public int earnedGems;
 
   public Level (Player player, LevelData data, CellData chest) {
     this.player = player;
@@ -60,9 +61,9 @@ public class Level {
     playerPos.Update(npos);
   }
 
-  public void WonBattle (int awardCoins) {
-    earnedCoins += awardCoins;
+  public void WonBattle (int coinAward) {
     cells.Remove(playerPos.current);
+    coins.UpdateVia(coins => coins + coinAward);
   }
 
   private void ProcessSpace (int pos) {
@@ -70,11 +71,22 @@ public class Level {
     if (cell != null) switch (cell.Type) {
     case Cell.Type.Enemy:
       battle.Emit(new Battle(player, (EnemyData)cell));
-      return;
+      break;
     case Cell.Type.Chest:
       player.AwardItem(items.GetValueOrDefault(pos));
       cells[pos] = null;
       break;
+    case Cell.Type.HeartUp:
+      player.HealthUp();
+      cells[pos] = null;
+      // TODO: animate
+      break;
+    case Cell.Type.DiceUp:
+      player.DiceUp();
+      cells[pos] = null;
+      // TODO: animate
+      break;
+
     // case Cell.Type.Die:
     //   switch (cell.dieType) {
     //   case Die.Type.Heal:
