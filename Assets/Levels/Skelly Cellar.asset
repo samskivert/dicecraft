@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Skelly Cellar
   m_EditorClassIdentifier: 
   saveId: starter
-  image: {fileID: 21300000, guid: 887392c71bf99e240aa5a96ab54e7205, type: 3}
+  image: {fileID: 21300000, guid: cca77a0f90be0744db2ca08046dca123, type: 3}
   price: 0
   width: 14
   floorTiles:
