@@ -13,6 +13,7 @@ using Util;
 public class CombatantController : MonoBehaviour {
   private event Action onDestroy;
   private Dictionary<int, GameObject> itemObjs = new Dictionary<int, GameObject>();
+  private GameController game;
   private Combatant comb;
 
   public TMP_Text nameLabel;
@@ -26,7 +27,6 @@ public class CombatantController : MonoBehaviour {
   public GameObject diceBagPanel;
   public GameObject bagDiePrefab;
   public GameObject showDiePrefab;
-  public GameObject gotDiePrefab;
 
   public GameObject itemBagPanel;
   public GameObject bagItemPrefab;
@@ -34,6 +34,7 @@ public class CombatantController : MonoBehaviour {
   public GameObject gotItemPrefab;
 
   public void Init (GameController game, Combatant comb) {
+    this.game = game;
     this.comb = comb;
     nameLabel.text = comb.Name;
     image.sprite = comb.Image;
@@ -60,8 +61,7 @@ public class CombatantController : MonoBehaviour {
     var initial = true;
     onDestroy += comb.items.OnEntries((idx, item, oitem) => {
       AddBagItem(idx, item);
-      if (!initial) Instantiate(
-        gotItemPrefab, transform.parent).GetComponent<ItemPopup>().Show(idx, item, null);
+      if (!initial) game.ShowPopup<ItemPopup>(gotItemPrefab).Show(idx, item, null);
     });
     onDestroy += comb.items.OnRemove((idx, oitem) => {
       // TODO: fling item to character?
@@ -99,8 +99,7 @@ public class CombatantController : MonoBehaviour {
     dieObj.GetComponent<DieController>().Show(die.faces[0]);
     dieObj.SetActive(true);
     var button = dieObj.AddComponent<Button>();
-    button.onClick.AddListener(
-      () => Instantiate(showDiePrefab, transform.parent).GetComponent<DiePopup>().Show(die));
+    button.onClick.AddListener(() => game.ShowPopup<DiePopup>(showDiePrefab).Show(die));
   }
 
   public void AddBagItem (int index, ItemData item) {
@@ -109,10 +108,9 @@ public class CombatantController : MonoBehaviour {
     itemObj.SetActive(true);
     itemObjs.Add(index, itemObj);
     var button = itemObj.AddComponent<Button>();
-    button.onClick.AddListener(() => {
-      var popupObj = Instantiate(showItemPrefab, transform.parent);
-      popupObj.GetComponent<ItemPopup>().Show(index, item, () => comb.UseItem(index));
-    });
+    void UseItem () => comb.UseItem(index);
+    button.onClick.AddListener(
+      () => game.ShowPopup<ItemPopup>(showItemPrefab).Show(index, item, UseItem));
   }
 
   private void RemoveBagItem (int index) {

@@ -20,6 +20,7 @@ public class GameController : MonoBehaviour {
   public GameObject levelPrefab;
   public GameObject battlePrefab;
   public GameObject lostPopupPrefab;
+  public GameObject battlePopupPrefab;
 
   public GameObject debugPrefab;
   public Button debugButton;
@@ -40,14 +41,6 @@ public class GameController : MonoBehaviour {
   public readonly IMutable<Unlockable> selLevel = Values.Mutable<Unlockable>(null);
   public readonly IMutable<Unlockable> selPlayer = Values.Mutable<Unlockable>(null);
 
-  public void StartLevel () {
-    player = new Player((PlayerData)selPlayer.current);
-    level = new Level(player, (LevelData)selLevel.current, chest, shop);
-    level.onDied = () => ShowLost(level);
-    level.battle.OnEmit(StartBattle);
-    ShowLevel();
-  }
-
   public void Award (int gemAward) {
     gems.UpdateVia(gems => gems + gemAward);
   }
@@ -60,6 +53,19 @@ public class GameController : MonoBehaviour {
   public void ShowTitle () {
     SetScreen(titlePrefab).GetComponent<TitleController>().Init(this);
     level = null;
+  }
+
+  public void StartLevel () {
+    player = new Player((PlayerData)selPlayer.current);
+    level = new Level(player, (LevelData)selLevel.current, chest, shop);
+    level.onDied = () => ShowLost(level);
+    level.battle.OnEmit(battle => ShowPopup<BattlePopup>(battlePopupPrefab).Show(this, battle));
+    ShowLevel();
+  }
+
+  public void StartBattle (Battle battle) {
+    var battleCtrl = SetScreen(battlePrefab).GetComponent<BattleController>();
+    battleCtrl.Init(this, level, battle, ShowLevel);
   }
 
   public void ShowLost (Level level) {
@@ -128,11 +134,6 @@ public class GameController : MonoBehaviour {
   private void ShowLevel () {
     var bctrl = SetScreen(levelPrefab).GetComponent<LevelController>();
     bctrl.Init(this);
-  }
-
-  private void StartBattle (Battle battle) {
-    var battleCtrl = SetScreen(battlePrefab).GetComponent<BattleController>();
-    battleCtrl.Init(this, level, battle, ShowLevel);
   }
 
   private GameObject SetScreen (GameObject prefab) {
