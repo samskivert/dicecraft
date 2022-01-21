@@ -22,8 +22,9 @@ public class Level {
   public MutableMap<int, Cell.Info> items = RMaps.LocalMutable<int, Cell.Info>();
 
   public Emitter<Battle> battle = new Emitter<Battle>();
-  public Emitter<DieData> shop = new Emitter<DieData>();
+  public Emitter<DieData> showShop = new Emitter<DieData>();
   public Emitter<ItemData> gotItem = new Emitter<ItemData>();
+  public Emitter<DieData> boughtDie = new Emitter<DieData>();
   public Action onExit;
   public Action onDied;
 
@@ -72,7 +73,9 @@ public class Level {
     coins.UpdateVia(coins => coins + coinAward);
   }
 
-  public void BoughtDie () {
+  public void BoughtDie (DieData die) {
+    coins.UpdateVia(coins => coins-die.cost);
+    boughtDie.Emit(die);
     cells.Remove(playerPos.current);
   }
 
@@ -87,7 +90,7 @@ public class Level {
       cells.Remove(pos);
       break;
     case Cell.Type.Shop:
-      shop.Emit((DieData)items.GetValueOrDefault(pos));
+      showShop.Emit((DieData)items.GetValueOrDefault(pos));
       break;
     case Cell.Type.HeartUp:
       player.HealthUp();

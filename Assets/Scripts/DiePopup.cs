@@ -4,8 +4,6 @@ using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 
-using React;
-
 public class DiePopup : Popup {
 
   public TMP_Text dieName;
@@ -32,9 +30,7 @@ public class DiePopup : Popup {
       costLabel.text = die.cost.ToString();
       buy.interactable = level.coins.current >= die.cost;
       buy.onClick.AddListener(() => {
-        level.coins.UpdateVia(coins => coins-die.cost);
-        level.player.AddDie(die);
-        level.BoughtDie();
+        level.BoughtDie(die);
         Close();
       });
     }

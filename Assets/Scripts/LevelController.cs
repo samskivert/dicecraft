@@ -31,15 +31,10 @@ public class LevelController : MonoBehaviour {
     player.Init(game, game.player);
     onDestroy += game.gems.OnValue(gems => gemsLabel.text = gems.ToString());
     onDestroy += level.coins.OnValue(coins => coinsLabel.text = coins.ToString());
-    onDestroy += level.shop.OnEmit(
+    onDestroy += level.showShop.OnEmit(
       die => game.ShowPopup<DiePopup>(buyDiePrefab).Show(die, level));
-    onDestroy += level.gotItem.OnEmit(item => {
-      game.floater.Fling(cellGrid.Cell(level.playerPos.current).gameObject,
-                         player.itemBagPanel, item.image, null, 1, () => {
-        level.player.AwardItem(item);
-      });
-      game.ShowPopup<ItemPopup>(gotItemPrefab).Show(item, null);
-    });
+    onDestroy += level.gotItem.OnEmit(OnGotItem);
+    onDestroy += level.boughtDie.OnEmit(OnBoughtDie);
     onDestroy += level.earnedGems.OnChange((g, og) => {
       var delta = g-og;
       game.Award(delta);
@@ -55,6 +50,17 @@ public class LevelController : MonoBehaviour {
         break;
       }
     });
+  }
+
+  private void OnGotItem (ItemData item) {
+    game.floater.Fling(cellGrid.Cell(level.playerPos.current).gameObject,
+                       player.itemBagPanel, item.image, null, () => level.player.AwardItem(item));
+    game.ShowPopup<ItemPopup>(gotItemPrefab).Show(item, null);
+  }
+
+  private void OnBoughtDie (DieData die) {
+    game.floater.Fling(cellGrid.Cell(level.playerPos.current).gameObject,
+                       player.diceBagPanel, die.image, null, () => level.player.AddDie(die));
   }
 
   private void Update () {
