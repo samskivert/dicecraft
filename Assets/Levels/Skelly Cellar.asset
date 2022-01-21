@@ -10,10 +10,10 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 05663c4d3e1874209af903c0b3523739, type: 3}
-  m_Name: Starter
+  m_Name: Skelly Cellar
   m_EditorClassIdentifier: 
   saveId: starter
-  image: {fileID: 21300000, guid: 7aefe67fc80e23a439846d4210031764, type: 3}
+  image: {fileID: 21300000, guid: 887392c71bf99e240aa5a96ab54e7205, type: 3}
   price: 0
   width: 14
   floorTiles:
