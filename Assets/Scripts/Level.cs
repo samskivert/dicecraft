@@ -83,20 +83,18 @@ public class Level {
       break;
     case Cell.Type.Chest:
       player.AwardItem((ItemData)items.GetValueOrDefault(pos));
-      cells[pos] = null;
+      cells.Remove(pos);
       break;
     case Cell.Type.Shop:
       shop.Emit((DieData)items.GetValueOrDefault(pos));
       break;
     case Cell.Type.HeartUp:
       player.HealthUp();
-      cells[pos] = null;
-      // TODO: animate
+      cells.Remove(pos);
       break;
     case Cell.Type.DiceUp:
       player.DiceUp();
-      cells[pos] = null;
-      // TODO: animate
+      cells.Remove(pos);
       break;
     case Cell.Type.Exit:
       onExit();

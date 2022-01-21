@@ -71,6 +71,9 @@ public class GameController : MonoBehaviour {
     });
   }
 
+  public P ShowPopup<P> (GameObject prefab) where P : MonoBehaviour =>
+    Instantiate(prefab, canvas).GetComponent<P>();
+
   private void Start () {
     // sync the player's gems and unlocked levels & players to prefs
     gems.Update(PlayerPrefs.GetInt("gems"));

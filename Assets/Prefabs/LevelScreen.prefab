@@ -682,6 +682,7 @@ MonoBehaviour:
   player: {fileID: 2874295168401438914}
   wonPanel: {fileID: 7177758653938726497}
   buyDiePrefab: {fileID: 8075285087259852938, guid: 9f42d3ab3bda94af0a62d99a5b1ed890, type: 3}
+  upPrefab: {fileID: 8075285087259852938, guid: 71e41a78ad5fa49db974f7c7c76c3967, type: 3}
 --- !u!1001 &247400857962264071
 PrefabInstance:
   m_ObjectHideFlags: 0
