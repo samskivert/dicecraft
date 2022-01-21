@@ -8,6 +8,7 @@ using TMPro;
 public class SlotController : MonoBehaviour {
   private UnityAction unplay;
 
+  public Sprite empty;
   public IconData icons;
   public TMP_Text typeLabel;
   public TMP_Text damageLabel;
@@ -15,7 +16,6 @@ public class SlotController : MonoBehaviour {
   public Image typeBack;
   public Image image;
 
-  // public Die.Type type { get; private set; }
   public FaceData face { get; private set; }
   public int index { get; private set; }
   public int upgrades { get; private set; }
@@ -33,19 +33,17 @@ public class SlotController : MonoBehaviour {
     return unplay == null /* && type == face.dieType */;
   }
 
-  public void Init (int index) { // Die.Type type, int upgrades
-    // this.type = type;
+  public void Init (int index) {
     this.index = index;
-    // this.upgrades = upgrades;
-    typeLabel.text = "..."; // type.ToString();
     Reset();
   }
 
   public void Reset () {
     face = null;
     unplay = null;
-    image.sprite = null;
+    image.sprite = empty;
     typeBack.sprite = null;
+    typeLabel.text = " ";
     damageLabel.text = " ";
   }
 

@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3960487987090521492}
   - component: {fileID: 3960487987090521494}
+  - component: {fileID: 7196856818470949596}
   - component: {fileID: 3960487987090521495}
   - component: {fileID: 4100246457764714750}
   m_Layer: 5
@@ -48,6 +49,36 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3960487987090521493}
   m_CullTransparentMesh: 1
+--- !u!114 &7196856818470949596
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3960487987090521493}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_RaycastTarget: 1
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_Sprite: {fileID: 21300000, guid: b8a8005f6a5dc40f2bc4c2152eebdfe9, type: 3}
+  m_Type: 1
+  m_PreserveAspect: 0
+  m_FillCenter: 1
+  m_FillMethod: 4
+  m_FillAmount: 1
+  m_FillClockwise: 1
+  m_FillOrigin: 0
+  m_UseSpriteMesh: 0
+  m_PixelsPerUnitMultiplier: 0.2
 --- !u!114 &3960487987090521495
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -86,6 +117,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f220f29f43fd549fbbb586739c6971c3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  empty: {fileID: 21300000, guid: 16a1d72b31503d349844eb2966bde061, type: 3}
   icons: {fileID: 11400000, guid: ef1bd7846cf01447d98f65e899bcfe03, type: 2}
   typeLabel: {fileID: 7917651466020926385}
   damageLabel: {fileID: 8288398441164499059}
