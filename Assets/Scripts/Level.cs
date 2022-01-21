@@ -31,7 +31,7 @@ public class Level {
   public int CellCount => data.cells.Length;
   public int earnedGems;
 
-  public Level (Player player, LevelData data, CellData chest) {
+  public Level (Player player, LevelData data, CellData chest = null, CellData shop = null) {
     this.player = player;
     this.data = data;
     for (var ii = 0; ii < data.cells.Length; ii += 1) {
@@ -40,6 +40,9 @@ public class Level {
       if (cell is ItemData item && chest != null) {
         items.Add(ii, item);
         cells.Add(ii, chest);
+      } else if (cell is DieData die && shop != null) {
+        items.Add(ii, die);
+        cells.Add(ii, shop);
       } else {
         cells.Add(ii, cell);
       }

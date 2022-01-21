@@ -31,6 +31,7 @@ public class DiePopup : MonoBehaviour {
       buy.onClick.AddListener(() => {
         level.coins.UpdateVia(coins => coins-die.cost);
         level.player.AddDie(die);
+        level.BoughtDie();
         Close();
       });
     }

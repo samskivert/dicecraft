@@ -837,7 +837,6 @@ GameObject:
   - component: {fileID: 7820802378052566517}
   - component: {fileID: 3773609685636889060}
   - component: {fileID: 284216443329108206}
-  - component: {fileID: 6775220250220711068}
   m_Layer: 5
   m_Name: Faces
   m_TagString: Untagged
@@ -862,7 +861,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 275.525, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &3773609685636889060
@@ -899,20 +898,6 @@ MonoBehaviour:
   m_ChildScaleWidth: 0
   m_ChildScaleHeight: 0
   m_ReverseArrangement: 0
---- !u!114 &6775220250220711068
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7960406433127005821}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3245ec927659c4140ac4f8d17403cc18, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_HorizontalFit: 2
-  m_VerticalFit: 2
 --- !u!1 &8075285087259852938
 GameObject:
   m_ObjectHideFlags: 0
@@ -1003,11 +988,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a682b668933f843c5b842fc2e0d538d9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  dieName: {fileID: 8423645119848389277}
+  dieName: {fileID: 6733518192342370363}
   costLabel: {fileID: 7509664623909159610}
   close: {fileID: 3736373646446417192}
   buy: {fileID: 3545330217815801300}
-  faces: {fileID: 1380542111253294038}
+  faces: {fileID: 7960406433127005821}
   slotPrefab: {fileID: 3960487987090521493, guid: 4868aed321d4c4a99a4048715fce9db8, type: 3}
 --- !u!1 &8315263187265855483
 GameObject:

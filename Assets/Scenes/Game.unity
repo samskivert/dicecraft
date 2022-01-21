@@ -824,6 +824,10 @@ PrefabInstance:
       value: Game
       objectReference: {fileID: 0}
     - target: {fileID: 4913607268464491193, guid: 75fe8a69a47274754b3d2acc873c9635, type: 3}
+      propertyPath: shop
+      value: 
+      objectReference: {fileID: 11400000, guid: 28deb8b3203f64bd0982d0389c0efb7a, type: 2}
+    - target: {fileID: 4913607268464491193, guid: 75fe8a69a47274754b3d2acc873c9635, type: 3}
       propertyPath: board
       value: 
       objectReference: {fileID: 11400000, guid: ab0883527f4764e1088029f37083a32e, type: 2}

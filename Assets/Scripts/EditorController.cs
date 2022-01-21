@@ -37,7 +37,7 @@ public class EditorController : MonoBehaviour {
 
   private void SetLevel (string path) {
     _levelData = AssetDatabase.LoadAssetAtPath<LevelData>(path);
-    _level = new Level(new Player(this.player), _levelData, null);
+    _level = new Level(new Player(this.player), _levelData);
     cellGrid.Init(_level, CellClicked);
   }
 

@@ -31,7 +31,7 @@ public class LevelController : MonoBehaviour {
     onDestroy += game.gems.OnValue(gems => gemsLabel.text = gems.ToString());
     onDestroy += level.coins.OnValue(coins => coinsLabel.text = coins.ToString());
     onDestroy += level.shop.OnEmit(
-      die => Instantiate(buyDiePrefab).GetComponent<DiePopup>().Show(die, level));
+      die => Instantiate(buyDiePrefab, transform.parent).GetComponent<DiePopup>().Show(die, level));
     // when the player earns an item, they also get a gem (TODO: separate?)
     onDestroy += game.player.items.OnAdd((ii, item, oitem) => game.Award(1));
   }
