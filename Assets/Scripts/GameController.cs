@@ -59,7 +59,8 @@ public class GameController : MonoBehaviour {
     player = new Player((PlayerData)selPlayer.current);
     level = new Level(player, (LevelData)selLevel.current, chest, shop);
     level.onDied = () => ShowLost(level);
-    level.battle.OnEmit(battle => ShowPopup<BattlePopup>(battlePopupPrefab).Show(this, battle));
+    level.battle.OnEmit(battle => ShowPopup<BattlePopup>(battlePopupPrefab).Show(
+      this, battle, () => level.playerPos.Update(battle.oldPos)));
     ShowLevel();
   }
 

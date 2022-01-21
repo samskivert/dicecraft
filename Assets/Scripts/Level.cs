@@ -48,7 +48,7 @@ public class Level {
         cells.Add(ii, cell);
       }
     }
-    playerPos.OnValue(ProcessSpace);
+    playerPos.OnChange(ProcessSpace);
   }
 
   public const int MaxDie = 3;
@@ -75,11 +75,11 @@ public class Level {
     cells.Remove(playerPos.current);
   }
 
-  private void ProcessSpace (int pos) {
+  private void ProcessSpace (int pos, int oldPos) {
     cells.TryGetValue(pos, out var cell);
     if (cell != null) switch (cell.Type) {
     case Cell.Type.Enemy:
-      battle.Emit(new Battle(player, (EnemyData)cell));
+      battle.Emit(new Battle(player, (EnemyData)cell, oldPos));
       break;
     case Cell.Type.Chest:
       player.AwardItem((ItemData)items.GetValueOrDefault(pos));

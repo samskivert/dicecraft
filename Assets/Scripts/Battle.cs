@@ -10,15 +10,17 @@ public class Battle {
   public readonly Random random = new Random();
   public readonly Player player;
   public readonly Enemy enemy;
+  public readonly int oldPos;
 
   // flings are (delay, slot idx, player/enemy)
   public readonly Emitter<(float, int, bool)> flings = new Emitter<(float, int, bool)>();
 
   public readonly Emitter<Battle> barriers = new Emitter<Battle>();
 
-  public Battle (Player player, EnemyData enemyData) {
+  public Battle (Player player, EnemyData enemyData, int oldPos) {
     this.player = player;
     this.enemy = new Enemy(enemyData);
+    this.oldPos = oldPos;
   }
 
   public void StartTurn (bool playerTurn) {
