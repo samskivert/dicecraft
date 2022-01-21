@@ -46,7 +46,7 @@ public class Level {
       } else if (cell is DieData die && shop != null) {
         items.Add(ii, die);
         cells.Add(ii, shop);
-      } else {
+      } else if (cell != null) {
         cells.Add(ii, cell);
       }
     }
@@ -66,6 +66,35 @@ public class Level {
       return;
     }
     playerPos.Update(npos);
+  }
+
+  public bool MoveTo (int pos) {
+    if (!CanReach(playerPos.current, pos)) return false;
+    if (cells.TryGetValue(pos, out var cell) && !cell.Walkable) return false;
+    playerPos.Update(pos);
+    return true;
+  }
+
+  private bool CanReach (int fromPos, int toPos) {
+    var tocheck = new List<int>();
+    var seen = new HashSet<int>();
+    bool Add (int pos, int dx, int dy) {
+      var next = Pos(Row(pos)+dy, Col(pos)+dx);
+      if (next == toPos) return true;
+      if (seen.Add(next) && !cells.ContainsKey(next)) tocheck.Add(next);
+      return false;
+    }
+    tocheck.Add(fromPos);
+    while (tocheck.Count > 0) {
+      var nextPos = tocheck.Count-1;
+      var next = tocheck[nextPos];
+      tocheck.RemoveAt(nextPos);
+      if (Add(next, -1,  0)) return true;
+      if (Add(next,  1,  0)) return true;
+      if (Add(next,  0, -1)) return true;
+      if (Add(next,  0,  1)) return true;
+    }
+    return false;
   }
 
   public void WonBattle (int coinAward) {

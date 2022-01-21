@@ -25,7 +25,7 @@ public class LevelController : MonoBehaviour {
   public void Init (GameController game) {
     this.game = game;
     this.level = game.level;
-    cellGrid.Init(game.level, null); // TODO: onClick?
+    cellGrid.Init(game.level, pos => level.MoveTo(pos));
     player.Init(game, game.player);
     onDestroy += game.gems.OnValue(gems => gemsLabel.text = gems.ToString());
     onDestroy += level.coins.OnValue(coins => coinsLabel.text = coins.ToString());
