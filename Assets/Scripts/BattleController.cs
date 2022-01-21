@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 
 using UnityEngine;
+using UnityEngine.EventSystems;
 using UnityEngine.Events;
 using UnityEngine.UI;
 
@@ -172,6 +173,8 @@ public class BattleController : MonoBehaviour {
       if (enemy.coinAward > 0) wonCtrl.coinLabel.text = $"+{enemy.coinAward}";
       else wonCtrl.coinLabel.gameObject.transform.parent.gameObject.SetActive(false);
       level.WonBattle(enemy.coinAward);
+      EventSystem.current.SetSelectedGameObject(
+        wonPanel.GetComponentInChildren<Button>().gameObject);
     } else game.ShowLost(level);
   }
 }

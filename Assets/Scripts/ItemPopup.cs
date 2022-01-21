@@ -2,6 +2,7 @@ namespace dicecraft {
 
 using UnityEngine;
 using UnityEngine.Events;
+using UnityEngine.EventSystems;
 using UnityEngine.UI;
 using TMPro;
 
@@ -25,6 +26,7 @@ public class ItemPopup : MonoBehaviour {
       Close();
     });
     cancel.onClick.AddListener(Close);
+    EventSystem.current.SetSelectedGameObject(cancel.gameObject);
   }
 
   private void Close () => Destroy(gameObject);
