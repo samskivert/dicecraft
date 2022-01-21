@@ -11,6 +11,7 @@ using React;
 
 public class PaletteController : MonoBehaviour {
 
+  public TMP_Text selectedLabel;
   public GameObject labelPrefab;
   public GameObject cellButtonGridPrefab;
   public GameObject cellButtonPrefab;
@@ -24,6 +25,10 @@ public class PaletteController : MonoBehaviour {
       labelObj.GetComponent<TMP_Text>().text = label;
       labelObj.SetActive(true);
     }
+
+    selectedCell.OnValue(cell => {
+      selectedLabel.text = cell == null ? "<none>" : cell.name;
+    });
 
     void AddGrid<T> (string label, string query, bool addNone) where T : ScriptableObject {
       AddHeader(label);
