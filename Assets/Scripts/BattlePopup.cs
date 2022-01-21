@@ -1,14 +1,16 @@
 namespace dicecraft {
 
 using System;
-using UnityEngine;
 using UnityEngine.UI;
 
-public class BattlePopup : MonoBehaviour {
+public class BattlePopup : Popup {
 
   public CombatantController enemy;
   public Button close;
   public Button start;
+
+  protected override Button returnButton => start;
+  protected override Button escapeButton => close;
 
   public void Show (GameController game, Battle battle, Action onCancel) {
     enemy.Init(game, battle.enemy);
@@ -21,7 +23,5 @@ public class BattlePopup : MonoBehaviour {
       game.StartBattle(battle);
     });
   }
-
-  private void Close () => Destroy(gameObject);
 }
 }

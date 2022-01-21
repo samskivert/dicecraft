@@ -1,15 +1,16 @@
 namespace dicecraft {
 
-using UnityEngine;
-using UnityEngine.EventSystems;
 using UnityEngine.UI;
 using TMPro;
 
-public class UpPopup : MonoBehaviour {
+public class UpPopup : Popup {
 
   public TMP_Text title;
   public TMP_Text info;
   public Button close;
+
+  protected override Button returnButton => close;
+  protected override Button escapeButton => close;
 
   public void Show (Cell.Type type) {
     switch (type) {
@@ -23,7 +24,6 @@ public class UpPopup : MonoBehaviour {
       break;
     }
     close.onClick.AddListener(Close);
-    EventSystem.current.SetSelectedGameObject(close.gameObject);
   }
 
   private void Close () => Destroy(gameObject);

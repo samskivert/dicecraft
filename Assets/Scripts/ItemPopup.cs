@@ -1,18 +1,18 @@
 namespace dicecraft {
 
-using UnityEngine;
 using UnityEngine.Events;
-using UnityEngine.EventSystems;
 using UnityEngine.UI;
 using TMPro;
 
-public class ItemPopup : MonoBehaviour {
+public class ItemPopup : Popup {
 
   public TMP_Text itemName;
   public TMP_Text descrip;
   public Image image;
   public Button use;
   public Button cancel;
+
+  protected override Button escapeButton => cancel;
 
   public void Show (int index, ItemData item, UnityAction onUse) {
     if (item == null) {
@@ -28,7 +28,6 @@ public class ItemPopup : MonoBehaviour {
       Close();
     });
     cancel.onClick.AddListener(Close);
-    EventSystem.current.SetSelectedGameObject(cancel.gameObject);
   }
 
   private void Close () => Destroy(gameObject);

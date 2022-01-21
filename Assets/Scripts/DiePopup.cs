@@ -6,7 +6,7 @@ using TMPro;
 
 using React;
 
-public class DiePopup : MonoBehaviour {
+public class DiePopup : Popup {
 
   public TMP_Text dieName;
   public TMP_Text costLabel;
@@ -15,6 +15,9 @@ public class DiePopup : MonoBehaviour {
 
   public GameObject faces;
   public GameObject slotPrefab;
+
+  protected override Button returnButton => buy;
+  protected override Button escapeButton => close;
 
   public void Show (DieData die, Level level = null) {
     if (die == null) {
@@ -36,7 +39,5 @@ public class DiePopup : MonoBehaviour {
       });
     }
   }
-
-  private void Close () => Destroy(gameObject);
 }
 }

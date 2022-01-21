@@ -1,15 +1,17 @@
 namespace dicecraft {
 
-using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 
-public class CellPopup : MonoBehaviour {
+public class CellPopup : Popup {
 
   public TMP_Text title;
   public Image image;
   public TMP_Text descrip;
   public Button ok;
+
+  protected override Button escapeButton => ok;
+  protected override Button returnButton => ok;
 
   public void Show (CellData cell) {
     switch (cell.type) {
@@ -25,7 +27,5 @@ public class CellPopup : MonoBehaviour {
     image.sprite = cell.image;
     ok.onClick.AddListener(Close);
   }
-
-  private void Close () => Destroy(gameObject);
 }
 }
