@@ -10,6 +10,7 @@ public class FloatController : MonoBehaviour {
 
   public IconData icons;
   public Sprite hpIcon;
+  public Sprite gemIcon;
 
   public GameController game;
   public Canvas canvas;
@@ -28,6 +29,11 @@ public class FloatController : MonoBehaviour {
   public void FloatHp (GameObject over, int count) {
     // Debug.Log("Float HP: " + count);
     FloatOver(hpIcon, null, count < 0 ? count.ToString() : $"+{count}", over);
+  }
+
+  public void FloatGems (GameObject over, int count) {
+    // Debug.Log("Float HP: " + count);
+    FloatOver(gemIcon, null, count < 0 ? count.ToString() : $"+{count}", over);
   }
 
   public void Fling (GameObject fromObj, GameObject toObj, Die.Type type, int count) =>

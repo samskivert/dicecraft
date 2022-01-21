@@ -964,6 +964,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   icons: {fileID: 11400000, guid: ef1bd7846cf01447d98f65e899bcfe03, type: 2}
   hpIcon: {fileID: 21300000, guid: 0b8029e6d6c5e994a930e9f0c7a7bdac, type: 3}
+  gemIcon: {fileID: 21300000, guid: d3a4b2d509534394b916500f9b8a4f4c, type: 3}
   game: {fileID: 4913607266627143313}
   canvas: {fileID: 923909729}
   floatPrefab: {fileID: 741774598248520555, guid: db75400a826da43348324d639cf0597d, type: 3}

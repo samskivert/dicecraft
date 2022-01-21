@@ -32,12 +32,14 @@ public class LevelController : MonoBehaviour {
     onDestroy += level.coins.OnValue(coins => coinsLabel.text = coins.ToString());
     onDestroy += level.shop.OnEmit(
       die => game.ShowPopup<DiePopup>(buyDiePrefab).Show(die, level));
-    // when the player earns an item, they also get a gem (TODO: separate?)
-    onDestroy += game.player.items.OnAdd((ii, item, oitem) => game.Award(1));
+    onDestroy += level.earnedGems.OnChange((g, og) => {
+      var delta = g-og;
+      game.Award(delta);
+      game.floater.FloatGems(gemsLabel.gameObject, delta);
+    });
     level.onExit = ShowCompleted;
 
     onDestroy += level.cells.OnRemove((pos, ocell) => {
-      Debug.Log("Cell removed " + ocell.Type);
       switch (ocell.Type) {
       case Cell.Type.HeartUp:
       case Cell.Type.DiceUp:
@@ -56,7 +58,7 @@ public class LevelController : MonoBehaviour {
 
   public void ShowCompleted () {
     wonPanel.SetActive(true);
-    wonPanel.GetComponentInChildren<EarnedGemsController>().Init(level.earnedGems);
+    wonPanel.GetComponentInChildren<EarnedGemsController>().Init(level.earnedGems.current);
     wonPanel.GetComponentInChildren<Button>().onClick.AddListener(() => game.ShowTitle());
   }
 

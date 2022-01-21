@@ -17,6 +17,7 @@ public class Level {
 
   public IMutable<int> coins = Values.Mutable(0);
   public IMutable<int> playerPos = Values.Mutable(0);
+  public IMutable<int> earnedGems = Values.Mutable(0);
   public MutableMap<int, Cell.Info> cells = RMaps.LocalMutable<int, Cell.Info>();
   public MutableMap<int, Cell.Info> items = RMaps.LocalMutable<int, Cell.Info>();
 
@@ -30,7 +31,6 @@ public class Level {
   public int Pos (int row, int col) => row * data.width + col;
 
   public int CellCount => data.cells.Length;
-  public int earnedGems;
 
   public Level (Player player, LevelData data, CellData chest = null, CellData shop = null) {
     this.player = player;
@@ -94,6 +94,10 @@ public class Level {
       break;
     case Cell.Type.DiceUp:
       player.DiceUp();
+      cells.Remove(pos);
+      break;
+    case Cell.Type.Gem:
+      earnedGems.UpdateVia(g => g+1);
       cells.Remove(pos);
       break;
     case Cell.Type.Exit:
