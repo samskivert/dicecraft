@@ -633,7 +633,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemName: {fileID: 6733518192342370363}
   image: {fileID: 4180389444146123652}
-  ok: {fileID: 3736373646446417192}
+  use: {fileID: 0}
+  cancel: {fileID: 3736373646446417192}
 --- !u!1 &8315263187265855483
 GameObject:
   m_ObjectHideFlags: 0

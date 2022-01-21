@@ -15,8 +15,7 @@ public class Combatant {
   public readonly List<DieData> dice = new List<DieData>();
   public readonly Emitter<DieData> gotDie = new Emitter<DieData>();
 
-  public readonly List<ItemData> items = new List<ItemData>();
-  public readonly Emitter<ItemData> gotItem = new Emitter<ItemData>();
+  public readonly MutableMap<int, ItemData> items = RMaps.LocalMutable<int, ItemData>();
 
   public virtual int MaxHp { get; }
   public virtual int Slots { get; }
@@ -57,6 +56,22 @@ public class Combatant {
     diced.Emit((Die.Type.Heal, heal));
   }
 
+  public bool UseItem (int index) {
+    if (!items.Remove(index, out var item)) return false;
+    switch (item.dieType) {
+    case Die.Type.Heal:
+      Heal(item.level);
+      break;
+    case Die.Type.SelfEffect:
+      AddEffect(item.effectType, item.level);
+      break;
+    default:
+      Debug.LogWarning("Unexpected die type for item " + item.dieType);
+      break;
+    }
+    return true;
+  }
+
   public void Roll (System.Random random) {
     roll.Clear();
     foreach (var die in dice) roll.Add(random.Pick(die.faces));
@@ -73,5 +88,4 @@ public class Combatant {
     }
   }
 }
-
 }

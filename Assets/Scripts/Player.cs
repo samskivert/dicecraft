@@ -1,5 +1,6 @@
 namespace dicecraft {
 
+using System;
 using UnityEngine;
 
 using React;
@@ -21,8 +22,8 @@ public class Player : Combatant {
   public override Sprite Image => data.image;
   public override int MaxHp => data.maxHp + hpUp;
   public override int Slots => SlotsPerLevel[level.current];
-  public override Die.Type Resistance => Die.Type.None;
-  public override Die.Type Weakness => Die.Type.None;
+  public override Die.Type Resistance => data.resistance;
+  public override Die.Type Weakness => data.weakness;
   public int BoardDice => DicePerLevel[level.current];
 
   public Player (PlayerData data) {
@@ -32,8 +33,9 @@ public class Player : Combatant {
   }
 
   public void AwardItem (ItemData item) {
-    items.Add(item);
-    gotItem.Emit(item);
+    int next = 1;
+    foreach (var entry in items) next = Math.Max(next, entry.Key+1);
+    items.Add(next, item);
   }
 
   public string LevelReward (int level) {

@@ -12,6 +12,8 @@ using Util;
 
 public class CombatantController : MonoBehaviour {
   private event Action onDestroy;
+  private Dictionary<int, GameObject> itemObjs = new Dictionary<int, GameObject>();
+  private Combatant comb;
 
   public TMP_Text nameLabel;
   public Image image;
@@ -32,6 +34,7 @@ public class CombatantController : MonoBehaviour {
   public GameObject gotItemPrefab;
 
   public void Init (GameController game, Combatant comb) {
+    this.comb = comb;
     nameLabel.text = comb.Name;
     image.sprite = comb.Image;
 
@@ -57,11 +60,17 @@ public class CombatantController : MonoBehaviour {
       AddBagDie(die);
     });
 
-    foreach (var item in comb.items) AddBagItem(item);
-    onDestroy += comb.gotItem.OnEmit(item => {
-      Instantiate(gotItemPrefab, transform.parent).GetComponent<GotItemController>().Show(item);
-      AddBagItem(item);
+    var initial = true;
+    onDestroy += comb.items.OnEntries((idx, item, oitem) => {
+      AddBagItem(idx, item);
+      if (!initial) Instantiate(
+        gotItemPrefab, transform.parent).GetComponent<ItemPopup>().Show(idx, item, null);
     });
+    onDestroy += comb.items.OnRemove((idx, oitem) => {
+      // TODO: fling item to character?
+      RemoveBagItem(idx);
+    });
+    initial = false;
 
     onDestroy += comb.effected.OnEmit(
       pair => game.floater.Float(gameObject, pair.Item1, pair.Item2));
@@ -88,24 +97,30 @@ public class CombatantController : MonoBehaviour {
     });
   }
 
-    void AddBagDie (DieData die) {
-      var dieObj = Instantiate(bagDiePrefab, diceBagPanel.transform);
-      dieObj.GetComponent<DieController>().Show(die.faces[0]);
-      dieObj.SetActive(true);
-      var button = dieObj.AddComponent<Button>();
-      button.onClick.AddListener(() => {
-        Instantiate(showDiePrefab, transform.parent).GetComponent<GotDieController>().Show(die);
-      });
-    }
+  public void AddBagDie (DieData die) {
+    var dieObj = Instantiate(bagDiePrefab, diceBagPanel.transform);
+    dieObj.GetComponent<DieController>().Show(die.faces[0]);
+    dieObj.SetActive(true);
+    var button = dieObj.AddComponent<Button>();
+    button.onClick.AddListener(() => {
+      Instantiate(showDiePrefab, transform.parent).GetComponent<GotDieController>().Show(die);
+    });
+  }
 
-  public void AddBagItem (ItemData item) {
+  public void AddBagItem (int index, ItemData item) {
     var itemObj = Instantiate(bagItemPrefab, itemBagPanel.transform);
     itemObj.GetComponent<Image>().sprite = item.image;
     itemObj.SetActive(true);
+    itemObjs.Add(index, itemObj);
     var button = itemObj.AddComponent<Button>();
     button.onClick.AddListener(() => {
-      Instantiate(showItemPrefab, transform.parent).GetComponent<GotItemController>().Show(item);
+      var popupObj = Instantiate(showItemPrefab, transform.parent);
+      popupObj.GetComponent<ItemPopup>().Show(index, item, () => comb.UseItem(index));
     });
+  }
+
+  private void RemoveBagItem (int index) {
+    if (itemObjs.Remove(index, out var itemObj)) Destroy(itemObj);
   }
 
   private void OnDestroy () => onDestroy();
