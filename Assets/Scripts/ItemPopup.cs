@@ -13,6 +13,10 @@ public class ItemPopup : MonoBehaviour {
   public Button cancel;
 
   public void Show (int index, ItemData item, UnityAction onUse) {
+    if (item == null) {
+      itemName.text = "Missing item! Broken level.";
+      return;
+    }
     itemName.text = item.name;
     image.sprite = item.image;
     // TODO: description

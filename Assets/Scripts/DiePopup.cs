@@ -17,6 +17,10 @@ public class DiePopup : MonoBehaviour {
   public GameObject slotPrefab;
 
   public void Show (DieData die, Level level = null) {
+    if (die == null) {
+      dieName.text = "Missing die! Broken level.";
+      return;
+    }
     dieName.text = die.name;
     foreach (var face in die.faces) Instantiate(slotPrefab, faces.transform).
       GetComponent<SlotController>().Show(face);
