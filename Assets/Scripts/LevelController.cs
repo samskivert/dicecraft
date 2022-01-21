@@ -3,7 +3,6 @@ namespace dicecraft {
 using System;
 
 using UnityEngine;
-using UnityEngine.UI;
 using TMPro;
 
 using React;
@@ -16,7 +15,6 @@ public class LevelController : MonoBehaviour {
   public TMP_Text coinsLabel;
   public CellGridController cellGrid;
   public CombatantController player;
-  public GameObject wonPrefab;
   public GameObject buyDiePrefab;
   public GameObject upPrefab;
   public GameObject gotItemPrefab;
@@ -40,7 +38,7 @@ public class LevelController : MonoBehaviour {
       game.Award(delta);
       game.floater.FloatGems(gemsLabel.gameObject, delta);
     });
-    level.onExit = ShowCompleted;
+    level.onExit = () => game.ShowWon(level);
 
     onDestroy += level.cells.OnRemove((pos, ocell) => {
       switch (ocell.Type) {
@@ -68,10 +66,6 @@ public class LevelController : MonoBehaviour {
     else if (Input.GetKeyDown(KeyCode.DownArrow)) level.Move(0, 1);
     else if (Input.GetKeyDown(KeyCode.RightArrow)) level.Move(1, 0);
     else if (Input.GetKeyDown(KeyCode.LeftArrow)) level.Move(-1, 0);
-  }
-
-  public void ShowCompleted () {
-    game.ShowPopup<WonPopup>(wonPrefab).Show(game, level.earnedGems.current);
   }
 
   private void OnDestroy () => onDestroy();

@@ -4,9 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 
 using UnityEngine;
-using UnityEngine.EventSystems;
 using UnityEngine.Events;
-using UnityEngine.UI;
 
 using Util;
 
@@ -16,34 +14,28 @@ public class BattleController : MonoBehaviour {
   private Battle battle;
   private Level level;
   private bool playerTurn;
+  private UnityAction onWin;
 
   public CombatantController player;
   public CombatantController enemy;
 
   public GameObject slotsPanel;
   public GameObject slotPrefab;
-  public Button attack;
 
   public GameObject diePrefab;
   public GameObject dice;
   public GameObject playerDice;
   public GameObject enemyDice;
 
-  public GameObject wonPanel;
+  public GameObject wonPopupPrefab;
 
   public SlotController[] slots { get; private set; }
-
-  private void Start () {
-    attack.onClick.AddListener(Attack);
-  }
 
   public void Init (GameController game, Level level, Battle battle, UnityAction onWin) {
     this.game = game;
     this.level = level;
     this.battle = battle;
-
-    wonPanel.SetActive(false);
-    wonPanel.GetComponentInChildren<Button>().onClick.AddListener(onWin);
+    this.onWin = onWin;
 
     battle.flings.OnEmit(trip => {
       var delay = trip.Item1;
@@ -77,7 +69,6 @@ public class BattleController : MonoBehaviour {
     else ShowDice(battle.enemy, enemyDice, battle.enemy.roll, false);
     // starting the turn may have ended the game due to poison
     if (CheckGameOver()) return;
-    attack.gameObject.SetActive(false); // TODO
     if (!playerTurn) this.RunAfter(1, EnemyPlay);
   }
 
@@ -88,16 +79,13 @@ public class BattleController : MonoBehaviour {
   }
 
   private void ShowSlots (int slotCount) {
-    if (slots != null) for (var ii = slots.Length-1; ii >= 0; ii -= 1) {
-      Destroy(slotsPanel.transform.GetChild(ii).gameObject);
-    }
+    if (slots != null) foreach (var slot in slots) Destroy(slot.gameObject);
     slots = new SlotController[slotCount];
     for (var ii = 0; ii < slotCount; ii += 1) {
       var slot = Instantiate(slotPrefab, slotsPanel.transform).GetComponent<SlotController>();
       slot.Init(ii);
       slots[ii] = slot;
     }
-    attack.transform.parent.SetAsLastSibling();
   }
 
   private void ShowDice (
@@ -165,16 +153,12 @@ public class BattleController : MonoBehaviour {
 
   private void EndGame () {
     slotsPanel.SetActive(false);
-    if (battle.player.hp.current > 0) {
-      wonPanel.SetActive(true);
+    if (battle.player.hp.current <= 0) game.ShowLost(level);
+    else {
       var enemy = (EnemyData)battle.enemy.data;
-      var wonCtrl = wonPanel.GetComponent<WonController>();
-      if (enemy.coinAward > 0) wonCtrl.coinLabel.text = $"+{enemy.coinAward}";
-      else wonCtrl.coinLabel.gameObject.transform.parent.gameObject.SetActive(false);
+      game.ShowPopup<WonBattlePopup>(wonPopupPrefab).Show(enemy.coinAward, onWin);
       level.WonBattle(enemy.coinAward);
-      EventSystem.current.SetSelectedGameObject(
-        wonPanel.GetComponentInChildren<Button>().gameObject);
-    } else game.ShowLost(level);
+    }
   }
 }
 }

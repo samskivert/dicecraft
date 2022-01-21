@@ -19,6 +19,7 @@ public class GameController : MonoBehaviour {
   public GameObject titlePrefab;
   public GameObject levelPrefab;
   public GameObject battlePrefab;
+  public GameObject wonPopupPrefab;
   public GameObject lostPopupPrefab;
   public GameObject battlePopupPrefab;
 
@@ -67,6 +68,10 @@ public class GameController : MonoBehaviour {
   public void StartBattle (Battle battle) {
     var battleCtrl = SetScreen(battlePrefab).GetComponent<BattleController>();
     battleCtrl.Init(this, level, battle, ShowLevel);
+  }
+
+  public void ShowWon (Level level) {
+    ShowPopup<WonLevelPopup>(wonPopupPrefab).Show(this, level.earnedGems.current);
   }
 
   public void ShowLost (Level level) {

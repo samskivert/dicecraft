@@ -21,9 +21,8 @@ public class ItemPopup : Popup {
       return;
     }
     itemName.text = item.name;
-    descrip.text = item.Descrip;
     image.sprite = item.image;
-    // TODO: description
+    descrip.text = item.Descrip;
     if (onUse != null) use.onClick.AddListener(() => {
       onUse();
       Close();

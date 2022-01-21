@@ -2,7 +2,7 @@ namespace dicecraft {
 
 using UnityEngine.UI;
 
-public class WonPopup : Popup {
+public class WonLevelPopup : Popup {
 
   public EarnedGemsController earned;
   public Button ok;
@@ -12,7 +12,10 @@ public class WonPopup : Popup {
 
   public void Show (GameController game, int earnedGems) {
     earned.Init(earnedGems);
-    ok.onClick.AddListener(game.ShowTitle);
+    ok.onClick.AddListener(() => {
+      Close();
+      game.ShowTitle();
+    });
   }
 }
 }
