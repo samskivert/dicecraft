@@ -10,6 +10,7 @@ using React;
 public class DieController : MonoBehaviour {
   private BattleController battle;
 
+  public Sprite empty;
   public IconData icons;
   public TMP_Text nameLabel;
   public TMP_Text descripLabel;
@@ -31,7 +32,7 @@ public class DieController : MonoBehaviour {
   public void Show (FaceData face, bool showNames = true) {
     if (face == null) {
       typeBack.sprite = null;
-      image.sprite = null;
+      image.sprite = empty;
       nameLabel.text = "";
       descripLabel.text = "";
     } else {
