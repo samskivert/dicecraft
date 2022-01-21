@@ -1174,11 +1174,11 @@ MonoBehaviour:
   buffPrefab: {fileID: 741774598248520555, guid: a8d0549726c204d05bcb396b1c994f2f, type: 3}
   diceBagPanel: {fileID: 5065349414368634374}
   bagDiePrefab: {fileID: 1128770300140551620}
-  showDiePrefab: {fileID: 8075285087259852938, guid: 6765ac855f4c24a1c8c3e2ec8a97667f, type: 3}
+  showDiePrefab: {fileID: 6450561550232973129, guid: b553b7d34430c4db38f8d6fed60f1f5a, type: 3}
   itemBagPanel: {fileID: 1397280557327506667}
   bagItemPrefab: {fileID: 7707068361612821624}
-  showItemPrefab: {fileID: 8075285087259852938, guid: cf4c6515b02f7460c8d20a7ecf473aff, type: 3}
-  gotItemPrefab: {fileID: 8075285087259852938, guid: aea8b8c471e3443adb2c7e3a411d0450, type: 3}
+  showItemPrefab: {fileID: 6450561550232973129, guid: 9f51f632bcd304589a154dd249fbff49, type: 3}
+  gotItemPrefab: {fileID: 6450561550232973129, guid: 8009168bec6974e528633d25aee713fc, type: 3}
 --- !u!1001 &6175470305245588012
 PrefabInstance:
   m_ObjectHideFlags: 0

@@ -778,4 +778,4 @@ MonoBehaviour:
   buffs: {fileID: 6947611698049299719}
   buffPrefab: {fileID: 741774598248520555, guid: a8d0549726c204d05bcb396b1c994f2f, type: 3}
   diePrefab: {fileID: 6492395287112423400, guid: 86faed9ddeb1a4b5994c0061369897b7, type: 3}
-  gotDiePrefab: {fileID: 8075285087259852938, guid: aea8b8c471e3443adb2c7e3a411d0450, type: 3}
+  gotDiePrefab: {fileID: 6450561550232973129, guid: 8009168bec6974e528633d25aee713fc, type: 3}

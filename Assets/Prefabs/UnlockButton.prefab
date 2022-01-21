@@ -229,7 +229,7 @@ MonoBehaviour:
   toggle: {fileID: 8190103514964812269}
   costPanel: {fileID: 6207934995804173542}
   cost: {fileID: 1400264949481806551}
-  buyPrefab: {fileID: 8075285087259852938, guid: e11f7857452ce4b199ceb3f66068cbfe, type: 3}
+  buyPrefab: {fileID: 6450561550232973129, guid: f5d44e845843c42b1ae362bcbcedc49a, type: 3}
 --- !u!1 &8647012232800441093
 GameObject:
   m_ObjectHideFlags: 0
