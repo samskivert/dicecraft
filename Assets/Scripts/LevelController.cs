@@ -16,12 +16,7 @@ public class LevelController : MonoBehaviour {
   public TMP_Text gemsLabel;
   public TMP_Text coinsLabel;
   public CellGridController cellGrid;
-
   public CombatantController player;
-  public Image xpMeter;
-  public TMP_Text xpMeterLabel;
-  public TMP_Text levelLabel;
-
   public GameObject wonPanel;
 
   public IMutable<bool> moving = Values.Mutable(false);
