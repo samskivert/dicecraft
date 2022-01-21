@@ -25,7 +25,5 @@ public class UpPopup : Popup {
     }
     close.onClick.AddListener(Close);
   }
-
-  private void Close () => Destroy(gameObject);
 }
 }

@@ -53,29 +53,7 @@ public class SlotController : MonoBehaviour {
     typeLabel.text = face.name;
     typeBack.sprite = icons.Die(face.dieType);
     image.sprite = face.image;
-    var amount = face.amount; // type.Boost(upgrades, face.amount);
-    var eff = face.effectType == Effect.Type.None ? "" : $"{face.effectType} ";
-    switch (face.dieType) {
-    case Die.Type.Slash:
-    case Die.Type.Pierce:
-    case Die.Type.Blunt:
-    case Die.Type.Magic:
-      damageLabel.text = $"{amount} {eff}damage";
-      break;
-    case Die.Type.SelfEffect:
-      switch (face.effectType) {
-      case Effect.Type.Shield:
-        damageLabel.text = $"+{amount} shield";
-        break;
-      case Effect.Type.Evade:
-        damageLabel.text = $"+{amount}% evade";
-        break;
-      }
-      break;
-    case Die.Type.Heal:
-      damageLabel.text = $"+{amount} HP";
-      break;
-    }
+    damageLabel.text = face.Descrip;
   }
 
   public void PlayDie (FaceData face, bool clickable, UnityAction unplay) {

@@ -375,7 +375,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8075285087259852938, guid: 7414e2a6926994c35b0ba42a935949e3, type: 3}
       propertyPath: m_Name
-      value: ShowDiePopupnew
+      value: ShowDiePopup
       objectReference: {fileID: 0}
     - target: {fileID: 8075285087259852939, guid: 7414e2a6926994c35b0ba42a935949e3, type: 3}
       propertyPath: m_Pivot.x
@@ -485,7 +485,7 @@ MonoBehaviour:
   close: {fileID: 3961971716235928174}
   buy: {fileID: 0}
   faces: {fileID: 7764878467037687798}
-  slotPrefab: {fileID: 3960487987090521493, guid: 4868aed321d4c4a99a4048715fce9db8, type: 3}
+  diePrefab: {fileID: 6492395287112423400, guid: 86faed9ddeb1a4b5994c0061369897b7, type: 3}
 --- !u!224 &8297617884245110740 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 6535529061149851671, guid: 7414e2a6926994c35b0ba42a935949e3, type: 3}

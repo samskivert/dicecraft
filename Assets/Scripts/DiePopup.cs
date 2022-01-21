@@ -14,7 +14,7 @@ public class DiePopup : Popup {
   public Button buy;
 
   public GameObject faces;
-  public GameObject slotPrefab;
+  public GameObject diePrefab;
 
   protected override Button returnButton => buy;
   protected override Button escapeButton => close;
@@ -25,8 +25,8 @@ public class DiePopup : Popup {
       return;
     }
     dieName.text = die.name;
-    foreach (var face in die.faces) Instantiate(slotPrefab, faces.transform).
-      GetComponent<SlotController>().Show(face);
+    foreach (var face in die.faces) Instantiate(diePrefab, faces.transform).
+      GetComponent<DieController>().Show(face);
     close.onClick.AddListener(Close);
     if (buy != null) {
       costLabel.text = die.cost.ToString();

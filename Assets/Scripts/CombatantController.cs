@@ -96,7 +96,7 @@ public class CombatantController : MonoBehaviour {
 
   public void AddBagDie (DieData die) {
     var dieObj = Instantiate(bagDiePrefab, diceBagPanel.transform);
-    dieObj.GetComponent<DieController>().Show(die.faces[0]);
+    dieObj.GetComponent<DieController>().Show(die.faces[0], false);
     dieObj.SetActive(true);
     var button = dieObj.AddComponent<Button>();
     button.onClick.AddListener(() => game.ShowPopup<DiePopup>(showDiePrefab).Show(die));

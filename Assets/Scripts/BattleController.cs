@@ -61,8 +61,12 @@ public class BattleController : MonoBehaviour {
   }
 
   public void UpdateAttack () {
-    var canAttack = slots.Any(slot => slot.face != null);
-    attack.interactable = canAttack;
+    if (!playerTurn) return;
+    if (!slots.Any(slot => slot.face == null)) Attack();
+    // TODO: if all dice are used, also attack
+
+    // var canAttack = slots.Any(slot => slot.face != null);
+    // attack.interactable = canAttack;
   }
 
   public void StartTurn (bool playerTurn) {
@@ -73,8 +77,7 @@ public class BattleController : MonoBehaviour {
     else ShowDice(battle.enemy, enemyDice, battle.enemy.roll, false);
     // starting the turn may have ended the game due to poison
     if (CheckGameOver()) return;
-    UpdateAttack();
-    attack.gameObject.SetActive(playerTurn);
+    attack.gameObject.SetActive(false); // TODO
     if (!playerTurn) this.RunAfter(1, EnemyPlay);
   }
 
@@ -84,13 +87,10 @@ public class BattleController : MonoBehaviour {
     return true;
   }
 
-  private void ClearSlots () {
+  private void ShowSlots (int slotCount) {
     if (slots != null) for (var ii = slots.Length-1; ii >= 0; ii -= 1) {
       Destroy(slotsPanel.transform.GetChild(ii).gameObject);
     }
-  }
-
-  private void ShowSlots (int slotCount) {
     slots = new SlotController[slotCount];
     for (var ii = 0; ii < slotCount; ii += 1) {
       var slot = Instantiate(slotPrefab, slotsPanel.transform).GetComponent<SlotController>();
@@ -147,7 +147,6 @@ public class BattleController : MonoBehaviour {
     var attacker = playerTurn ? (Combatant)battle.player : (Combatant)battle.enemy;
     var defender = playerTurn ? (Combatant)battle.enemy : (Combatant)battle.player;
     battle.Attack(slots, attacker, defender);
-    ClearSlots();
     playerDice.DestroyChildren();
     enemyDice.DestroyChildren();
     game.anim.Add(Anim.Action(() => {

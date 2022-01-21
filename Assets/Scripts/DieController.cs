@@ -3,6 +3,7 @@ namespace dicecraft {
 using System;
 using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
 
 using React;
 
@@ -10,6 +11,8 @@ public class DieController : MonoBehaviour {
   private BattleController battle;
 
   public IconData icons;
+  public TMP_Text nameLabel;
+  public TMP_Text descripLabel;
   public Image above;
   public Image typeBack;
   public Image image;
@@ -25,9 +28,20 @@ public class DieController : MonoBehaviour {
     Show(face);
   }
 
-  public void Show (FaceData face) {
-    typeBack.sprite = face == null ? null : icons.Die(face.dieType);
-    image.sprite = face?.image;
+  public void Show (FaceData face, bool showNames = true) {
+    if (face == null) {
+      typeBack.sprite = null;
+      image.sprite = null;
+      nameLabel.text = "";
+      descripLabel.text = "";
+    } else {
+      typeBack.sprite = icons.Die(face.dieType);
+      image.sprite = face.image;
+      nameLabel.text = face.name;
+      descripLabel.text = face.Descrip;
+    }
+    nameLabel.gameObject.SetActive(showNames);
+    descripLabel.gameObject.SetActive(showNames);
   }
 
   public void EnableClick (Combatant comb) {

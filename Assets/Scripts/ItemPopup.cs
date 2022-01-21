@@ -29,7 +29,5 @@ public class ItemPopup : Popup {
     });
     cancel.onClick.AddListener(Close);
   }
-
-  private void Close () => Destroy(gameObject);
 }
 }
