@@ -1,8 +1,10 @@
 namespace dicecraft {
 
+#if UNITY_EDITOR
 using System.Linq;
-
 using UnityEditor;
+#endif
+
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
@@ -46,9 +48,11 @@ public class PaletteController : MonoBehaviour {
         });
       }
       if (addNone) AddButton(null);
+#if UNITY_EDITOR
       var guids = AssetDatabase.FindAssets(query);
       foreach (var path in guids.Select(AssetDatabase.GUIDToAssetPath)) AddButton(
         AssetDatabase.LoadAssetAtPath<T>(path));
+#endif
     }
 
     AddGrid<WallData>("Walls", "t:WallData", true);

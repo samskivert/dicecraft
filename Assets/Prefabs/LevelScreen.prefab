@@ -36,9 +36,9 @@ RectTransform:
   m_Father: {fileID: 8075285087259852939}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 20, y: 20}
+  m_AnchorMin: {x: 0.5, y: 0}
+  m_AnchorMax: {x: 0.5, y: 0}
+  m_AnchoredPosition: {x: -1004, y: 20}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 0}
 --- !u!222 &7608514058755502618
@@ -243,7 +243,6 @@ MonoBehaviour:
   coinsLabel: {fileID: 5549815122895180033}
   cellGrid: {fileID: 2866407465917947732}
   player: {fileID: 2874295168401438914}
-  wonPrefab: {fileID: 6450561550232973129, guid: 970a98d27fec0497da1376e09072dce1, type: 3}
   buyDiePrefab: {fileID: 6450561550232973129, guid: 06c2229865bba4417a3cbc4fd918bd3a, type: 3}
   upPrefab: {fileID: 6450561550232973129, guid: 262316e530c2346f5b208db5b037590a, type: 3}
   gotItemPrefab: {fileID: 6450561550232973129, guid: 8009168bec6974e528633d25aee713fc, type: 3}
@@ -280,9 +279,9 @@ RectTransform:
   m_Father: {fileID: 8075285087259852939}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 1}
-  m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 30, y: -20}
+  m_AnchorMin: {x: 0.5, y: 1}
+  m_AnchorMax: {x: 0.5, y: 1}
+  m_AnchoredPosition: {x: -994, y: -20}
   m_SizeDelta: {x: 400, y: 50}
   m_Pivot: {x: 0, y: 1}
 --- !u!222 &6851220230644502767

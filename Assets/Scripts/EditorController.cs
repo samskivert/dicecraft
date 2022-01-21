@@ -1,8 +1,10 @@
 namespace dicecraft {
 
+#if UNITY_ENGINE
 using System.Linq;
-
 using UnityEditor;
+#endif
+
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
@@ -19,6 +21,7 @@ public class EditorController : MonoBehaviour {
   public PlayerData player;
 
   private void Awake () {
+#if UNITY_ENGINE
     var guids = AssetDatabase.FindAssets("t:LevelData");
     var paths = guids.Select(AssetDatabase.GUIDToAssetPath).ToList();
     var names = paths.Select(path => path.Substring(path.LastIndexOf("/")+1)).ToList();
@@ -33,8 +36,10 @@ public class EditorController : MonoBehaviour {
         AssetDatabase.SaveAssetIfDirty(_levelData);
       }
     });
+#endif
   }
 
+#if UNITY_ENGINE
   private void SetLevel (string path) {
     _levelData = AssetDatabase.LoadAssetAtPath<LevelData>(path);
     _level = new Level(new Player(this.player), _levelData);
@@ -47,5 +52,6 @@ public class EditorController : MonoBehaviour {
     _levelData.cells[index] = cell;
     EditorUtility.SetDirty(_levelData);
   }
+#endif
 }
 }
