@@ -72,6 +72,11 @@ public class Combatant {
     return true;
   }
 
+  public void AddDie (DieData die) {
+    dice.Add(die);
+    gotDie.Emit(die);
+  }
+
   public void Roll (System.Random random) {
     roll.Clear();
     foreach (var die in dice) roll.Add(random.Pick(die.faces));

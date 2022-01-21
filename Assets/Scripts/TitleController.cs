@@ -13,7 +13,7 @@ public class TitleController : MonoBehaviour {
   public GameObject playerButtons;
   public GameObject buttonPrefab;
   public Button playButton;
-  public TMP_Text coinsLabel;
+  public TMP_Text gemsLabel;
 
   public void Init (GameController game) {
     var levelGroup = levelButtons.GetComponent<ToggleGroup>();
@@ -34,8 +34,8 @@ public class TitleController : MonoBehaviour {
 
     playButton.onClick.AddListener(game.StartLevel);
 
-    onDestroy += game.gems.OnValue(coins => {
-      coinsLabel.text = coins.ToString();
+    onDestroy += game.gems.OnValue(gems => {
+      gemsLabel.text = gems.ToString();
     });
   }
 

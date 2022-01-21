@@ -31,10 +31,8 @@ public class DebugEnemyController : MonoBehaviour {
     foreach (var die in data.dice) {
       var dieObj = Instantiate(diePrefab, transform);
       dieObj.GetComponent<DieController>().Show(die.faces[0]);
-      dieObj.AddComponent<Button>().onClick.AddListener(() => {
-        var gotDie = Instantiate(gotDiePrefab, owner.transform.parent);
-        gotDie.GetComponent<GotDieController>().Show(die);
-      });
+      dieObj.AddComponent<Button>().onClick.AddListener(
+        () => Instantiate(gotDiePrefab, owner.transform.parent).GetComponent<DiePopup>().Show(die));
     }
   }
 }

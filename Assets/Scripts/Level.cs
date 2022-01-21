@@ -18,9 +18,10 @@ public class Level {
   public IMutable<int> coins = Values.Mutable(0);
   public IMutable<int> playerPos = Values.Mutable(0);
   public MutableMap<int, Cell.Info> cells = RMaps.LocalMutable<int, Cell.Info>();
-  public MutableMap<int, ItemData> items = RMaps.LocalMutable<int, ItemData>();
+  public MutableMap<int, Cell.Info> items = RMaps.LocalMutable<int, Cell.Info>();
 
   public Emitter<Battle> battle = new Emitter<Battle>();
+  public Emitter<DieData> shop = new Emitter<DieData>();
   public Action onDied;
 
   public int Row (int pos) => pos / data.width;
@@ -66,6 +67,10 @@ public class Level {
     coins.UpdateVia(coins => coins + coinAward);
   }
 
+  public void BoughtDie () {
+    cells.Remove(playerPos.current);
+  }
+
   private void ProcessSpace (int pos) {
     cells.TryGetValue(pos, out var cell);
     if (cell != null) switch (cell.Type) {
@@ -73,8 +78,11 @@ public class Level {
       battle.Emit(new Battle(player, (EnemyData)cell));
       break;
     case Cell.Type.Chest:
-      player.AwardItem(items.GetValueOrDefault(pos));
+      player.AwardItem((ItemData)items.GetValueOrDefault(pos));
       cells[pos] = null;
+      break;
+    case Cell.Type.Shop:
+      shop.Emit((DieData)items.GetValueOrDefault(pos));
       break;
     case Cell.Type.HeartUp:
       player.HealthUp();

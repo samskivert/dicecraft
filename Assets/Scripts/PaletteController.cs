@@ -50,6 +50,7 @@ public class PaletteController : MonoBehaviour {
     AddGrid<EnemyData>("Enemies", "t:EnemyData", false);
     AddGrid<CellData>("Cells", "t:CellData", false);
     AddGrid<ItemData>("Items", "t:ItemData", false);
+    AddGrid<DieData>("Dice", "t:DieData", false);
   }
 }
 }

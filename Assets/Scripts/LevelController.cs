@@ -18,6 +18,7 @@ public class LevelController : MonoBehaviour {
   public CellGridController cellGrid;
   public CombatantController player;
   public GameObject wonPanel;
+  public GameObject buyDiePrefab;
 
   public IMutable<bool> moving = Values.Mutable(false);
   public Level level { get; private set; }
@@ -29,9 +30,10 @@ public class LevelController : MonoBehaviour {
     player.Init(game, game.player);
     onDestroy += game.gems.OnValue(gems => gemsLabel.text = gems.ToString());
     onDestroy += level.coins.OnValue(coins => coinsLabel.text = coins.ToString());
-    level.onDied += () => game.ShowLost(level);
+    onDestroy += level.shop.OnEmit(
+      die => Instantiate(buyDiePrefab).GetComponent<DiePopup>().Show(die, level));
     // when the player earns an item, they also get a gem (TODO: separate?)
-    game.player.items.OnAdd((ii, item, oitem) => game.Award(1));
+    onDestroy += game.player.items.OnAdd((ii, item, oitem) => game.Award(1));
   }
 
   private void Update () {

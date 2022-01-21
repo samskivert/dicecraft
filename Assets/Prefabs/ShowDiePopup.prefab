@@ -583,7 +583,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   dieName: {fileID: 6733518192342370363}
-  ok: {fileID: 3736373646446417192}
+  costLabel: {fileID: 0}
+  close: {fileID: 3736373646446417192}
+  buy: {fileID: 0}
   faces: {fileID: 7960406433127005821}
   slotPrefab: {fileID: 3960487987090521493, guid: 4868aed321d4c4a99a4048715fce9db8, type: 3}
 --- !u!1 &8315263187265855483

@@ -55,10 +55,7 @@ public class CombatantController : MonoBehaviour {
     }
 
     foreach (var die in comb.dice) AddBagDie(die);
-    onDestroy += comb.gotDie.OnEmit(die => {
-      Instantiate(gotDiePrefab, transform.parent).GetComponent<GotDieController>().Show(die);
-      AddBagDie(die);
-    });
+    onDestroy += comb.gotDie.OnEmit(die => AddBagDie(die));
 
     var initial = true;
     onDestroy += comb.items.OnEntries((idx, item, oitem) => {
@@ -102,9 +99,8 @@ public class CombatantController : MonoBehaviour {
     dieObj.GetComponent<DieController>().Show(die.faces[0]);
     dieObj.SetActive(true);
     var button = dieObj.AddComponent<Button>();
-    button.onClick.AddListener(() => {
-      Instantiate(showDiePrefab, transform.parent).GetComponent<GotDieController>().Show(die);
-    });
+    button.onClick.AddListener(
+      () => Instantiate(showDiePrefab, transform.parent).GetComponent<DiePopup>().Show(die));
   }
 
   public void AddBagItem (int index, ItemData item) {
