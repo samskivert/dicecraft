@@ -57,6 +57,11 @@ public class GameController : MonoBehaviour {
     unlocked.Add(unlock);
   }
 
+  public void ShowTitle () {
+    SetScreen(titlePrefab).GetComponent<TitleController>().Init(this);
+    level = null;
+  }
+
   public void ShowLost (Level level) {
     var popObj = Instantiate(lostPopupPrefab, canvas.transform);
     popObj.GetComponentInChildren<EarnedGemsController>().Init(level.earnedGems);
@@ -112,11 +117,6 @@ public class GameController : MonoBehaviour {
   }
 
   private void Update () => anim.Update(Time.deltaTime);
-
-  private void ShowTitle () {
-    SetScreen(titlePrefab).GetComponent<TitleController>().Init(this);
-    level = null;
-  }
 
   // private void ShowDebug () {
   //   SetScreen(debugPrefab).GetComponent<DebugController>().Init(this);

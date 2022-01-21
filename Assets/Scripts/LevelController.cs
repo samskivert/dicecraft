@@ -3,7 +3,6 @@ namespace dicecraft {
 using System;
 
 using UnityEngine;
-using UnityEngine.Events;
 using UnityEngine.UI;
 using TMPro;
 
@@ -34,6 +33,7 @@ public class LevelController : MonoBehaviour {
       die => Instantiate(buyDiePrefab, transform.parent).GetComponent<DiePopup>().Show(die, level));
     // when the player earns an item, they also get a gem (TODO: separate?)
     onDestroy += game.player.items.OnAdd((ii, item, oitem) => game.Award(1));
+    level.onExit = ShowCompleted;
   }
 
   private void Update () {
@@ -43,10 +43,10 @@ public class LevelController : MonoBehaviour {
     else if (Input.GetKeyDown(KeyCode.LeftArrow)) level.Move(-1, 0);
   }
 
-  public void ShowCompleted (UnityAction onClick) {
+  public void ShowCompleted () {
     wonPanel.SetActive(true);
-    wonPanel.GetComponentInChildren<Button>().onClick.AddListener(onClick);
     wonPanel.GetComponentInChildren<EarnedGemsController>().Init(level.earnedGems);
+    wonPanel.GetComponentInChildren<Button>().onClick.AddListener(() => game.ShowTitle());
   }
 
   private void OnDestroy () => onDestroy();

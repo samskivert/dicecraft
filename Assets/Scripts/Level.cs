@@ -22,6 +22,7 @@ public class Level {
 
   public Emitter<Battle> battle = new Emitter<Battle>();
   public Emitter<DieData> shop = new Emitter<DieData>();
+  public Action onExit;
   public Action onDied;
 
   public int Row (int pos) => pos / data.width;
@@ -96,6 +97,9 @@ public class Level {
       player.DiceUp();
       cells[pos] = null;
       // TODO: animate
+      break;
+    case Cell.Type.Exit:
+      onExit();
       break;
 
     // case Cell.Type.Die:
