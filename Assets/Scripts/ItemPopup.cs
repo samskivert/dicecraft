@@ -9,6 +9,7 @@ using TMPro;
 public class ItemPopup : MonoBehaviour {
 
   public TMP_Text itemName;
+  public TMP_Text descrip;
   public Image image;
   public Button use;
   public Button cancel;
@@ -19,6 +20,7 @@ public class ItemPopup : MonoBehaviour {
       return;
     }
     itemName.text = item.name;
+    descrip.text = item.Descrip;
     image.sprite = item.image;
     // TODO: description
     if (onUse != null) use.onClick.AddListener(() => {

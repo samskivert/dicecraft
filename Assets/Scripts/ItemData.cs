@@ -10,6 +10,14 @@ public class ItemData : ScriptableObject, Cell.Info {
   public Effect.Type effectType;
   public int level;
 
+  public string Descrip { get {
+    switch (dieType) {
+    case Die.Type.Heal: return $"Heals {level} HP.";
+    case Die.Type.SelfEffect: return $"Adds {level} {effectType}";
+    default: return $"{dieType} +{level} {effectType}";
+    }
+  }}
+
   public Cell.Type Type => Cell.Type.Chest;
   public Sprite Image => image;
   public bool Walkable => true;
