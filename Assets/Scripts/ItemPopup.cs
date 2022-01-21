@@ -13,6 +13,7 @@ public class ItemPopup : Popup {
   public Button cancel;
 
   protected override Button escapeButton => cancel;
+  protected override Button returnButton => use ?? cancel;
 
   public void Show (int index, ItemData item, UnityAction onUse) {
     if (item == null) {
