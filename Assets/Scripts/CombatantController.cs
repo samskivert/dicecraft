@@ -31,7 +31,6 @@ public class CombatantController : MonoBehaviour {
   public GameObject itemBagPanel;
   public GameObject bagItemPrefab;
   public GameObject showItemPrefab;
-  public GameObject gotItemPrefab;
 
   public void Init (GameController game, Combatant comb) {
     this.game = game;
@@ -58,16 +57,9 @@ public class CombatantController : MonoBehaviour {
     foreach (var die in comb.dice) AddBagDie(die);
     onDestroy += comb.gotDie.OnEmit(die => AddBagDie(die));
 
-    var initial = true;
-    onDestroy += comb.items.OnEntries((idx, item, oitem) => {
-      AddBagItem(idx, item);
-      if (!initial) game.ShowPopup<ItemPopup>(gotItemPrefab).Show(idx, item, null);
-    });
-    onDestroy += comb.items.OnRemove((idx, oitem) => {
-      // TODO: fling item to character?
-      RemoveBagItem(idx);
-    });
-    initial = false;
+    onDestroy += comb.items.OnEntries((idx, item, oitem) => AddBagItem(idx, item));
+    // TODO: fling item to character on use?
+    onDestroy += comb.items.OnRemove((idx, oitem) => RemoveBagItem(idx));
 
     onDestroy += comb.effected.OnEmit(
       pair => game.floater.Float(gameObject, pair.Item1, pair.Item2));
@@ -109,8 +101,7 @@ public class CombatantController : MonoBehaviour {
     itemObjs.Add(index, itemObj);
     var button = itemObj.AddComponent<Button>();
     void UseItem () => comb.UseItem(index);
-    button.onClick.AddListener(
-      () => game.ShowPopup<ItemPopup>(showItemPrefab).Show(index, item, UseItem));
+    button.onClick.AddListener(() => game.ShowPopup<ItemPopup>(showItemPrefab).Show(item, UseItem));
   }
 
   private void RemoveBagItem (int index) {

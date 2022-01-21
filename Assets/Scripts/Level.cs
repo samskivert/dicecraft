@@ -23,6 +23,7 @@ public class Level {
 
   public Emitter<Battle> battle = new Emitter<Battle>();
   public Emitter<DieData> shop = new Emitter<DieData>();
+  public Emitter<ItemData> gotItem = new Emitter<ItemData>();
   public Action onExit;
   public Action onDied;
 
@@ -82,7 +83,7 @@ public class Level {
       battle.Emit(new Battle(player, (EnemyData)cell, oldPos));
       break;
     case Cell.Type.Chest:
-      player.AwardItem((ItemData)items.GetValueOrDefault(pos));
+      gotItem.Emit((ItemData)items.GetValueOrDefault(pos));
       cells.Remove(pos);
       break;
     case Cell.Type.Shop:

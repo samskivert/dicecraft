@@ -19,6 +19,7 @@ public class LevelController : MonoBehaviour {
   public GameObject wonPanel;
   public GameObject buyDiePrefab;
   public GameObject upPrefab;
+  public GameObject gotItemPrefab;
 
   public IMutable<bool> moving = Values.Mutable(false);
   public Level level { get; private set; }
@@ -32,6 +33,13 @@ public class LevelController : MonoBehaviour {
     onDestroy += level.coins.OnValue(coins => coinsLabel.text = coins.ToString());
     onDestroy += level.shop.OnEmit(
       die => game.ShowPopup<DiePopup>(buyDiePrefab).Show(die, level));
+    onDestroy += level.gotItem.OnEmit(item => {
+      game.floater.Fling(cellGrid.Cell(level.playerPos.current).gameObject,
+                         player.itemBagPanel, item.image, null, 1, () => {
+        level.player.AwardItem(item);
+      });
+      game.ShowPopup<ItemPopup>(gotItemPrefab).Show(item, null);
+    });
     onDestroy += level.earnedGems.OnChange((g, og) => {
       var delta = g-og;
       game.Award(delta);

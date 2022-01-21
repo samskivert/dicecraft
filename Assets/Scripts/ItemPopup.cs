@@ -15,7 +15,7 @@ public class ItemPopup : Popup {
   protected override Button escapeButton => cancel;
   protected override Button returnButton => use ?? cancel;
 
-  public void Show (int index, ItemData item, UnityAction onUse) {
+  public void Show (ItemData item, UnityAction onUse) {
     if (item == null) {
       itemName.text = "Missing item! Broken level.";
       return;
