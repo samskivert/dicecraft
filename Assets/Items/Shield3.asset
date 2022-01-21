@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3f60ef412397e4dec8cdcc0261eecadc, type: 3}
   m_Name: Shield3
   m_EditorClassIdentifier: 
-  image: {fileID: 21300000, guid: c6bc61513fb314a269443a33da439023, type: 3}
+  image: {fileID: 21300000, guid: f5f1c9e48d7b44d44b3aa5a11ee93573, type: 3}
   dieType: 4
   effectType: 5
   level: 3
