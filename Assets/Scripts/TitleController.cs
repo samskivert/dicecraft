@@ -8,6 +8,7 @@ using TMPro;
 
 public class TitleController : MonoBehaviour {
   private event Action onDestroy;
+  private GameController game;
 
   public GameObject levelButtons;
   public GameObject playerButtons;
@@ -16,6 +17,7 @@ public class TitleController : MonoBehaviour {
   public TMP_Text gemsLabel;
 
   public void Init (GameController game) {
+    this.game = game;
     var levelGroup = levelButtons.GetComponent<ToggleGroup>();
     foreach (var level in game.levels) {
       var levelObj = Instantiate(buttonPrefab, levelButtons.transform);
@@ -37,6 +39,10 @@ public class TitleController : MonoBehaviour {
     onDestroy += game.gems.OnValue(gems => {
       gemsLabel.text = gems.ToString();
     });
+  }
+
+  private void Update () {
+    if (Input.GetKeyDown(KeyCode.Return)) game.StartLevel();
   }
 
   private void OnDestroy () => onDestroy();
