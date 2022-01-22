@@ -93,8 +93,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 36
-  m_fontSizeBase: 36
+  m_fontSize: 64
+  m_fontSizeBase: 64
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
@@ -145,8 +145,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6891003718116825096}
   - component: {fileID: 7249665823005248541}
-  - component: {fileID: 679506335321252308}
-  - component: {fileID: 5816072197041441974}
+  - component: {fileID: 5228935323323324361}
   m_Layer: 5
   m_Name: Faces
   m_TagString: Untagged
@@ -182,7 +181,7 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7764878467037687798}
   m_CullTransparentMesh: 1
---- !u!114 &679506335321252308
+--- !u!114 &5228935323323324361
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -191,7 +190,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 7764878467037687798}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 30649d3a9faa99c48a7b1166b86bf2a0, type: 3}
+  m_Script: {fileID: 11500000, guid: 8a8695521f0d02e499659fee002a26c2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   m_Padding:
@@ -200,28 +199,12 @@ MonoBehaviour:
     m_Top: 0
     m_Bottom: 0
   m_ChildAlignment: 0
-  m_Spacing: 24
-  m_ChildForceExpandWidth: 0
-  m_ChildForceExpandHeight: 0
-  m_ChildControlWidth: 1
-  m_ChildControlHeight: 1
-  m_ChildScaleWidth: 0
-  m_ChildScaleHeight: 0
-  m_ReverseArrangement: 0
---- !u!114 &5816072197041441974
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7764878467037687798}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3245ec927659c4140ac4f8d17403cc18, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_HorizontalFit: 2
-  m_VerticalFit: 2
+  m_StartCorner: 0
+  m_StartAxis: 0
+  m_CellSize: {x: 200, y: 200}
+  m_Spacing: {x: 16, y: 16}
+  m_Constraint: 1
+  m_ConstraintCount: 6
 --- !u!1001 &310586023406916279
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -485,7 +468,7 @@ MonoBehaviour:
   close: {fileID: 3961971716235928174}
   buy: {fileID: 0}
   faces: {fileID: 7764878467037687798}
-  diePrefab: {fileID: 6492395287112423400, guid: 86faed9ddeb1a4b5994c0061369897b7, type: 3}
+  slotPrefab: {fileID: 3960487987090521493, guid: 4868aed321d4c4a99a4048715fce9db8, type: 3}
 --- !u!224 &8297617884245110740 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 6535529061149851671, guid: 7414e2a6926994c35b0ba42a935949e3, type: 3}

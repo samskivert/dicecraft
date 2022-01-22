@@ -12,7 +12,7 @@ public class DiePopup : Popup {
   public Button buy;
 
   public GameObject faces;
-  public GameObject diePrefab;
+  public GameObject slotPrefab;
 
   protected override Button returnButton => buy;
   protected override Button escapeButton => close;
@@ -23,8 +23,8 @@ public class DiePopup : Popup {
       return;
     }
     dieName.text = die.name;
-    foreach (var face in die.faces) Instantiate(diePrefab, faces.transform).
-      GetComponent<DieController>().Show(face);
+    foreach (var face in die.faces) Instantiate(slotPrefab, faces.transform).
+      GetComponent<SlotController>().Show(face);
     close.onClick.AddListener(Close);
     if (buy != null) {
       costLabel.text = die.cost.ToString();

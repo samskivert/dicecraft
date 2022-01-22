@@ -405,8 +405,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 36
-  m_fontSizeBase: 36
+  m_fontSize: 48
+  m_fontSizeBase: 48
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
@@ -1067,8 +1067,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_IgnoreLayout: 0
-  m_MinWidth: 50
-  m_MinHeight: 50
+  m_MinWidth: 64
+  m_MinHeight: 64
   m_PreferredWidth: -1
   m_PreferredHeight: -1
   m_FlexibleWidth: -1
@@ -1178,7 +1178,6 @@ MonoBehaviour:
   itemBagPanel: {fileID: 1397280557327506667}
   bagItemPrefab: {fileID: 7707068361612821624}
   showItemPrefab: {fileID: 6450561550232973129, guid: 9f51f632bcd304589a154dd249fbff49, type: 3}
-  gotItemPrefab: {fileID: 6450561550232973129, guid: 8009168bec6974e528633d25aee713fc, type: 3}
 --- !u!1001 &6175470305245588012
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1188,11 +1187,11 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 220924434366537918, guid: 86faed9ddeb1a4b5994c0061369897b7, type: 3}
       propertyPath: m_MinWidth
-      value: 50
+      value: 64
       objectReference: {fileID: 0}
     - target: {fileID: 220924434366537918, guid: 86faed9ddeb1a4b5994c0061369897b7, type: 3}
       propertyPath: m_MinHeight
-      value: 50
+      value: 64
       objectReference: {fileID: 0}
     - target: {fileID: 820258438476285333, guid: 86faed9ddeb1a4b5994c0061369897b7, type: 3}
       propertyPath: m_Pivot.x
