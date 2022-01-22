@@ -460,7 +460,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4687820203571498029, guid: 8f89cfa97e8a34b2396d279555130d59, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 110.369995
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4687820203571498029, guid: 8f89cfa97e8a34b2396d279555130d59, type: 3}
       propertyPath: m_AnchoredPosition.y
@@ -907,6 +907,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7691007849036094455, guid: 45aa81435a4fe492c8c03e4958b649f9, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 6724cce862972496ea15887ff834cf40, type: 3}
     - target: {fileID: 8546691730104309033, guid: 45aa81435a4fe492c8c03e4958b649f9, type: 3}
       propertyPath: m_Name
       value: CancelButton
