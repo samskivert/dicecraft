@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 2c75daf1274fb40db82fba1ce96283d6, type: 3}
-  m_Name: Knight New
+  m_Name: Knight
   m_EditorClassIdentifier: 
   image: {fileID: 21300000, guid: b91060a2934e99443b58cc32b70b7d7a, type: 3}
   faces:
