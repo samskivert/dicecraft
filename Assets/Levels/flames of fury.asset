@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 05663c4d3e1874209af903c0b3523739, type: 3}
-  m_Name: Flames of Fury
+  m_Name: flames of fury
   m_EditorClassIdentifier: 
   saveId: starter
   image: {fileID: 21300000, guid: bc808c1fd5e102040b1d2aff6114694d, type: 3}
