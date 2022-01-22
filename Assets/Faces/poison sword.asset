@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 71bc2946b85dc49939f3cd5b403cfbd6, type: 3}
   m_Name: poison sword
   m_EditorClassIdentifier: 
-  image: {fileID: 21300000, guid: 3f4f03ef8fcc5cc46b6e0d5d65943079, type: 3}
+  image: {fileID: 21300000, guid: 474ec899f04c688488cc89c1cf8e68c4, type: 3}
   dieType: 1
-  effectType: 0
+  effectType: 3
   amount: 1
