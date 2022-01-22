@@ -1,6 +1,6 @@
 namespace dicecraft {
 
-#if UNITY_ENGINE
+#if UNITY_EDITOR
 using System.Linq;
 using UnityEditor;
 #endif
@@ -21,7 +21,7 @@ public class EditorController : MonoBehaviour {
   public PlayerData player;
 
   private void Awake () {
-#if UNITY_ENGINE
+#if UNITY_EDITOR
     var guids = AssetDatabase.FindAssets("t:LevelData");
     var paths = guids.Select(AssetDatabase.GUIDToAssetPath).ToList();
     var names = paths.Select(path => path.Substring(path.LastIndexOf("/")+1)).ToList();
@@ -39,7 +39,7 @@ public class EditorController : MonoBehaviour {
 #endif
   }
 
-#if UNITY_ENGINE
+#if UNITY_EDITOR
   private void SetLevel (string path) {
     _levelData = AssetDatabase.LoadAssetAtPath<LevelData>(path);
     _level = new Level(new Player(this.player), _levelData);
