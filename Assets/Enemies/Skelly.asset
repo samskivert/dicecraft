@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Skelly
   m_EditorClassIdentifier: 
   image: {fileID: 21300000, guid: cca77a0f90be0744db2ca08046dca123, type: 3}
-  maxHp: 7
+  maxHp: 6
   xpAward: 2
   coinAward: 1
   slots: 1
