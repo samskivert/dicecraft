@@ -13,7 +13,7 @@ public class BattlePopup : Popup {
   protected override Button escapeButton => close;
 
   public void Show (GameController game, Battle battle, Action onCancel) {
-    enemy.Init(game, battle.enemy);
+    enemy.Init(game, battle.enemy, true);
     close.onClick.AddListener(() => {
       onCancel();
       Close();

@@ -32,7 +32,7 @@ public class CombatantController : MonoBehaviour {
   public GameObject bagItemPrefab;
   public GameObject showItemPrefab;
 
-  public void Init (GameController game, Combatant comb) {
+  public void Init (GameController game, Combatant comb, bool forPreview = false) {
     this.game = game;
     this.comb = comb;
     nameLabel.text = comb.Name;
@@ -45,12 +45,16 @@ public class CombatantController : MonoBehaviour {
       }));
     });
 
+    // when previewing a battle, put the buffs with the dice & hide FX panel
+    var buffsParent = forPreview ? diceBagPanel : effects;
+    if (forPreview) effects.gameObject.SetActive(false);
+
     if (comb.Resistance != Die.Type.None) {
-      var resObj = Instantiate(buffPrefab, effects.transform);
+      var resObj = Instantiate(buffPrefab, buffsParent.transform);
       resObj.GetComponent<BuffController>().Show(game, comb.Resistance, -1);
     }
     if (comb.Weakness != Die.Type.None) {
-      var resObj = Instantiate(buffPrefab, effects.transform);
+      var resObj = Instantiate(buffPrefab, buffsParent.transform);
       resObj.GetComponent<BuffController>().Show(game, comb.Weakness, 1);
     }
 
