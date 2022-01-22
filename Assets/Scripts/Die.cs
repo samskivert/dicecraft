@@ -23,5 +23,14 @@ public static class Die {
       throw new Exception($"Unhandled type: {type}");
     }
   }
+
+  public static string BuffIcon (this Type type, int count) =>
+    count < 0 ? downLabels[-count-1] : upLabels[count-1];
+  private static readonly string[] upLabels = new [] {
+    "▲", "", ""
+  };
+  private static readonly string[] downLabels = new [] {
+    "▼", "", ""
+  };
 }
 }

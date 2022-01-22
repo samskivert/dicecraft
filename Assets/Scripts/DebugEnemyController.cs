@@ -21,11 +21,11 @@ public class DebugEnemyController : MonoBehaviour {
 
     if (data.resistance != Die.Type.None) {
       var resObj = Instantiate(buffPrefab, buffs.transform);
-      resObj.GetComponent<BuffController>().Show(data.resistance, -1);
+      resObj.GetComponent<BuffController>().Show(null, data.resistance, -1);
     }
     if (data.weakness != Die.Type.None) {
       var resObj = Instantiate(buffPrefab, buffs.transform);
-      resObj.GetComponent<BuffController>().Show(data.weakness, 1);
+      resObj.GetComponent<BuffController>().Show(null, data.weakness, 1);
     }
 
     foreach (var die in data.dice) {

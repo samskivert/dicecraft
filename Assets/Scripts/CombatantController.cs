@@ -47,11 +47,11 @@ public class CombatantController : MonoBehaviour {
 
     if (comb.Resistance != Die.Type.None) {
       var resObj = Instantiate(buffPrefab, effects.transform);
-      resObj.GetComponent<BuffController>().Show(comb.Resistance, -1);
+      resObj.GetComponent<BuffController>().Show(game, comb.Resistance, -1);
     }
     if (comb.Weakness != Die.Type.None) {
       var resObj = Instantiate(buffPrefab, effects.transform);
-      resObj.GetComponent<BuffController>().Show(comb.Weakness, 1);
+      resObj.GetComponent<BuffController>().Show(game, comb.Weakness, 1);
     }
 
     foreach (var die in comb.dice) AddBagDie(die);
