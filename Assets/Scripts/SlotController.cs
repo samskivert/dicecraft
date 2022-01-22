@@ -38,6 +38,11 @@ public class SlotController : MonoBehaviour {
     Reset();
   }
 
+  // disables interactivity once we start animating the play
+  public void Disable () {
+    button.interactable = false;
+  }
+
   public void Reset () {
     face = null;
     unplay = null;

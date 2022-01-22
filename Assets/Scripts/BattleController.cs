@@ -130,6 +130,7 @@ public class BattleController : MonoBehaviour {
   }
 
   private void Attack () {
+    foreach (var slot in this.slots) slot.Disable();
     var slots = this.slots.Where(
       slot => slot.face != null).Select(slot => (slot.face, slot.index, slot.upgrades));
     var attacker = playerTurn ? (Combatant)battle.player : (Combatant)battle.enemy;
