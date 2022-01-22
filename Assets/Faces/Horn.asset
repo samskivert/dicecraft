@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 71bc2946b85dc49939f3cd5b403cfbd6, type: 3}
-  m_Name: horn
+  m_Name: Horn
   m_EditorClassIdentifier: 
   image: {fileID: 21300000, guid: 2d71cf13400c3d44d99aa4227efd52e3, type: 3}
   dieType: 2
