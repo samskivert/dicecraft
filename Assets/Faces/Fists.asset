@@ -10,9 +10,9 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 71bc2946b85dc49939f3cd5b403cfbd6, type: 3}
-  m_Name: Flame Club New
+  m_Name: Fists
   m_EditorClassIdentifier: 
-  image: {fileID: 21300000, guid: 3fac6d99865694126b80348ac2d28d08, type: 3}
+  image: {fileID: 21300000, guid: 5ac88fa40746178468fff87cfe2f82cf, type: 3}
   dieType: 3
-  effectType: 1
+  effectType: 0
   amount: 1

@@ -10,9 +10,9 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 71bc2946b85dc49939f3cd5b403cfbd6, type: 3}
-  m_Name: FistsNew
+  m_Name: Icicle
   m_EditorClassIdentifier: 
-  image: {fileID: 21300000, guid: 5ac88fa40746178468fff87cfe2f82cf, type: 3}
-  dieType: 3
-  effectType: 0
+  image: {fileID: 21300000, guid: eb4494a8e2a0ce9408cf0b847c7deaf9, type: 3}
+  dieType: 2
+  effectType: 2
   amount: 1

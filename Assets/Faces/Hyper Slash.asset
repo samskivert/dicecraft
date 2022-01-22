@@ -10,9 +10,9 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 71bc2946b85dc49939f3cd5b403cfbd6, type: 3}
-  m_Name: Hyper Heal New
+  m_Name: Hyper Slash
   m_EditorClassIdentifier: 
-  image: {fileID: 21300000, guid: bb6a2b4203663a646b9681b0c3878f0f, type: 3}
-  dieType: 7
+  image: {fileID: 21300000, guid: 47d5f9b68d0098b4c97147762be4d2e8, type: 3}
+  dieType: 1
   effectType: 0
-  amount: 0
+  amount: 3
