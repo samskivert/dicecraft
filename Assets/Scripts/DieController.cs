@@ -23,6 +23,9 @@ public class DieController : MonoBehaviour {
   public bool burning { get; private set; }
   public bool frozen { get; private set; }
 
+  public bool IsEmpty => image.sprite == empty;
+  public bool CanPlay  => !IsEmpty && !frozen;
+
   public void Init (BattleController battle, FaceData face) {
     this.battle = battle;
     this.face = face;
@@ -47,8 +50,13 @@ public class DieController : MonoBehaviour {
 
   public void EnableClick (Combatant comb) {
     if (frozen) return;
-    var button = gameObject.AddComponent<Button>();
-    button.onClick.AddListener(() => Play(comb, true));
+    gameObject.AddComponent<Button>().onClick.AddListener(() => {
+      if (!CanPlay) return;
+      // if it has a status effect that's cleared by clicking, clear it and check for game over
+      else if (Clear(comb)) battle.CheckGameOver();
+      // otherwise go ahead and try to play it
+      else Play(comb);
+    });
   }
 
   public void SetBurning (bool burning) {
@@ -63,26 +71,22 @@ public class DieController : MonoBehaviour {
     below.gameObject.SetActive(true);
   }
 
-  public bool Play (Combatant comb, bool clickable) {
-    if (image.sprite == empty || frozen) return false;
-
+  public bool Clear (Combatant comb) {
     if (burning) {
       comb.hp.UpdateVia(hp => Math.Max(0, hp-Effect.FireDamage));
       SetBurning(false);
-      return battle.CheckGameOver();
+      return true;
     }
+    return false;
+  }
 
+  public bool Play (Combatant comb) {
     foreach (var slot in battle.slots) {
       if (!slot.CanPlay(face)) continue;
       Show(null);
-      slot.PlayDie(face, clickable, () => {
-        Show(face);
-        battle.UpdateAttack();
-      });
-      battle.UpdateAttack();
-      break;
+      battle.PlayDie(slot, face);
+      return true;
     }
-    // TODO: should we check whether the game ended here too?
     return false;
   }
 }

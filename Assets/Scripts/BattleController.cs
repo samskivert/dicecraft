@@ -5,6 +5,7 @@ using System.Linq;
 
 using UnityEngine;
 using UnityEngine.Events;
+using UnityEngine.UI;
 
 using Util;
 
@@ -21,11 +22,14 @@ public class BattleController : MonoBehaviour {
 
   public GameObject slotsPanel;
   public GameObject slotPrefab;
+  public Button endTurnButton;
 
   public GameObject diePrefab;
   public GameObject dice;
   public GameObject playerDice;
   public GameObject enemyDice;
+
+  public float actionDelay = 1f;
 
   public GameObject wonPopupPrefab;
 
@@ -47,33 +51,45 @@ public class BattleController : MonoBehaviour {
     battle.barriers.OnEmit(_ => game.anim.AddBarrier());
 
     slotsPanel.SetActive(true);
+    endTurnButton.onClick.AddListener(EndTurn);
     player.Init(game, battle.player);
     enemy.Init(game, battle.enemy);
     StartTurn(true);
-  }
-
-  public void UpdateAttack () {
-    if (!playerTurn) return;
-    // if all the slots are full or all the dice are used, attack
-    if (!slots.Any(slot => slot.face == null) ||
-        slots.Count(slot => slot.face != null) == level.player.dice.Count) Attack();
   }
 
   public void StartTurn (bool playerTurn) {
     this.playerTurn = playerTurn;
     ShowSlots(playerTurn ? battle.player.Slots : battle.enemy.Slots);
     battle.StartTurn(playerTurn);
+    endTurnButton.gameObject.SetActive(playerTurn);
     if (playerTurn) ShowDice(battle.player, playerDice, battle.player.roll, true);
     else ShowDice(battle.enemy, enemyDice, battle.enemy.roll, false);
     // starting the turn may have ended the game due to poison
     if (CheckGameOver()) return;
-    if (!playerTurn) this.RunAfter(1, EnemyPlay);
+    if (!playerTurn) EnemyPlay();
   }
 
   public bool CheckGameOver () {
     if (battle.player.hp.current > 0 && battle.enemy.hp.current > 0) return false;
-    this.RunAfter(1, EndGame);
+    this.RunAfter(actionDelay, EndGame);
     return true;
+  }
+
+  public void PlayDie (SlotController slot, FaceData face) {
+    slot.Show(face);
+    var attacker = playerTurn ? (Combatant)battle.player : (Combatant)battle.enemy;
+    var defender = playerTurn ? (Combatant)battle.enemy : (Combatant)battle.player;
+    battle.Attack(face, slot.index, attacker, defender);
+
+    // on the player's turn: if all the slots are full or all the dice are used, auto-end the turn
+    if (playerTurn) {
+      if (CheckGameOver()) ClearButtons();
+      else {
+        var filledSlots = slots.Count(slot => slot.face != null);
+        if (!slots.Any(slot => slot.face == null) ||
+            filledSlots == level.player.dice.Count) EndTurn();
+      }
+    }
   }
 
   private void ShowSlots (int slotCount) {
@@ -108,6 +124,7 @@ public class BattleController : MonoBehaviour {
       }));
       delay += 0.5f;
     }
+
     comb.effects.TryGetValue(Effect.Type.Freeze, out var freezes);
     for (var ii = 0; ii < freezes; ii += 1) {
       if (ii >= added.Count) break;
@@ -127,17 +144,16 @@ public class BattleController : MonoBehaviour {
     }));
   }
 
-  private void Attack () {
-    foreach (var slot in this.slots) slot.Disable();
-    var slots = this.slots.Where(
-      slot => slot.face != null).Select(slot => (slot.face, slot.index, slot.upgrades));
-    var attacker = playerTurn ? (Combatant)battle.player : (Combatant)battle.enemy;
-    var defender = playerTurn ? (Combatant)battle.enemy : (Combatant)battle.player;
-    battle.Attack(slots, attacker, defender);
+  private void ClearButtons () {
     playerDice.DestroyChildren();
     enemyDice.DestroyChildren();
+    endTurnButton.gameObject.SetActive(false);
+  }
+
+  private void EndTurn () {
+    ClearButtons();
     game.anim.Add(Anim.Action(() => {
-      if (!CheckGameOver()) this.RunAfter(0.5f, () => StartTurn(!playerTurn));
+      if (!CheckGameOver()) this.RunAfter(actionDelay/2, () => StartTurn(!playerTurn));
     }));
   }
 
@@ -146,12 +162,27 @@ public class BattleController : MonoBehaviour {
     for (var ii = 0; ii < dice.Length; ii += 1) {
       dice[ii] = enemyDice.transform.GetChild(ii).GetComponent<DieController>();
     }
-    battle.enemy.Play(dice, slots);
-    this.RunAfter(1, Attack);
+    void PlayNext (int index) {
+      if (index >= dice.Length) {
+        EndTurn();
+        return;
+      }
+      var die = dice[index];
+      if (!die.CanPlay) PlayNext(index+1);
+      else if (die.Clear(battle.enemy)) {
+        if (CheckGameOver()) return;
+        else this.RunAfter(actionDelay, () => PlayNext(index));
+      } else {
+        die.Play(battle.enemy);
+        this.RunAfter(actionDelay, () => PlayNext(index+1));
+      }
+    }
+    this.RunAfter(actionDelay, () => PlayNext(0));
   }
 
   private void EndGame () {
     slotsPanel.SetActive(false);
+    endTurnButton.gameObject.SetActive(false);
     if (battle.player.hp.current <= 0) game.ShowLost(level);
     else {
       var enemy = (EnemyData)battle.enemy.data;

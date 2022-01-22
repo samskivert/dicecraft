@@ -81,16 +81,5 @@ public class Combatant {
     roll.Clear();
     foreach (var die in dice) roll.Add(random.Pick(die.faces));
   }
-
-  public void Play (DieController[] dice, SlotController[] slots) {
-    foreach (var die in dice) {
-      if (die.frozen) continue;
-      if (die.burning) {
-        // if this ends the game, stop here
-        if (die.Play(this, false)) return;
-      }
-      die.Play(this, false);
-    }
-  }
 }
 }
