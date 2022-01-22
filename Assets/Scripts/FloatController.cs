@@ -66,7 +66,7 @@ public class FloatController : MonoBehaviour {
   ) {
     var start = canvasRt.InverseTransformPoint(fromObj.transform.position);
     var finish = canvasRt.InverseTransformPoint(toObj.transform.position);
-    Tween(sprite, back, text, start, finish, Interps.QuadIn, 1200, onArrive);
+    Tween(sprite, back, text, start, finish, Interps.QuadIn, 2400, onArrive);
   }
 
   private void Tween (
