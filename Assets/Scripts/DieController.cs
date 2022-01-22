@@ -64,7 +64,7 @@ public class DieController : MonoBehaviour {
   }
 
   public bool Play (Combatant comb, bool clickable) {
-    if (image.sprite == null || frozen) return false;
+    if (image.sprite == empty || frozen) return false;
 
     if (burning) {
       comb.hp.UpdateVia(hp => Math.Max(0, hp-Effect.FireDamage));
