@@ -54,11 +54,9 @@ public class BattleController : MonoBehaviour {
 
   public void UpdateAttack () {
     if (!playerTurn) return;
-    if (!slots.Any(slot => slot.face == null)) Attack();
-    // TODO: if all dice are used, also attack
-
-    // var canAttack = slots.Any(slot => slot.face != null);
-    // attack.interactable = canAttack;
+    // if all the slots are full or all the dice are used, attack
+    if (!slots.Any(slot => slot.face == null) ||
+        slots.Count(slot => slot.face != null) == level.player.dice.Count) Attack();
   }
 
   public void StartTurn (bool playerTurn) {
