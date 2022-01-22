@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2c75daf1274fb40db82fba1ce96283d6, type: 3}
   m_Name: yeti
   m_EditorClassIdentifier: 
-  image: {fileID: 0}
+  image: {fileID: 21300000, guid: e533053078034434284a86267dd01b5d, type: 3}
   faces:
   - {fileID: 11400000, guid: edbb202b224b707439638bdb10ec0315, type: 2}
   - {fileID: 11400000, guid: edbb202b224b707439638bdb10ec0315, type: 2}
