@@ -61,11 +61,16 @@ public class LevelController : MonoBehaviour {
                        player.diceBagPanel, die.image, null, () => level.player.AddDie(die));
   }
 
+  private void Move (int dx, int dy) {
+    if (game.ClearPopups()) return;
+    level.Move(dx, dy);
+  }
+
   private void Update () {
-    if (Input.GetKeyDown(KeyCode.UpArrow)) level.Move(0, -1);
-    else if (Input.GetKeyDown(KeyCode.DownArrow)) level.Move(0, 1);
-    else if (Input.GetKeyDown(KeyCode.RightArrow)) level.Move(1, 0);
-    else if (Input.GetKeyDown(KeyCode.LeftArrow)) level.Move(-1, 0);
+    if (Input.GetKeyDown(KeyCode.UpArrow)) Move(0, -1);
+    else if (Input.GetKeyDown(KeyCode.DownArrow)) Move(0, 1);
+    else if (Input.GetKeyDown(KeyCode.RightArrow)) Move(1, 0);
+    else if (Input.GetKeyDown(KeyCode.LeftArrow)) Move(-1, 0);
   }
 
   private void OnDestroy () => onDestroy();

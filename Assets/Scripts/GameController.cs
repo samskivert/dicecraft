@@ -12,6 +12,7 @@ using Util;
 
 public class GameController : MonoBehaviour {
   private GameObject screen;
+  private List<Popup> popups = new List<Popup>();
 
   public readonly AnimPlayer anim = new AnimPlayer();
 
@@ -83,8 +84,22 @@ public class GameController : MonoBehaviour {
     });
   }
 
-  public P ShowPopup<P> (GameObject prefab) where P : MonoBehaviour =>
-    Instantiate(prefab, canvas).GetComponent<P>();
+  public P ShowPopup<P> (GameObject prefab) where P : Popup {
+    var pop = Instantiate(prefab, canvas).GetComponent<P>();
+    pop.game = this;
+    popups.Add(pop);
+    return pop;
+  }
+
+  public bool ClearPopups () {
+    if (popups.Count == 0) return false;
+    for (var ii = popups.Count-1; ii >= 0; ii -= 1) popups[ii].ForceClose();
+    return true;
+  }
+
+  internal void PopupCleared (Popup popup) {
+    popups.Remove(popup);
+  }
 
   private void Start () {
     // sync the player's gems and unlocked levels & players to prefs
