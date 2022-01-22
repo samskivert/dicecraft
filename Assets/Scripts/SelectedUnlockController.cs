@@ -25,6 +25,7 @@ public class SelectedUnlockController : MonoBehaviour {
       title.text = unlock.Name;
       image.sprite = unlock.Image;
       cost.text = unlock.Price.ToString();
+      buyButton.interactable = game.gems.current >= unlock.Price;
     });
 
     var unlockedV = selected.SwitchMap(unlock => game.unlocked.ContainsValue(unlock));
@@ -32,6 +33,8 @@ public class SelectedUnlockController : MonoBehaviour {
       costPanel.SetActive(!unlocked);
       lockImage.gameObject.SetActive(!unlocked);
     });
+
+    buyButton.onClick.AddListener(() => game.BuyUnlock(selected.current));
   }
 
   private void OnDestroy () => onDestroy();

@@ -39,16 +39,13 @@ public class TitleController : MonoBehaviour {
     }
     selPlayer.Init(game, game.selPlayer);
 
-    onDestroy += Values.Join(game.selLevel, game.selPlayer).OnValue(pair => {
-      var unlocked = game.unlocked.Contains(pair.Item1) && game.unlocked.Contains(pair.Item2);
-      playButton.interactable = unlocked;
-    });
-
+    var levelUnlocked = game.selLevel.SwitchMap(game.unlocked.ContainsValue);
+    var playerUnlocked = game.selPlayer.SwitchMap(game.unlocked.ContainsValue);
+    onDestroy += Values.Join(levelUnlocked, playerUnlocked).OnValue(
+      pair => playButton.interactable = pair.Item1 && pair.Item2);
     playButton.onClick.AddListener(game.StartLevel);
 
-    onDestroy += game.gems.OnValue(gems => {
-      gemsLabel.text = gems.ToString();
-    });
+    onDestroy += game.gems.OnValue(gems => gemsLabel.text = gems.ToString());
   }
 
   private void Update () {

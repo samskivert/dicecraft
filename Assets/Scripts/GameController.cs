@@ -47,8 +47,8 @@ public class GameController : MonoBehaviour {
   }
 
   public void BuyUnlock (Unlockable unlock) {
-    gems.UpdateVia(gems => gems - unlock.Price);
-    unlocked.Add(unlock);
+    if (gems.current < unlock.Price) Debug.LogWarning("NSF " + gems.current + " < " + unlock.Price);
+    else if (unlocked.Add(unlock)) gems.UpdateVia(gems => gems - unlock.Price);
   }
 
   public void ShowTitle () {

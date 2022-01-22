@@ -159,7 +159,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 30.55
+  m_fontSize: 33.4
   m_fontSizeBase: 36
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -242,7 +242,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 256, y: 256}
+  m_SizeDelta: {x: 296, y: 266}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &7848334671592228785
 CanvasRenderer:
@@ -326,7 +326,7 @@ MonoBehaviour:
   costPanel: {fileID: 6207934995804173542}
   cost: {fileID: 1400264949481806551}
   buyPrefab: {fileID: 6450561550232973129, guid: f5d44e845843c42b1ae362bcbcedc49a, type: 3}
-  buyButton: {fileID: 0}
+  buyButton: {fileID: 2544115386112014777}
 --- !u!1 &8647012232800441093
 GameObject:
   m_ObjectHideFlags: 0
@@ -634,6 +634,17 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 45aa81435a4fe492c8c03e4958b649f9, type: 3}
+--- !u!114 &2544115386112014777 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 3653734448613945561, guid: 45aa81435a4fe492c8c03e4958b649f9, type: 3}
+  m_PrefabInstance: {fileID: 1295399973154851168}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &9030662594304539660
 PrefabInstance:
   m_ObjectHideFlags: 0
