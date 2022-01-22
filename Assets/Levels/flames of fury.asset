@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   saveId: starter
   image: {fileID: 21300000, guid: bc808c1fd5e102040b1d2aff6114694d, type: 3}
-  price: 0
+  price: 3
   width: 14
   floorTiles:
   - {fileID: 21300000, guid: 16a1d72b31503d349844eb2966bde061, type: 3}
