@@ -101,6 +101,15 @@ public class GameController : MonoBehaviour {
     popups.Remove(popup);
   }
 
+  private void ResetSaveData () {
+    gems.Update(0);
+    unlocked.Clear();
+    unlocked.Add(levels[0]);
+    unlocked.Add(players[0]);
+    selLevel.Update(levels[0]);
+    selPlayer.Update(players[0]);
+  }
+
   private void Start () {
     // sync the player's gems and unlocked levels & players to prefs
     gems.Update(PlayerPrefs.GetInt("gems"));
@@ -109,16 +118,17 @@ public class GameController : MonoBehaviour {
     selLevel.Update(levels[0]);
     selPlayer.Update(players[0]);
 
-    // debugButton.gameObject.SetActive(Application.isEditor);
-    // debugButton.onClick.AddListener(() => {
-    //   if (screen.GetComponent<DebugController>() != null) {
-    //     ShowTitle();
-    //     debugButton.GetComponentInChildren<TMP_Text>().text = "Debug";
-    //   } else {
-    //     ShowDebug();
-    //     debugButton.GetComponentInChildren<TMP_Text>().text = "Back";
-    //   }
-    // });
+    debugButton.gameObject.SetActive(Application.isEditor);
+    debugButton.onClick.AddListener(() => {
+      // if (screen.GetComponent<DebugController>() != null) {
+      //   ShowTitle();
+      //   debugButton.GetComponentInChildren<TMP_Text>().text = "Debug";
+      // } else {
+      //   ShowDebug();
+      //   debugButton.GetComponentInChildren<TMP_Text>().text = "Back";
+      // }
+      ResetSaveData();
+    });
 
     foreach (var level in levels) {
       if (String.IsNullOrEmpty(level.saveId)) {
