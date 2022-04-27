@@ -853,9 +853,21 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 11400000, guid: 6450652320e65f747b09cb02787fd0a8, type: 2}
     - target: {fileID: 4913607268464491193, guid: 75fe8a69a47274754b3d2acc873c9635, type: 3}
+      propertyPath: players.Array.data[1]
+      value: 
+      objectReference: {fileID: 11400000, guid: 70ce51c6087d9e8438750f39810314b8, type: 2}
+    - target: {fileID: 4913607268464491193, guid: 75fe8a69a47274754b3d2acc873c9635, type: 3}
+      propertyPath: players.Array.data[2]
+      value: 
+      objectReference: {fileID: 11400000, guid: 1ed3c41eea7059340ab709301c6bb71b, type: 2}
+    - target: {fileID: 4913607268464491193, guid: 75fe8a69a47274754b3d2acc873c9635, type: 3}
+      propertyPath: players.Array.data[3]
+      value: 
+      objectReference: {fileID: 11400000, guid: 70d5b8a440ded4e499db0c9d59cb8274, type: 2}
+    - target: {fileID: 4913607268464491193, guid: 75fe8a69a47274754b3d2acc873c9635, type: 3}
       propertyPath: players.Array.data[4]
       value: 
-      objectReference: {fileID: 11400000, guid: 02f6912b180c7d94d9ed5b8693db42c7, type: 2}
+      objectReference: {fileID: 11400000, guid: 40b579768278e6e42b80352f48bb740d, type: 2}
     - target: {fileID: 4913607268464491193, guid: 75fe8a69a47274754b3d2acc873c9635, type: 3}
       propertyPath: players.Array.data[5]
       value: 
@@ -863,11 +875,11 @@ PrefabInstance:
     - target: {fileID: 4913607268464491193, guid: 75fe8a69a47274754b3d2acc873c9635, type: 3}
       propertyPath: players.Array.data[6]
       value: 
-      objectReference: {fileID: 11400000, guid: 70ce51c6087d9e8438750f39810314b8, type: 2}
+      objectReference: {fileID: 11400000, guid: 02f6912b180c7d94d9ed5b8693db42c7, type: 2}
     - target: {fileID: 4913607268464491193, guid: 75fe8a69a47274754b3d2acc873c9635, type: 3}
       propertyPath: players.Array.data[7]
       value: 
-      objectReference: {fileID: 11400000, guid: 70d5b8a440ded4e499db0c9d59cb8274, type: 2}
+      objectReference: {fileID: 11400000, guid: 4305570f460b8ed4aa75fff4a03b7806, type: 2}
     - target: {fileID: 4913607268464491193, guid: 75fe8a69a47274754b3d2acc873c9635, type: 3}
       propertyPath: levelHps.Array.data[0]
       value: 0
