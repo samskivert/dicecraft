@@ -1,0 +1,20 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f274f32023f57466e8fc2cc0b094bbfb, type: 3}
+  m_Name: Dungeon Stories
+  m_EditorClassIdentifier: 
+  cards:
+  - {fileID: 11400000, guid: aa316b3d4c29f4147a785a51b43fe169, type: 2}
+  - {fileID: 11400000, guid: 96b72460a80814fd2b9036faa39bbcbf, type: 2}
+  - {fileID: 11400000, guid: db6d3cd9d7cbf4c7bb70526c35c59b29, type: 2}
+  - {fileID: 11400000, guid: 845c01df5b07f4dc39f0b6109c1d44d6, type: 2}
+  - {fileID: 11400000, guid: ea459951bfaa84c73984b7262a8ba548, type: 2}
