@@ -1,0 +1,20 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f274f32023f57466e8fc2cc0b094bbfb, type: 3}
+  m_Name: Lava Land
+  m_EditorClassIdentifier: 
+  cards:
+  - {fileID: 11400000, guid: 9ea876a676c3945feb8804baf0ce736c, type: 2}
+  - {fileID: 11400000, guid: 3e68894e58ef24cb999db6c54733f95c, type: 2}
+  - {fileID: 11400000, guid: e2de58e0a62a54d6996996da00c3ce31, type: 2}
+  - {fileID: 11400000, guid: ff4ccff11edc8428084bc263161e231c, type: 2}
+  - {fileID: 11400000, guid: 48aeda8b3c4544b8b9e5a710fc91552b, type: 2}
