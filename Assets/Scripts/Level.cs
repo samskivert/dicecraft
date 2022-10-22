@@ -24,6 +24,7 @@ public class Level {
   public Emitter<Battle> battle = new Emitter<Battle>();
   public Emitter<DieData> showShop = new Emitter<DieData>();
   public Emitter<ItemData> gotItem = new Emitter<ItemData>();
+  public Emitter<CardRef> gotCard = new Emitter<CardRef>();
   public Emitter<DieData> boughtDie = new Emitter<DieData>();
   public Action onExit;
   public Action onDied;
@@ -132,6 +133,9 @@ public class Level {
     case Cell.Type.Gem:
       earnedGems.UpdateVia(g => g+1);
       cells.Remove(pos);
+      break;
+    case Cell.Type.CardChest:
+      gotCard.Emit((CardRef)items.GetValueOrDefault(pos));
       break;
     case Cell.Type.Exit:
       onExit();

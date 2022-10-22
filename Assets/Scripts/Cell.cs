@@ -4,7 +4,7 @@ using UnityEngine;
 
 public static class Cell {
 
-  public enum Type { Wall, Entry, Exit, Chest, Shop, HeartUp, DiceUp, Enemy, Gem }
+  public enum Type { Wall, Entry, Exit, Chest, Shop, HeartUp, DiceUp, Enemy, Gem, CardChest }
 
   public interface Info {
     Type Type { get; }
