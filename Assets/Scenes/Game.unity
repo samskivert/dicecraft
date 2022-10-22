@@ -474,6 +474,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4f231c4fb786f3946a6b90b886c48677, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  m_SendPointerHoverToParent: 1
   m_HorizontalAxis: Horizontal
   m_VerticalAxis: Vertical
   m_SubmitButton: Submit
@@ -813,6 +814,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 6450561550232973129, guid: 970a98d27fec0497da1376e09072dce1, type: 3}
     - target: {fileID: 4913607268464491193, guid: 75fe8a69a47274754b3d2acc873c9635, type: 3}
+      propertyPath: cardPopupPrefab
+      value: 
+      objectReference: {fileID: 6450561550232973129, guid: ddd41e121e9354ba29ba0f7104624f6e, type: 3}
+    - target: {fileID: 4913607268464491193, guid: 75fe8a69a47274754b3d2acc873c9635, type: 3}
       propertyPath: lostPopupPrefab
       value: 
       objectReference: {fileID: 6450561550232973129, guid: 41fb79123cfc44afaaca221d0e0bb2c5, type: 3}
@@ -827,6 +832,10 @@ PrefabInstance:
     - target: {fileID: 4913607268464491193, guid: 75fe8a69a47274754b3d2acc873c9635, type: 3}
       propertyPath: levels.Array.size
       value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 4913607268464491193, guid: 75fe8a69a47274754b3d2acc873c9635, type: 3}
+      propertyPath: series.Array.size
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 4913607268464491193, guid: 75fe8a69a47274754b3d2acc873c9635, type: 3}
       propertyPath: players.Array.size
@@ -856,6 +865,14 @@ PrefabInstance:
       propertyPath: levels.Array.data[2]
       value: 
       objectReference: {fileID: 11400000, guid: c61311762a9356a4ca18c5505dd738c6, type: 2}
+    - target: {fileID: 4913607268464491193, guid: 75fe8a69a47274754b3d2acc873c9635, type: 3}
+      propertyPath: series.Array.data[0]
+      value: 
+      objectReference: {fileID: 11400000, guid: b752bed8ab6304ed4b3f047e729c844f, type: 2}
+    - target: {fileID: 4913607268464491193, guid: 75fe8a69a47274754b3d2acc873c9635, type: 3}
+      propertyPath: series.Array.data[1]
+      value: 
+      objectReference: {fileID: 11400000, guid: d129e7820203a43f6a920fdc5e74d34a, type: 2}
     - target: {fileID: 4913607268464491193, guid: 75fe8a69a47274754b3d2acc873c9635, type: 3}
       propertyPath: players.Array.data[1]
       value: 

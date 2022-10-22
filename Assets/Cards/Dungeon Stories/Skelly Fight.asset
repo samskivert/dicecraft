@@ -12,4 +12,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c3643ac1213074959a2a816e72cafad6, type: 3}
   m_Name: Skelly Fight
   m_EditorClassIdentifier: 
-  image: {fileID: 0}
+  image: {fileID: 21300000, guid: 38cf7b37b263b43d0bf242611fd415b5, type: 3}

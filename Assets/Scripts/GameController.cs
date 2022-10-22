@@ -23,6 +23,7 @@ public class GameController : MonoBehaviour {
   public GameObject wonPopupPrefab;
   public GameObject lostPopupPrefab;
   public GameObject battlePopupPrefab;
+  public GameObject cardPopupPrefab;
 
   public GameObject debugPrefab;
   public Button debugButton;
@@ -33,6 +34,7 @@ public class GameController : MonoBehaviour {
 
   public LevelData[] levels;
   public PlayerData[] players;
+  public SeriesData[] series;
 
   public readonly IMutable<int> gems = Values.Mutable(0);
   public readonly MutableSet<Unlockable> unlocked = RSets.LocalMutable<Unlockable>();
@@ -127,7 +129,8 @@ public class GameController : MonoBehaviour {
       //   ShowDebug();
       //   debugButton.GetComponentInChildren<TMP_Text>().text = "Back";
       // }
-      ResetSaveData();
+      // ResetSaveData();
+      ShowCardPopup(series[0], 0);
     });
 
     foreach (var level in levels) {
@@ -156,6 +159,11 @@ public class GameController : MonoBehaviour {
     ShowTitle();
   }
 
+  private void ShowCardPopup (SeriesData series, int cardIndex) {
+    var popup = ShowPopup<CardPopup>(cardPopupPrefab);
+    popup.Show(series, cardIndex);
+  }
+  
   private void Update () => anim.Update(Time.deltaTime);
 
   // private void ShowDebug () {
